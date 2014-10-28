@@ -48,13 +48,15 @@ _program_commandLine_helpMessage()
 	_program_commandLine_helpMessage_description="Fattens shellfire executables so they standalone."
 	_program_commandLine_helpMessage_options="
   -r, --repository-path PATH  Path to a Git repository root containing a PROGRAM
-                              Defaults to pwd: $(pwd)
+                              Defaults to pwd:-
+                              $(pwd)
   -e, --etc-path PATH         Path to install etc folder [Default ${_program_default_etcPath}]
   -l, --lib-path PATH         Path to install lib folder [Default ${_program_default_libPath}]
   -l, --var-path PATH         Path to install var folder [Default ${_program_default_varPath}]
   -f, --force                 Force fattening even if there are uncommited changes
   -o, --output-path PATH      Path to folder (created if necessary) for fattened PROGRAM
-                              Defaults to pwd: $(pwd)"
+                              Defaults to pwd:-
+                              $(pwd)
     _program_commandLine_helpMessage_optionsSpacing='     '
 	_program_commandLine_helpMessage_configurationKeys="
   fatten_etcPath         Equivalent to --etc-path
