@@ -3,7 +3,7 @@
 _program()
 {
 	core_usesIn core variable variable/array
-	core_uses fatten
+	core_usesIn fatten
 	core_usesIn fatten validate
 	
 	fatten()
@@ -57,12 +57,12 @@ _program_commandLine_helpMessage()
                               Defaults to $(pwd)"
     _program_commandLine_helpMessage_optionsSpacing='     '
 	_program_commandLine_helpMessage_configurationKeys="
-  fatten_etcPath  Equivalent to --etc-path
-  fatten_libPath  Equivalent to --lib-path
-  fatten_varPath  Equivalent to --var-path
+  fatten_etcPath         Equivalent to --etc-path
+  fatten_libPath         Equivalent to --lib-path
+  fatten_varPath         Equivalent to --var-path
   fatten_repositoryPath  Equivalent to --repository-path
-  fatten_force  Equivalent to --force (specify yes or no)
-  fatten_outputPath  Equivalent to --output-path
+  fatten_force           Equivalent to --force (specify yes or no)
+  fatten_outputPath      Equivalent to --output-path
   
   PROGRAM is an executable shellfire script, with a path
   relative to --repository-path.
