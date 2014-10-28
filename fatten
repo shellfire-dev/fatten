@@ -2,16 +2,17 @@
 
 _program()
 {
-	core_usesIn core/variable array
+	core_usesIn core variable variable/array
 	core_uses fatten
+	core_usesIn fatten validate
+	
 	fatten()
 	{
 		fatten_discoverPackageManagers
 		fatten_obtainGitDetails
 		fatten_createTemporaryFolder
 		fatten_createOutputFolder
-		
-		core_variable_array_iterate fatten_programs fatten_fattenProgram
+		fatten_fattenPrograms
 	}
 }
 
@@ -34,6 +35,11 @@ _program_commandLine_parseInitialise()
 	_program_default_etcPath='/etc'
 	_program_default_libPath='/usr/lib'
 	_program_default_varPath='/var'
+	
+	# Needed when handling non-options
+	if core_variable_isUnset fatten_repositoryPath; then
+		fatten_repositoryPath="$(pwd)"
+	fi
 }
 
 _program_commandLine_helpMessage()
@@ -41,12 +47,14 @@ _program_commandLine_helpMessage()
 	_program_commandLine_helpMessage_usage="[OPTION]... -- [PROGRAMS]..."
 	_program_commandLine_helpMessage_description="Fattens shellfire executables so they standalone."
 	_program_commandLine_helpMessage_options="
-  -r, --repository-path PATH  Path to folder containing a PROGRAM
+  -r, --repository-path PATH  Path to a Git repository root containing a PROGRAM
+                              Defaults to $(pwd)
   -e, --etc-path PATH         Path to install fir etc folder [Default ${_program_default_etcPath}]
   -l, --lib-path PATH         Path to lib folder [Default ${_program_default_libPath}]
   -l, --var-path PATH         Path to var folder [Default ${_program_default_varPath}]
   -f, --force                 Force fattening even if there are uncommited changes
-  -o, --output-path PATH      Path to folder (created in necessary) for fattened PROGRAM"
+  -o, --output-path PATH      Path to folder (created if necessary) for fattened PROGRAM
+                              Defaults to $(pwd)"
     _program_commandLine_helpMessage_optionsSpacing='     '
 	_program_commandLine_helpMessage_configurationKeys="
   fatten_etcPath  Equivalent to --etc-path
@@ -55,6 +63,9 @@ _program_commandLine_helpMessage()
   fatten_repositoryPath  Equivalent to --repository-path
   fatten_force  Equivalent to --force (specify yes or no)
   fatten_outputPath  Equivalent to --output-path
+  
+  PROGRAM is an executable shellfire script, with a path
+  relative to --repository-path.
 "
 	_program_commandLine_helpMessage_examples="
   ${_program_name} -r git-repo/bin -- minor-test
@@ -112,7 +123,7 @@ _program_commandLine_processOptionWithArgument()
 	case "$optionName" in
 		
 		r|repository-path)
-			core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue"
+			fatten_validate_repositoryPath $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue"
 			fatten_repositoryPath="$optionValue"
 		;;
 		
@@ -132,7 +143,7 @@ _program_commandLine_processOptionWithArgument()
 		;;
 		
 		o|output-path)
-			core_validate_pathNotEmpty $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue"
+			core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue"
 			fatten_outputPath="$optionValue"
 		;;
 		
@@ -148,18 +159,20 @@ _program_commandLine_handleNonOptions()
 	if [ $# -eq 0 ]; then
 		core_commandLine_exitBadCommandLine "No programs specified"
 	fi
+	
+	# Force repositoryPath to be absolute
+	pushd "$fatten_repositoryPath"
+	
 	local fatten_program
+	local resolvedPath
 	for fatten_program in "$@"
 	do
-		core_validate_filePathReadableAndExecutableAndNotEmpty $core_commandLine_exitCode_USAGE 'non-options' 'programs' "$fatten_program"
-		
-		cd -P "$(core_compatibility_dirname "$fatten_program")" 1>/dev/null
-		
-			fatten_program="$(pwd)"/"$(core_compatibility_basename "$fatten_program")"
-		
-		cd - >/dev/null
-		
-		core_variable_array_append fatten_programs "$fatten_program"
+		if core_variable_startsWith "$fatten_program" '/'; then
+			core_commandLine_exitBadCommandLine "PROGRAM '$fatten_program' is an absolute path. Paths to PROGRAMs must be relative to --repository-path so that we can enforce they are built against that repository's metadata."
+		fi
+		resolvedPath="$fatten_repositoryPath"/"$fatten_program"
+		core_validate_filePathReadableAndExecutableAndNotEmpty $core_commandLine_exitCode_USAGE 'non-options' "PROGRAM ('$fatten_program')" "$resolvedPath"
+		core_variable_array_append fatten_programs "$resolvedPath"
 	done
 }
 
@@ -174,10 +187,8 @@ _program_commandLine_validate()
 		core_validate_isBoolean $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_force' "$fatten_force"
 	fi
 	
-	if core_variable_isUnset fatten_repositoryPath; then
-		core_commandLine_exitBadCommandLine "The option '--repository-path (-r)' must be specified"
-	else
-		core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_repositoryPath' "$fatten_repositoryPath"
+	if core_variable_isSet fatten_repositoryPath; then
+		fatten_validate_repositoryPath $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_repositoryPath' "$fatten_repositoryPath"
 	fi
 	
 	if core_variable_isUnset fatten_etcPath; then
@@ -199,9 +210,9 @@ _program_commandLine_validate()
 	fi
 	
 	if core_variable_isUnset fatten_outputPath; then
-		core_commandLine_exitBadCommandLine "The option '--output-path (-o)' must be specified"
+		fatten_outputPath="$(pwd)"
 	else
-		core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_outputPath' "$fatten_outputPath"
+		core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_outputPath' "$fatten_outputPath"
 	fi
 }
 

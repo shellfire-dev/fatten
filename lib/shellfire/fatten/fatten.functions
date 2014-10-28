@@ -1,5 +1,3 @@
-
-
 fatten_discoverPackageManagers()
 {
 	_fatten_discoverPackageManagers_callback()
@@ -20,10 +18,6 @@ core_dependency_requires '*' git sort awk date md5sum
 fatten_obtainGitDetails()
 {
 	pushd "$fatten_repositoryPath"
-	
-		if [ ! -d '.git' ]; then
-			core_exitError "--repository-path '$fatten_repositoryPath' is not a git repository"
-		fi
 		
 		fatten_branch="$(git branch | awk '/^\*/ {print $2}')"
 		fatten_commit="$(git log -n 1 --format='%H')"
@@ -61,16 +55,27 @@ fatten_createOutputFolder()
 	popd
 }
 
+fatten_fattenPrograms()
+{
+	core_variable_array_iterate fatten_programs fatten_fattenProgram
+}
+
 core_dependency_requires '*' head bash chmod
 core_snippet_embed raw bootstrap1 bootstrap2
 fatten_fattenProgram()
 {
 	local fatten_originalProgram="$core_variable_array_element"
+
 	local fatten_programPath="$(core_compatibility_dirname "$fatten_originalProgram")"
 	local fatten_programName="$(core_compatibility_basename "$fatten_originalProgram")"
 	local fatten_fattenedProgram="$fatten_outputPath"/"$fatten_programName"
 	local fatten_bootstrapProgram="$fatten_temporaryFolderPath"/"$fatten_programName"
 	local fatten_shebang="$(head -n 1 "$fatten_originalProgram")"
+	
+	rm "$fatten_bootstrapProgram"
+	if [ -f "$fatten_fattenedProgram" ]; then
+		rm "$fatten_fattenedProgram" || core_exitError "Could not overwrite fattened program '$fatten_fattenedProgram'"
+	fi
 	
 	core_snippet_retrieveAndSourceAsHereDoc bootstrap1 >"$fatten_bootstrapProgram"
 	core_snippet_retrieve bootstrap2 yes "$fatten_bootstrapProgram"
