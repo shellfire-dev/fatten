@@ -74,7 +74,7 @@ fatten_fattenProgram()
 	
 	rm "$fatten_bootstrapProgram"
 	if [ -f "$fatten_fattenedProgram" ]; then
-		rm "$fatten_fattenedProgram" || core_exitError "Could not overwrite fattened program '$fatten_fattenedProgram'"
+		core_exitError "Could not overwrite fattened program '$fatten_fattenedProgram'"
 	fi
 	
 	core_snippet_retrieveAndSourceAsHereDoc bootstrap1 >"$fatten_bootstrapProgram"
