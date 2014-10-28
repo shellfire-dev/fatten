@@ -10,7 +10,8 @@ fatten_discoverPackageManagers()
 	}
 	
 	fatten_allPackageManagers=''
-	core_path_iterateOverFolderPath "$_program_libPath"/"$core_libraryName"/core/dependency/check _fatten_discoverPackageManagers_callback
+	
+	core_path_iterateOverFolderPath "$fatten_corePath"/dependency/check _fatten_discoverPackageManagers_callback
 }
 
 # We're supposed to use git's "low-level plumbing" and avoid 'porcelain' commands. Given how hideous git's syntax is, life is too short. We'll fix the bugs that arise instead.
@@ -24,17 +25,16 @@ fatten_obtainGitDetails()
 		fatten_authors="$(git log --format='%aN' | sort -u | awk 'NR==1 {ORS=""; print $0}; NR>1 {ORS=""; print ", " $0}')"
 		local iso8601Date="$(git log -n 1 --format='%ci')"
 		fatten_version="$(date -d "$iso8601Date" '+%Y.%m.%d.%H.%M')"
-		
-		if [ "$fatten_force" = 'no' ]; then
-			local pendingChanges="$(git diff --minimal --no-color --name-status)"
-			if [ -n "$pendingChanges" ]; then
+
+		local pendingChanges="$(git diff --minimal --no-color --name-status)"
+		if [ -n "$pendingChanges" ]; then
+			if [ "$fatten_force" = 'no' ]; then
 				core_exitError $core_commandLine_exitCode_DATAERR "Pending changes in --repository-path '$fatten_repositoryPath'"
 			fi
 			fatten_packageOrBuild="$fatten_branch commit $fatten_commit variant $(git diff --minimal --no-color | md5sum | awk '{print $1}')"
 		else
 			fatten_packageOrBuild="$fatten_branch commit $fatten_commit"
 		fi
-		
 	popd
 }
 

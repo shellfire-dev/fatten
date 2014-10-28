@@ -35,6 +35,7 @@ _program_commandLine_parseInitialise()
 	_program_default_etcPath='/etc'
 	_program_default_libPath='/usr/lib'
 	_program_default_varPath='/var'
+	_program_default_corePath="$_program_libPath"/"$core_libraryName"/core
 	
 	# Needed when handling non-options
 	if core_variable_isUnset fatten_repositoryPath; then
@@ -52,11 +53,14 @@ _program_commandLine_helpMessage()
                               $(pwd)
   -e, --etc-path PATH         Path to install etc folder [Default ${_program_default_etcPath}]
   -l, --lib-path PATH         Path to install lib folder [Default ${_program_default_libPath}]
-  -l, --var-path PATH         Path to install var folder [Default ${_program_default_varPath}]
+  -p, --var-path PATH         Path to install var folder [Default ${_program_default_varPath}]
   -f, --force                 Force fattening even if there are uncommited changes
   -o, --output-path PATH      Path to folder (created if necessary) for fattened PROGRAM
                               Defaults to pwd:-
-                              $(pwd)"
+                              $(pwd)
+  -c, --core-path  PATH       Path to shellfire core
+                              Defaults to:-
+                              ${_program_default_corePath}"
     _program_commandLine_helpMessage_optionsSpacing='     '
 	_program_commandLine_helpMessage_configurationKeys="
   fatten_etcPath         Equivalent to --etc-path
@@ -65,6 +69,7 @@ _program_commandLine_helpMessage()
   fatten_repositoryPath  Equivalent to --repository-path
   fatten_force           Equivalent to --force (specify yes or no)
   fatten_outputPath      Equivalent to --output-path
+  fatten_corePath        Equivalent to --core-path
   
   PROGRAM is an executable shellfire script, with a path
   relative to --repository-path.
@@ -94,11 +99,15 @@ _program_commandLine_optionExists()
 			echo 'yes-argumented'
 		;;
 		
-		l|var-path)
+		p|var-path)
 			echo 'yes-argumented'
 		;;
 		
 		o|output-path)
+			echo 'yes-argumented'
+		;;
+		
+		c|core-path)
 			echo 'yes-argumented'
 		;;
 		
@@ -147,6 +156,11 @@ _program_commandLine_processOptionWithArgument()
 		o|output-path)
 			core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue"
 			fatten_outputPath="$optionValue"
+		;;
+		
+		c|core-path)
+			core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue"
+			fatten_corePath="$optionValue"
 		;;
 		
 		*)
@@ -215,6 +229,12 @@ _program_commandLine_validate()
 		fatten_outputPath="$(pwd)"
 	else
 		core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_outputPath' "$fatten_outputPath"
+	fi
+	
+	if core_variable_isUnset fatten_corePath; then
+		fatten_corePath="$_program_default_corePath"
+	else
+		core_validate_folderPathReadableAndSearchable $core_commandLine$core_commandLine_exitCode_CONFIG_exitCode_USAGE 'configuration setting' 'fatten_corePath' "$fatten_corePath"
 	fi
 }
 
