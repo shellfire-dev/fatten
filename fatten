@@ -56,7 +56,7 @@ _program_commandLine_helpMessage()
   -f, --force                 Force fattening even if there are uncommited changes
   -o, --output-path PATH      Path to folder (created if necessary) for fattened PROGRAM
                               Defaults to pwd:-
-                              $(pwd)
+                              $(pwd)"
     _program_commandLine_helpMessage_optionsSpacing='     '
 	_program_commandLine_helpMessage_configurationKeys="
   fatten_etcPath         Equivalent to --etc-path
