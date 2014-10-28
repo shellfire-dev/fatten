@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -x
 _program()
 {
 	core_usesIn core/variable array
@@ -104,9 +104,9 @@ _program_copyright='(c) 2014 Raphael Cohn'
 _program_licence='MIT'
 _program_written_by='Raphael Cohn'
 _program_path="$([ "${_program_fattening_program_path+set}" = 'set' ] && printf '%s\n' "$_program_fattening_program_path" || ([ "${0%/*}" = "${0}" ] && printf '%s\n' '.' || printf '%s\n' "${0%/*}"))"
-_program_libPath="${_program_path}/../../lib"
-_program_etcPath="${_program_path}/../../etc"
-_program_varPath="${_program_path}/../../var"
+_program_libPath="${_program_path}/lib"
+_program_etcPath="${_program_path}/etc"
+_program_varPath="${_program_path}/var"
 _program_entrypoint='shellfire_fatten'
 
 _program_commandLine_parseInitialise()
