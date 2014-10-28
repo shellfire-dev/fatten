@@ -77,15 +77,14 @@ fatten_fattenProgram()
 		return 0
 	fi
 	
-	if [ -f "$fatten_fattenedProgram" ]; then
+	if [ "$fatten_originalProgram" = "$fatten_fattenedProgram" ]; then
 		core_exitError $core_commandLine_exitCode_CANTCREAT "Could not overwrite fattened program '$fatten_fattenedProgram' (did you specify an output path)?"
 	fi
 	
 	core_snippet_retrieveAndSourceAsHereDoc bootstrap1 >"$fatten_bootstrapProgram"
 	core_snippet_retrieve bootstrap2 yes "$fatten_bootstrapProgram"
-	
 	chmod +x "$fatten_bootstrapProgram"
-	"$fatten_bootstrapProgram"
 	
+	"$fatten_bootstrapProgram" >"$fatten_fattenedProgram"
 	chmod +x "$fatten_fattenedProgram"
 }

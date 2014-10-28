@@ -19,6 +19,10 @@ _program_fattening_declares()
 	done
 }
 
+# Force array delimiter to lowest common denominator (assumes not supporting bash 3.1)
+core_variable_array_delimiter="$(printf '\r')"
+_program_fattening_declares core_variable_array_delimiter
+
 cd "$_program_fattening_program_path" 1>/dev/null
 . "$_program_fattening_originalProgram"
 
@@ -91,6 +95,11 @@ IFS=' '
 set -o noglob
 for _program_fattening_declaredName in $_program_fattening_declaredNames
 do
+	case "$_program_fattening_declaredName" in
+		_core_snippet_embeddedData_bootstrap1|_core_snippet_embeddedCodec_bootstrap1|_core_snippet_embeddedData_bootstrap2|_core_snippet_embeddedCodec_bootstrap2)
+			continue
+		;;
+	esac
 	declare -p "$_program_fattening_declaredName"
 done
 
