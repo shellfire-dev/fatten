@@ -233,9 +233,8 @@ _program_commandLine_validate()
 	
 	if core_variable_isUnset fatten_corePath; then
 		fatten_corePath="$_program_default_corePath"
-	else
-		core_validate_folderPathReadableAndSearchable $core_commandLine$core_commandLine_exitCode_CONFIG_exitCode_USAGE 'configuration setting' 'fatten_corePath' "$fatten_corePath"
 	fi
+	core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_corePath' "$fatten_corePath"
 }
 
 # Assumes pwd, and so requires this code to be running from this folder

@@ -31,9 +31,9 @@ fatten_obtainGitDetails()
 			if [ "$fatten_force" = 'no' ]; then
 				core_exitError $core_commandLine_exitCode_DATAERR "Pending changes in --repository-path '$fatten_repositoryPath'"
 			fi
-			fatten_packageOrBuild="$fatten_branch commit $fatten_commit variant $(git diff --minimal --no-color | md5sum | awk '{print $1}')"
+			fatten_packageOrBuild="Commit $fatten_commit Branch $fatten_branch Variant $(git diff --minimal --no-color | md5sum | awk '{print $1}')"
 		else
-			fatten_packageOrBuild="$fatten_branch commit $fatten_commit"
+			fatten_packageOrBuild="Commit $fatten_commit Branch $fatten_branch"
 		fi
 	popd
 }
@@ -87,4 +87,6 @@ fatten_fattenProgram()
 	
 	"$fatten_bootstrapProgram" >"$fatten_fattenedProgram"
 	chmod +x "$fatten_fattenedProgram"
+	
+	printf '%s\n' "Fattened $fatten_programName Version $fatten_version $fatten_packageOrBuild"
 }

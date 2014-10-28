@@ -47,7 +47,8 @@ printf '%s\n' "$_program_fattening_shebang"
 
 # Header Comments
 printf '# \n'
-printf '# %s\n' "$_program_fattening_program_name ($_program_fattening_program_package_or_build) $_program_fattening_program_version"
+printf '# %s\n' "$_program_fattening_program_name $_program_fattening_program_version"
+printf '# %s\n' "$_program_fattening_program_package_or_build"
 printf '# %s\n' "Copyright $_program_copyright."
 if [ $_program_openSourceLicensed -eq 1 ]; then
 	printf '# %s\n' "Licensed under the $_program_licence_description"
