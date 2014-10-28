@@ -72,9 +72,13 @@ fatten_fattenProgram()
 	local fatten_bootstrapProgram="$fatten_temporaryFolderPath"/"$fatten_programName"
 	local fatten_shebang="$(head -n 1 "$fatten_originalProgram")"
 	
-	rm "$fatten_bootstrapProgram"
+	if [ -f "$fatten_bootstrapProgram" ]; then
+		core_message WARN "Already fattened '$fatten_fattenedProgram', skipping ($_program_name does not support fattening programs with the same name)"
+		return 0
+	fi
+	
 	if [ -f "$fatten_fattenedProgram" ]; then
-		core_exitError "Could not overwrite fattened program '$fatten_fattenedProgram'"
+		core_exitError $core_commandLine_exitCode_CANTCREAT "Could not overwrite fattened program '$fatten_fattenedProgram'"
 	fi
 	
 	core_snippet_retrieveAndSourceAsHereDoc bootstrap1 >"$fatten_bootstrapProgram"
