@@ -76,8 +76,8 @@ _program()
 		local shellfire_fatten_bootstrapProgram="$shellfire_fatten_temporaryFolderPath"/"$shellfire_fatten_programName"
 		local shellfire_fatten_shebang="$(head -n 1 "$shellfire_fatten_originalProgram")"
 		
-		core_snippet_retrieveAndSourceAsHereDoc bootstrap-a >"$shellfire_fatten_bootstrapProgram"
-		core_snippet_retrieve bootstrap-b yes "$shellfire_fatten_bootstrapProgram"
+		core_snippet_retrieveAndSourceAsHereDoc bootstrap1 >"$shellfire_fatten_bootstrapProgram"
+		core_snippet_retrieve bootstrap2 yes "$shellfire_fatten_bootstrapProgram"
 		
 		chmod +x "$shellfire_fatten_bootstrapProgram"
 		"$shellfire_fatten_bootstrapProgram"
