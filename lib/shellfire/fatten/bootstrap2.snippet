@@ -70,7 +70,7 @@ _program_fattening_outputVariables()
 	do
 		fattenedVariableName="_program_fattening${variableName}"
 		core_variable_indirectValue "$fattenedVariableName"
-		printf "declare %s='%s'\n" "$variableName" "$core_variable_indirectValue_result"
+		printf "%s='%s'\n" "$variableName" "$core_variable_indirectValue_result"
 	done
 }
 
@@ -100,7 +100,7 @@ do
 			continue
 		;;
 	esac
-	declare -p "$_program_fattening_declaredName"
+	declare -p "$_program_fattening_declaredName" | sed 's/^declare -- //g'
 done
 
 # Dependencies
@@ -133,7 +133,7 @@ do
 					fi
 				done
 				
-				printf '%s' "declare ${_program_fattening_declaredDependencyName}='"
+				printf '%s' "${_program_fattening_declaredDependencyName}='"
 				printf '%s' "$(head -n 1 "$externalDataSourceFilePath")"
 				printf '%s\n' "'"
 				
