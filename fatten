@@ -49,9 +49,9 @@ _program_commandLine_helpMessage()
 	_program_commandLine_helpMessage_options="
   -r, --repository-path PATH  Path to a Git repository root containing a PROGRAM
                               Defaults to $(pwd)
-  -e, --etc-path PATH         Path to install fir etc folder [Default ${_program_default_etcPath}]
-  -l, --lib-path PATH         Path to lib folder [Default ${_program_default_libPath}]
-  -l, --var-path PATH         Path to var folder [Default ${_program_default_varPath}]
+  -e, --etc-path PATH         Path to install etc folder [Default ${_program_default_etcPath}]
+  -l, --lib-path PATH         Path to install lib folder [Default ${_program_default_libPath}]
+  -l, --var-path PATH         Path to install var folder [Default ${_program_default_varPath}]
   -f, --force                 Force fattening even if there are uncommited changes
   -o, --output-path PATH      Path to folder (created if necessary) for fattened PROGRAM
                               Defaults to $(pwd)"
