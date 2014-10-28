@@ -1,0 +1,15 @@
+$shellfire_fatten_shebang
+set -e
+set -u
+_program_fattening_shebang='$shellfire_fatten_shebang'
+_program_fattening_program_path='$(core_compatibility_dirname "$shellfire_fatten_originalProgram")'
+_program_fattening_originalProgram='$shellfire_fatten_originalProgram'
+_program_fattening_allPackageManagers="$shellfire_fatten_allPackageManagers"
+
+_program_fattening_program_name="$shellfire_fatten_programName"
+_program_fattening_program_version="$shellfire_fatten_version"
+_program_fattening_program_package_or_build="$shellfire_fatten_packageOrBuild"
+_program_fattening_program_written_by="$shellfire_fatten_authors"
+_program_fattening_program_libPath="$shellfire_fatten_libPath"
+_program_fattening_program_etcPath="$shellfire_fatten_etcPath"
+_program_fattening_program_varPath="$shellfire_fatten_varPath"
