@@ -30,7 +30,7 @@ if core_variable_isUnset _program_namespace; then
 	_program_namespace="$_program_name"
 fi
 if core_variable_isUnset _program_ignore_dependencies; then
-	_program_ignore_dependencies=0
+	_program_ignore_dependencies=no
 fi
 
 # Look up license details for use in header
@@ -96,11 +96,6 @@ IFS=' '
 set -o noglob
 for _program_fattening_declaredName in $_program_fattening_declaredNames
 do
-	case "$_program_fattening_declaredName" in
-		_core_snippet_embeddedData_bootstrap1|_core_snippet_embeddedCodec_bootstrap1|_core_snippet_embeddedData_bootstrap2|_core_snippet_embeddedCodec_bootstrap2)
-			continue
-		;;
-	esac
 	declare -p "$_program_fattening_declaredName" | sed 's/^declare -- //g'
 done
 
