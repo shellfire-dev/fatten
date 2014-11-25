@@ -1,17 +1,26 @@
 fatten_discoverPackageManagers()
 {
-	_fatten_discoverPackageManagers_callback()
-	{
-		if [ ! -s "$filePath" ]; then
-			return 0
-		fi
-		local lengthOf=".functions"
-		fatten_allPackageManagers="$fatten_allPackageManagers $(core_variable_allButLastN "$(core_compatibility_basename "$filePath")" ${#lengthOf})"
-	}
-	
 	fatten_allPackageManagers=''
+
+	local lengthOf=".functions"
+	local filePath
+	pushd "$fatten_corePath"/dependency/check
 	
-	core_path_iterateOverFolderPath "$fatten_corePath"/dependency/check _fatten_discoverPackageManagers_callback
+		set +f
+			for filePath in *
+			do
+				set -f
+				if [ ! -e "$filePath" ]; then
+					continue
+				fi
+				if [ ! -s "$filePath" ]; then
+					continue
+				fi
+				fatten_allPackageManagers="$fatten_allPackageManagers $(core_variable_allButLastN "$(core_compatibility_basename "$filePath")" ${#lengthOf})"
+			done
+		set -f
+	
+	popd
 }
 
 # We're supposed to use git's "low-level plumbing" and avoid 'porcelain' commands. Given how hideous git's syntax is, life is too short. We'll fix the bugs that arise instead.
