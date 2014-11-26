@@ -75,7 +75,7 @@ _program_commandLine_helpMessage()
   relative to --repository-path.
 "
 	_program_commandLine_helpMessage_examples="
-  ${_program_name} -r git-repo/bin -- minor-test
+  ${_program_name} -r fatten -- fatten
 "
 }
 
