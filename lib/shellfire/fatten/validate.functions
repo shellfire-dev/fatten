@@ -9,7 +9,7 @@ fatten_validate_repositoryPath()
 	local name="$3"
 	local value="$4"
 	
-	if [ ! -d "$value"/.git ]; then
+	if [ ! -e "$value"/.git ]; then
 		core_validate_exit "The $category '$name' specifies a path '$value' which is not a git repository"
 	fi
 }
