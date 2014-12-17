@@ -77,7 +77,7 @@ fatten_fattenProgram()
 
 	local fatten_programPath="$(core_compatibility_dirname "$fatten_originalProgram")"
 	local fatten_programName="$(core_compatibility_basename "$fatten_originalProgram")"
-	local fatten_fattenedProgramParentPath="${fatten_outputPath}${fatten_binPath}"/"$fatten_programName"
+	local fatten_fattenedProgramParentPath="${fatten_outputPath}${fatten_binPath}"
 	local fatten_fattenedProgram="$fatten_fattenedProgramParentPath"/"$fatten_programName"
 	local fatten_bootstrapProgram="$fatten_temporaryFolderPath"/"$fatten_programName"
 	local fatten_shebang="$(head -n 1 "$fatten_originalProgram")"
