@@ -179,17 +179,19 @@ _program_commandLine_handleNonOptions()
 	# Force repositoryPath to be absolute
 	pushd "$fatten_repositoryPath"
 	
-	local fatten_program
-	local resolvedPath
-	for fatten_program in "$@"
-	do
-		if core_variable_startsWith "$fatten_program" '/'; then
-			core_commandLine_exitBadCommandLine "PROGRAM '$fatten_program' is an absolute path. Paths to PROGRAMs must be relative to --repository-path so that we can enforce they are built against that repository's metadata."
-		fi
-		resolvedPath="$fatten_repositoryPath"/"$fatten_program"
-		core_validate_filePathReadableAndExecutableAndNotEmpty $core_commandLine_exitCode_USAGE 'non-options' "PROGRAM ('$fatten_program')" "$resolvedPath"
-		core_variable_array_append fatten_programs "$resolvedPath"
-	done
+		local fatten_program
+		local resolvedPath
+		for fatten_program in "$@"
+		do
+			if core_variable_startsWith "$fatten_program" '/'; then
+				core_commandLine_exitBadCommandLine "PROGRAM '$fatten_program' is an absolute path. Paths to PROGRAMs must be relative to --repository-path so that we can enforce they are built against that repository's metadata."
+			fi
+			resolvedPath="$(pwd)"/"$fatten_program"
+			core_validate_filePathReadableAndExecutableAndNotEmpty $core_commandLine_exitCode_USAGE 'non-options' "PROGRAM ('$fatten_program')" "$resolvedPath"
+			core_variable_array_append fatten_programs "$resolvedPath"
+		done
+		
+	popd
 }
 
 _program_commandLine_validate()
