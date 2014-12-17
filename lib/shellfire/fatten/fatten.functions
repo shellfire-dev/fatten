@@ -69,7 +69,7 @@ fatten_fattenPrograms()
 	core_variable_array_iterate fatten_programs fatten_fattenProgram
 }
 
-core_dependency_requires '*' head bash chmod
+core_dependency_requires '*' mkdir head bash chmod
 core_snippet_embed raw bootstrap1 bootstrap2
 fatten_fattenProgram()
 {
@@ -77,7 +77,8 @@ fatten_fattenProgram()
 
 	local fatten_programPath="$(core_compatibility_dirname "$fatten_originalProgram")"
 	local fatten_programName="$(core_compatibility_basename "$fatten_originalProgram")"
-	local fatten_fattenedProgram="$fatten_outputPath"/"$fatten_programName"
+	local fatten_fattenedProgramParentPath="${fatten_outputPath}${fatten_binPath}"/"$fatten_programName"
+	local fatten_fattenedProgram="$fatten_fattenedProgramParentPath"/"$fatten_programName"
 	local fatten_bootstrapProgram="$fatten_temporaryFolderPath"/"$fatten_programName"
 	local fatten_shebang="$(head -n 1 "$fatten_originalProgram")"
 	
@@ -89,6 +90,8 @@ fatten_fattenProgram()
 	if [ "$fatten_originalProgram" = "$fatten_fattenedProgram" ]; then
 		core_exitError $core_commandLine_exitCode_CANTCREAT "Could not overwrite fattened program '$fatten_fattenedProgram' (did you specify an output path)?"
 	fi
+	
+	mkdir -m 0755 -p "$fatten_fattenedProgramParentPath"
 	
 	core_snippet_retrieveAndSourceAsHereDoc bootstrap1 >"$fatten_bootstrapProgram"
 	core_snippet_retrieve bootstrap2 yes "$fatten_bootstrapProgram"
