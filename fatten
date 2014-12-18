@@ -223,38 +223,45 @@ _program_commandLine_validate()
 	
 	if core_variable_isUnset fatten_binPath; then
 		fatten_binPath="$_program_default_binPath"
+		core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'default' '--bin-path' "$fatten_binPath"
 	else
 		core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_binPath' "$fatten_binPath"
 	fi
 	
 	if core_variable_isUnset fatten_etcPath; then
 		fatten_etcPath="$_program_default_etcPath"
+		core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'default' '--etc-path' "$fatten_etcPath"
 	else
 		core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_etcPath' "$fatten_etcPath"
 	fi
 	
 	if core_variable_isUnset fatten_libPath; then
 		fatten_libPath="$_program_default_libPath"
+		core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'default' '--lib-path' "$fatten_libPath"
 	else
 		core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_libPath' "$fatten_libPath"
 	fi
 	
 	if core_variable_isUnset fatten_varPath; then
 		fatten_varPath="$_program_default_varPath"
+		core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'default' '--var-path' "$fatten_varPath"
 	else
 		core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_varPath' "$fatten_varPath"
 	fi
 	
 	if core_variable_isUnset fatten_outputPath; then
 		fatten_outputPath="$(pwd)"
+		core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'default' 'fatten_outputPath' "$fatten_outputPath"
 	else
 		core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_outputPath' "$fatten_outputPath"
 	fi
 	
 	if core_variable_isUnset fatten_corePath; then
 		fatten_corePath="$_program_default_corePath"
+		core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_CONFIG 'default' 'fatten_corePath' "$fatten_corePath"
+	else
+		core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_corePath' "$fatten_corePath"
 	fi
-	core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_corePath' "$fatten_corePath"
 }
 
 # Assumes pwd, and so requires this code to be running from this folder
