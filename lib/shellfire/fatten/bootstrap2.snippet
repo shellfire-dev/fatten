@@ -16,12 +16,13 @@ _program_fattening_declares()
 			fi
 		done
 		_program_fattening_declaredNames="$_program_fattening_declaredNames $declares"
+	
+		if core_variable_array_isSet "$declares"; then
+			_program_fattening_declaredNames="$_program_fattening_declaredNames ${declares}_initialised"
+		fi
 	done
+	
 }
-
-# Force array delimiter to lowest common denominator (assumes not supporting bash 3.1)
-core_variable_array_delimiter="$(printf '\r')"
-_program_fattening_declares core_variable_array_delimiter
 
 cd "$_program_fattening_program_path" 1>/dev/null
 . "$_program_fattening_originalProgram"
