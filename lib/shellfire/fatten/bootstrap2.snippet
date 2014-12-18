@@ -98,7 +98,7 @@ done
 
 # Dependencies
 _program_fattening_declaredDependencyNames=''
-while IFS="$core_variable_array_delimiter" read -r packageManager programName
+while IFS=' ' read -r packageManager programName
 do
 	if [ -z "$packageManager" ]; then
 		break
