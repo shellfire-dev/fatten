@@ -36,7 +36,8 @@ _program_commandLine_parseInitialise()
 	_program_default_etcPath='/etc'
 	_program_default_libPath='/usr/lib'
 	_program_default_varPath='/var'
-	_program_default_corePath="$_program_libPath"/"$core_libraryName"/core
+	_program_default_outputPath="$(pwd)"
+	_program_default_corePathRelative=lib/"$core_libraryName"/core
 	
 	# Needed when handling non-options
 	if core_variable_isUnset fatten_repositoryPath; then
@@ -51,7 +52,7 @@ _program_commandLine_helpMessage()
 	_program_commandLine_helpMessage_options="
   -r, --repository-path PATH  Path to a Git repository root containing a PROGRAM
                               Defaults to pwd:-
-                              $(pwd)
+                              ${fatten_repositoryPath}
   -e, --bin-path PATH         Path to install etc folder [Default ${_program_default_binPath}]
   -e, --etc-path PATH         Path to install etc folder [Default ${_program_default_etcPath}]
   -l, --lib-path PATH         Path to install lib folder [Default ${_program_default_libPath}]
@@ -59,10 +60,10 @@ _program_commandLine_helpMessage()
   -f, --force                 Force fattening even if there are uncommited changes
   -o, --output-path PATH      Path to folder (created if necessary) for fattened PROGRAM
                               Defaults to pwd:-
-                              $(pwd)
+                              ${_program_default_outputPath}
   -c, --core-path  PATH       Path to shellfire core
-                              Defaults to:-
-                              ${_program_default_corePath}"
+                              Defaults to '${_program_default_corePathRelative}' beneath --repository-path, potentially:-
+                              ${fatten_repositoryPath}/${_program_default_corePathRelative}"
     _program_commandLine_helpMessage_optionsSpacing='     '
 	_program_commandLine_helpMessage_configurationKeys="
   fatten_binPath         Equivalent to --bin-path
@@ -251,14 +252,15 @@ _program_commandLine_validate()
 	fi
 	
 	if core_variable_isUnset fatten_outputPath; then
-		fatten_outputPath="$(pwd)"
+		fatten_outputPath="$_program_default_outputPath"
 		core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'default for' '--output-path' "$fatten_outputPath"
 	else
 		core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_outputPath' "$fatten_outputPath"
 	fi
 	
+	# core path should default to being sub-repository path
 	if core_variable_isUnset fatten_corePath; then
-		fatten_corePath="$_program_default_corePath"
+		fatten_corePath="${fatten_repositoryPath}/${_program_default_corePathRelative}"
 		core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_CONFIG 'default for' '--core-path' "$fatten_corePath"
 	else
 		core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_corePath' "$fatten_corePath"

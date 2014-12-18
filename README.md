@@ -55,7 +55,7 @@ This will then put a [fatten]ed file `overdrive` in `./output/overdrive`.
 |`-p`|`--var-path`|`PATH`|`/var`|Path `PATH` to embed in `PROGRAM` for var|
 
 |`-o`|`--output-path`|`PATH`|Current path|Path `PATH` to folder (created if necessary) for fattened `PROGRAM`|
-|`-c`|`--core-path`|`PATH`|Usually `lib/shellfire/core`|Path `PATH` to shellfire core|
+|`-c`|`--core-path`|`PATH`|Usually `lib/shellfire/core` beneath `--repository-path`|Path `PATH` to shellfire core|
 
 ### Non-Options
 
