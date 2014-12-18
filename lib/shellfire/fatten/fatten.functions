@@ -33,7 +33,7 @@ fatten_obtainGitDetails()
 		fatten_commit="$(git log -n 1 --format='%H')"
 		fatten_authors="$(git log --format='%aN' | sort -u | awk 'NR==1 {ORS=""; print $0}; NR>1 {ORS=""; print ", " $0}')"
 		local iso8601Date="$(git log -n 1 --format='%ci')"
-		fatten_version="$(date -d "$iso8601Date" '+%Y.%m.%d.%H.%M')"
+		fatten_version="$(date -d "$iso8601Date" '+%Y.%m%d.%H%M')"
 
 		local pendingChanges="$(git diff --minimal --no-color --name-status)"
 		if [ -n "$pendingChanges" ]; then
