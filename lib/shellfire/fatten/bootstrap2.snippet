@@ -16,11 +16,6 @@ _program_fattening_declares()
 			fi
 		done
 		_program_fattening_declaredNames="$_program_fattening_declaredNames $declares"
-		
-		local variableNameInitialised="${declares}_initialised"
-		if core_variable_isSet "$variableNameInitialised"; then
-			_program_fattening_declaredNames="$_program_fattening_declaredNames $variableNameInitialised"
-		fi
 	done
 	
 }
