@@ -16,9 +16,10 @@ _program_fattening_declares()
 			fi
 		done
 		_program_fattening_declaredNames="$_program_fattening_declaredNames $declares"
-	
-		if core_variable_array_isSet "$declares"; then
-			_program_fattening_declaredNames="$_program_fattening_declaredNames ${declares}_initialised"
+		
+		local variableNameInitialised="${declares}_initialised"
+		if core_variable_isSet "$variableNameInitialised"; then
+			_program_fattening_declaredNames="$_program_fattening_declaredNames $variableNameInitialised"
 		fi
 	done
 	
