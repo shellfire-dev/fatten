@@ -8,7 +8,6 @@ _program()
 	
 	fatten()
 	{
-		fatten_discoverPackageManagers
 		fatten_obtainGitDetails
 		fatten_createTemporaryFolder
 		fatten_createOutputFolder
@@ -37,7 +36,6 @@ _program_commandLine_parseInitialise()
 	_program_default_libPath='/usr/lib'
 	_program_default_varPath='/var'
 	_program_default_outputPath="$(pwd)"
-	_program_default_corePathRelative=lib/"$core_libraryName"/core
 	
 	# Needed when handling non-options
 	if core_variable_isUnset fatten_repositoryPath; then
@@ -60,10 +58,7 @@ _program_commandLine_helpMessage()
   -f, --force                 Force fattening even if there are uncommited changes
   -o, --output-path PATH      Path to folder (created if necessary) for fattened PROGRAM
                               Defaults to pwd:-
-                              ${_program_default_outputPath}
-  -c, --core-path  PATH       Path to shellfire core
-                              Defaults to '${_program_default_corePathRelative}' beneath --repository-path, potentially:-
-                              ${fatten_repositoryPath}/${_program_default_corePathRelative}"
+                              ${_program_default_outputPath}"
     _program_commandLine_helpMessage_optionsSpacing='     '
 	_program_commandLine_helpMessage_configurationKeys="
   fatten_binPath         Equivalent to --bin-path
@@ -73,7 +68,6 @@ _program_commandLine_helpMessage()
   fatten_repositoryPath  Equivalent to --repository-path
   fatten_force           Equivalent to --force (specify yes or no)
   fatten_outputPath      Equivalent to --output-path
-  fatten_corePath        Equivalent to --core-path
   
   PROGRAM is an executable shellfire script, with a path
   relative to --repository-path.
@@ -112,10 +106,6 @@ _program_commandLine_optionExists()
 		;;
 		
 		o|output-path)
-			echo 'yes-argumented'
-		;;
-		
-		c|core-path)
 			echo 'yes-argumented'
 		;;
 		
@@ -169,11 +159,6 @@ _program_commandLine_processOptionWithArgument()
 		o|output-path)
 			core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue"
 			fatten_outputPath="$optionValue"
-		;;
-		
-		c|core-path)
-			core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue"
-			fatten_corePath="$optionValue"
 		;;
 		
 		*)
@@ -256,14 +241,6 @@ _program_commandLine_validate()
 		core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'default for' '--output-path' "$fatten_outputPath"
 	else
 		core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_outputPath' "$fatten_outputPath"
-	fi
-	
-	# core path should default to being sub-repository path
-	if core_variable_isUnset fatten_corePath; then
-		fatten_corePath="${fatten_repositoryPath}/${_program_default_corePathRelative}"
-		core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_CONFIG 'default for' '--core-path' "$fatten_corePath"
-	else
-		core_validate_folderPathReadableAndSearchable $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_corePath' "$fatten_corePath"
 	fi
 }
 

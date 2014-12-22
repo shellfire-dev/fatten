@@ -53,9 +53,7 @@ This will then put a [fatten]ed file `overdrive` in `./output/overdrive`.
 |`-e`|`--etc-path`|`PATH`|`/etc`|Path `PATH` to embed in `PROGRAM` for etc|
 |`-l`|`--lib-path`|`PATH`|`/lib`|Path `PATH` to embed in `PROGRAM` for lib|
 |`-p`|`--var-path`|`PATH`|`/var`|Path `PATH` to embed in `PROGRAM` for var|
-
 |`-o`|`--output-path`|`PATH`|Current path|Path `PATH` to folder (created if necessary) for fattened `PROGRAM`|
-|`-c`|`--core-path`|`PATH`|Usually `lib/shellfire/core` beneath `--repository-path`|Path `PATH` to shellfire core|
 
 ### Non-Options
 
@@ -93,7 +91,6 @@ fatten_etcPath="/usr/local/etc"
 |`fatten_repositoryPath`|`--repository-path`|
 |`fatten_force`‡|`--force`|
 |`fatten_outputPath`|`--output-path`|
-|`fatten_corePath`|`--core-path`|
 
 _\* Set this to an integer number between `0` to `3`, eg `fatten_verbose=1`. `0` is off (the default)._
 _† This is used for `LC_*` variables so things like `sort` work reliably. Don't change it unless you have to. It defaults to `en_US.UTF-8`._

@@ -97,7 +97,7 @@ do
 done
 
 IFS=' '
-for packageManager in $_program_fattening_allPackageManagers
+for packageManager in $core_dependency_check_packageManagersWithPaths
 do
 	core_variable_unset _core_dependency_internalDataSource_${packageManager}
 	core_variable_setVariable _core_dependency_internalDataSource_${packageManager} ''
@@ -113,7 +113,7 @@ do
 	fi
 	
 	if [ "$packageManager" = '*' ]; then
-		packageManagers="$_program_fattening_allPackageManagers"
+		packageManagers="$core_dependency_check_packageManagersWithPaths"
 	else
 		packageManagers="$packageManager"
 	fi
@@ -139,7 +139,7 @@ done <<-EOG
 EOG
 
 IFS=' '
-for packageManager in $_program_fattening_allPackageManagers
+for packageManager in $core_dependency_check_packageManagersWithPaths
 do
 	declare -p "_core_dependency_internalDataSource_${packageManager}" | sed 's/^declare -- //g'
 done
