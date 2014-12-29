@@ -75,5 +75,5 @@ fatten_fattenProgram()
 	"$fatten_bootstrapProgram" >"$fatten_fattenedProgram"
 	chmod +x "$fatten_fattenedProgram"
 	
-	printf '%s\n' "Fattened $fatten_programName Version $fatten_version $fatten_packageOrBuild"
+	core_message NOTICE "Fattened $fatten_programName Version $fatten_version $fatten_packageOrBuild"
 }
