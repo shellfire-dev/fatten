@@ -16,8 +16,41 @@ _program_fattening_declares()
 			fi
 		done
 		_program_fattening_declaredNames="$_program_fattening_declaredNames $declares"
-	done
+	done	
+}
+
+_program_fattening_realProgramLicenceDescription()
+{
+	case "$_program_licence" in
+		
+		public-domain|unlicensed|licensed)
+			return 0
+		;;
+		
+	esac
+
+	if [ "$_program_licence_description" != "$(core_commandLine_genericOpenSourceLicenceDescription)" ]; then
+		return 0
+	fi
 	
+	local afterHeader=0
+	local spdxIdentifier
+	local spdxName
+	local fedoraIdentifier
+	while IFS="$(printf '\t')" read -r spdxIdentifier spdxName fedoraIdentifier
+	do
+		if [ $afterHeader -eq 0 ]; then
+			afterHeader=1
+			continue
+		fi
+		
+		if [ "$spdxIdentifier" = "$_program_licence" ]; then
+			break
+		fi
+		
+	done <"$_program_fattening_licencesFilePath"
+	
+	core_message WARN "The SPDX identifier '$_program_licence' for _program_licence is unrecognised."
 }
 
 cd "$_program_fattening_program_path" 1>/dev/null
@@ -30,9 +63,12 @@ if core_variable_isUnset _program_ignore_dependencies; then
 	_program_ignore_dependencies=no
 fi
 
+core_commandLine_setLicenceGlobals
+_program_fattening_realProgramLicenceDescription
+
 # Look up license details for use in header
-_core_commandLine_versionMessageLookup
 _program_fattening_declares \
+	_program_licence \
 	_program_licence_description \
 	_program_text \
 	_program_openSourceLicensed \
@@ -163,6 +199,7 @@ _program()
 unset _program
 unset _program_fattening_declares
 unset _program_fattening_outputVariables
+unset _program_fattening_realProgramLicenceDescription
 
 # Functions
 declare -f

@@ -39,13 +39,48 @@ fatten_createOutputFolder()
 	popd
 }
 
+_fatten_realProgramLicenceDescription()
+{
+	case "$_program_licence" in
+		
+		public-domain|unlicensed|licensed)
+			return 0
+		;;
+		
+	esac
+		
+	if [ "$_program_licence_description" != "$(core_commandLine_genericOpenSourceLicenceDescription)" ]; then
+		return 0
+	fi
+	
+	
+	local afterHeader=0
+	local spdxIdentifier
+	local spdxName
+	local fedoraIdentifier
+	while IFS="$(printf '\t')" read -r spdxIdentifier spdxName fedoraIdentifier
+	do
+		if [ $afterHeader -eq 0 ]; then
+			afterHeader=1
+			continue
+		fi
+		
+		if [ "$spdxIdentifier" = "$_program_licence" ]; then
+			break
+		fi
+		
+	done
+	
+	core_message WARN "The SPDX identifier '$_program_licence' for _program_licence is unrecognised."
+}
+
 fatten_fattenPrograms()
 {
 	core_variable_array_iterate fatten_programs fatten_fattenProgram
 }
 
 core_dependency_requires '*' mkdir head bash chmod
-core_snippet_embed raw bootstrap1 bootstrap2
+core_snippet_embed raw bootstrap1 bootstrap2 licences
 fatten_fattenProgram()
 {
 	local fatten_originalProgram="$core_variable_array_element"
@@ -67,6 +102,14 @@ fatten_fattenProgram()
 	fi
 	
 	mkdir -m 0755 -p "$fatten_fattenedProgramParentPath"
+	
+	# licences
+	local TMP_FILE
+	core_temporaryFiles_newFileToRemoveOnExit
+	local fatten_licencesFilePath="$TMP_FILE"
+	core_snippet_retrieve licences no "$fatten_licencesFilePath"
+	# restore a line feed to final line
+	printf '\n' >"$fatten_licencesFilePath"
 	
 	core_snippet_retrieveAndSourceAsHereDoc bootstrap1 >"$fatten_bootstrapProgram"
 	core_snippet_retrieve bootstrap2 yes "$fatten_bootstrapProgram"
