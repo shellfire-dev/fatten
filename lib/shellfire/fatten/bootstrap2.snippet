@@ -45,7 +45,8 @@ _program_fattening_realProgramLicenceDescription()
 		fi
 		
 		if [ "$spdxIdentifier" = "$_program_licence" ]; then
-			break
+			_program_licence_description="$spdxName"
+			return 0
 		fi
 		
 	done <"$_program_fattening_licencesFilePath"
