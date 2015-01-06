@@ -23,41 +23,6 @@ _program_fattening_declares()
 	done	
 }
 
-_program_fattening_realProgramLicenceDescription()
-{
-	case "$_program_licence" in
-		
-		public-domain|unlicensed|licensed)
-			return 0
-		;;
-		
-	esac
-
-	if [ "$_program_licence_description" != "$(core_commandLine_genericOpenSourceLicenceDescription)" ]; then
-		return 0
-	fi
-	
-	local afterHeader=0
-	local spdxIdentifier
-	local spdxName
-	local fedoraIdentifier
-	while IFS="$(printf '\t')" read -r spdxIdentifier spdxName fedoraIdentifier
-	do
-		if [ $afterHeader -eq 0 ]; then
-			afterHeader=1
-			continue
-		fi
-		
-		if [ "$spdxIdentifier" = "$_program_licence" ]; then
-			_program_licence_description="$spdxName"
-			return 0
-		fi
-		
-	done <"$_program_fattening_licencesFilePath"
-	
-	core_message WARN "The SPDX identifier '$_program_licence' for _program_licence is unrecognised."
-}
-
 cd "$_program_fattening_program_path" 1>/dev/null
 . "$_program_fattening_originalProgram"
 
@@ -67,36 +32,24 @@ fi
 if core_variable_isUnset _program_ignore_dependencies; then
 	_program_ignore_dependencies=no
 fi
-
-core_commandLine_setLicenceGlobals
-_program_fattening_realProgramLicenceDescription
-
-# Look up license details for use in header
-_program_fattening_declares \
-	_program_licence \
-	_program_licence_description \
-	_program_text \
-	_program_openSourceLicensed \
-	_program_permission \
-	_program_warranty
+if core_variable_isUnset _program_copyrightAndLicenseStatement; then
+	_program_copyrightAndLicenseStatement="$_program_fattening_program_copyrightAndLicenseStatement"
+fi
+_program_fattening_declares _program_copyrightAndLicenseStatement
 
 # Shebang
 printf '%s\n' "$_program_fattening_shebang"
 
 # Header Comments
 printf '# \n'
-printf '# %s\n' "$_program_fattening_program_name $_program_fattening_program_version"
-printf '# %s\n' "$_program_fattening_program_package_or_build"
-printf '# %s\n' "Copyright $_program_copyright."
-if [ $_program_openSourceLicensed -eq 1 ]; then
-	printf '# %s\n' "Licensed under the $_program_licence_description"
-else
-	printf '# %s\n' "$_program_licence_description"
-fi
-printf '# %s\n' "$_program_permission"
-printf '# %s\n' "$_program_warranty"
-printf '# %s\n' "Written by $_program_fattening_program_written_by."
-printf '# %s\n' "Fattened by shellfire (https://github.com/shellfire-dev/shellfire)."
+printf '# %s\n' "$_program_fattening_program_name ($_program_fattening_program_package_or_build) $_program_fattening_program_version"
+printf '# %s\n' "Created using shellfire (https://github.com/shellfire-dev/shellfire)."
+while IFS='' read -r copyrightAndLicenseStatementLine
+do
+	printf '# %s\n' "$line"
+done <<-EOF
+	${_program_copyrightAndLicenseStatement}
+EOF
 printf '# \n'
 
 # _program_* variables
@@ -117,15 +70,12 @@ _program_fattening_outputVariables()
 _program_fattening_declares \
 	_program_namespace \
 	_program_ignore_dependencies \
-	_program_copyright \
-	_program_licence \
 	_program_entrypoint
 
 _program_fattening_outputVariables \
 	_program_name \
 	_program_version \
 	_program_package_or_build \
-	_program_written_by \
 	_program_libPath \
 	_program_etcPath \
 	_program_varPath \
@@ -145,7 +95,6 @@ do
 	core_variable_unset _core_dependency_internalDataSource_${packageManager}
 	core_variable_setVariable _core_dependency_internalDataSource_${packageManager} ''
 done
-
 
 # Dependencies
 core_variable_array_initialise _program_fattening_alreadyIncorporatedDependencies
@@ -193,10 +142,6 @@ core_dependency_declares()
 {
 	:
 }
-_core_commandLine_versionMessageLookup()
-{
-	:
-}
 _program()
 {
 	:
@@ -204,7 +149,6 @@ _program()
 unset _program
 unset _program_fattening_declares
 unset _program_fattening_outputVariables
-unset _program_fattening_realProgramLicenceDescription
 
 # Functions
 declare -f
