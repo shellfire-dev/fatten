@@ -46,7 +46,7 @@ printf '# %s\n' "$_program_fattening_program_name ($_program_fattening_program_p
 printf '# %s\n' "Created using shellfire (https://github.com/shellfire-dev/shellfire)."
 while IFS='' read -r copyrightAndLicenseStatementLine
 do
-	printf '# %s\n' "$line"
+	printf '# %s\n' "$copyrightAndLicenseStatementLine"
 done <<-EOF
 	${_program_copyrightAndLicenseStatement}
 EOF
