@@ -3,12 +3,13 @@
 
 
 # We're supposed to use git's "low-level plumbing" and avoid 'porcelain' commands. Given how hideous git's syntax is, life is too short. We'll fix the bugs that arise instead.
-core_dependency_requires '*' git sort awk date md5sum
+core_dependency_requires '*' git cut grep sort awk date md5sum
 fatten_obtainGitDetails()
 {
 	pushd "$fatten_repositoryPath"
 		
-		fatten_branch="$(git branch | awk '/^\*/ {print $2}')"
+		# might be '(no branch)'
+		fatten_branch="$(git branch | grep '^\* ' | cut -b3-)"
 		fatten_commit="$(git log -n 1 --format='%H')"
 		local iso8601Date="$(git log -n 1 --format='%ci')"
 		fatten_version="$(date -d "$iso8601Date" '+%Y.%m%d.%H%M')"
