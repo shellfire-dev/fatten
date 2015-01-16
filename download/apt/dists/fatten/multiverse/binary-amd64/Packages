@@ -1,0 +1,23 @@
+Package: fatten
+Essential: no
+Priority: extra
+Section: misc
+Installed-Size: 141
+Maintainer: Raphael Cohn <raphael.cohn@stormmq.com>
+Architecture: all
+Source: fatten
+Version: 2015.0116.1415-1
+Filename: pool/multiverse/f/fatten/fatten_2015.0116.1415-1_all.deb
+Size: 27668
+MD5sum: 878d96bb2daef6196b57e7b6ca3fefb3
+SHA1: eeb9ec3d4d9de3d16a1682591291e0366888b750
+SHA256: 782939ca5e640cd7934e580c4da55dc043d9ed90b9494d9a51b9ceca2ed0fb55
+Description: fatten is a tool for creating standalone
+ shellfire applications from modular shell
+ script.
+Homepage: https://github.com/shellfire-dev/fatten
+Bugs: https://github.com/shellfire-dev/fatten/issues
+Build-Essential: no
+Origin: stormmq
+Supported: 9m
+
