@@ -29,9 +29,15 @@ cd "$_program_fattening_program_path" 1>/dev/null
 if core_variable_isUnset _program_namespace; then
 	_program_namespace="$_program_name"
 fi
-if core_variable_isUnset _program_ignore_dependencies; then
-	_program_ignore_dependencies=no
+_program_fattening_declares _program_namespace
+
+if core_variable_isUnset _program_ignoreDependencies; then
+	_program_ignoreDependencies="$_program_fattening_program_ignoreDependencies"
+elif core_variable_isTrue "$_program_fattening_program_ignoreDependencies"; then
+	_program_ignoreDependencies="$_program_fattening_program_ignoreDependencies"
 fi
+_program_fattening_declares _program_ignoreDependencies
+
 if core_variable_isUnset _program_copyrightAndLicenseStatement; then
 	_program_copyrightAndLicenseStatement="$_program_fattening_program_copyrightAndLicenseStatement"
 fi

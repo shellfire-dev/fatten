@@ -53,7 +53,9 @@ This will then put a [fatten]ed file `overdrive` in `./output/overdrive`.
 |`-e`|`--etc-path`|`PATH`|`/etc`|Path `PATH` to embed in `PROGRAM` for etc|
 |`-l`|`--lib-path`|`PATH`|`/lib`|Path `PATH` to embed in `PROGRAM` for lib|
 |`-p`|`--var-path`|`PATH`|`/var`|Path `PATH` to embed in `PROGRAM` for var|
+|`-f`|`--force`||`no`|Force fattening even if there are uncommited changes|
 |`-o`|`--output-path`|`PATH`|Current path|Path `PATH` to folder (created if necessary) for fattened `PROGRAM`|
+|`-i`|`--ignore-dependencies||`no`|Force `_program_ignoreDependencies` to `yes` if specified|
 
 ### Non-Options
 

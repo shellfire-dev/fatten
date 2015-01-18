@@ -58,16 +58,20 @@ _program_commandLine_helpMessage()
   -f, --force                 Force fattening even if there are uncommited changes
   -o, --output-path PATH      Path to folder (created if necessary) for fattened PROGRAM
                               Defaults to pwd:-
-                              ${_program_default_outputPath}"
+                              ${_program_default_outputPath}
+  -i, --ignore-dependencies   Equivalent to _program_ignoreDependencies
+                              Fattened program will not try to install dependencies itself
+							  "
     _program_commandLine_helpMessage_optionsSpacing='     '
 	_program_commandLine_helpMessage_configurationKeys="
-  fatten_binPath         Equivalent to --bin-path
-  fatten_etcPath         Equivalent to --etc-path
-  fatten_libPath         Equivalent to --lib-path
-  fatten_varPath         Equivalent to --var-path
-  fatten_repositoryPath  Equivalent to --repository-path
-  fatten_force           Equivalent to --force (specify yes or no)
-  fatten_outputPath      Equivalent to --output-path
+  fatten_binPath             Equivalent to --bin-path
+  fatten_etcPath             Equivalent to --etc-path
+  fatten_libPath             Equivalent to --lib-path
+  fatten_varPath             Equivalent to --var-path
+  fatten_repositoryPath      Equivalent to --repository-path
+  fatten_force               Equivalent to --force (specify yes or no)
+  fatten_outputPath          Equivalent to --output-path
+  fatten_ignoreDependencies  Equivalent to --ignore-dependencies
   
   PROGRAM is an executable shellfire script, with a path
   relative to --repository-path.
@@ -109,6 +113,10 @@ _program_commandLine_optionExists()
 			echo 'yes-argumented'
 		;;
 		
+		i|ignore-dependencies)
+			echo 'yes-argumentless'
+		;;
+		
 		*)
 			echo 'no'
 		;;
@@ -122,6 +130,10 @@ _program_commandLine_processOptionWithoutArgument()
 		
 		f|force)
 			fatten_force='yes'
+		;;
+		
+		i|ignore-dependencies)
+			fatten_ignoreDependencies='yes'
 		;;
 		
 	esac
@@ -202,6 +214,13 @@ _program_commandLine_validate()
 		core_validate_isBoolean $core_commandLine_exitCode_CONFIG 'default for' '--force' "$fatten_force"
 	else
 		core_validate_isBoolean $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_force' "$fatten_force"
+	fi
+	
+	if core_variable_isUnset fatten_force; then
+		fatten_ignoreDependencies='no'
+		core_validate_isBoolean $core_commandLine_exitCode_CONFIG 'default for' '--force' "$fatten_ignoreDependencies"
+	else
+		core_validate_isBoolean $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_ignoreDependencies' "$fatten_ignoreDependencies"
 	fi
 	
 	if core_variable_isSet fatten_repositoryPath; then
