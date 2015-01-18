@@ -49,6 +49,7 @@ This will then put a [fatten]ed file `overdrive` in `./output/overdrive`.
 |Short Option|Long Option|Has Argument|Default|Description|
 |------------|-----------|------------|-------|-----------|
 |`-v`|`--verbose`|Optionally|`0`|Specify more than once for more verbosity. Use a number between `0` and `3` inclusive to set a specific level. Higher numbers are more verbose.|
+|`-q`|`--quiet`||`0`|Specify (optionally more than once) to reduce verbosity by a step of `1`|
 |`-r`|`--repository-path`|`PATH`|Current path|Path to a git repository root `PATH` containing a `PROGRAM`|
 |`-e`|`--etc-path`|`PATH`|`/etc`|Path `PATH` to embed in `PROGRAM` for etc|
 |`-l`|`--lib-path`|`PATH`|`/lib`|Path `PATH` to embed in `PROGRAM` for lib|
