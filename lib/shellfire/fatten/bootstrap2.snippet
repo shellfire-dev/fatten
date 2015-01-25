@@ -157,7 +157,8 @@ unset _program_fattening_declares
 unset _program_fattening_outputVariables
 
 # Functions
-declare -f
+# bash has the bad habit of inserting 'function ' into embedded functions
+declare -f | sed -r 's/^(( {4})+)function ([A-Za-z0-9_]+) \(\) $/\1\3 () /g'
 
 # Execute
 printf '%s\n' 'core_init_main "$@"'

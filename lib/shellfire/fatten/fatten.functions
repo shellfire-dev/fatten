@@ -55,6 +55,8 @@ fatten_fattenPrograms()
 }
 
 core_dependency_requires '*' mkdir head bash chmod
+# used in bootstrap2 to strip 'function ' that bash introduces when using declare -f
+core_dependency_requires '*' sed
 core_snippet_embed raw bootstrap1 bootstrap2
 fatten_fattenProgram()
 {
