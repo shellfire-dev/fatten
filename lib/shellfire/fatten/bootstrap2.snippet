@@ -13,13 +13,17 @@ _program_fattening_declares()
 	local IFS=' '
 	for declares in "$@"
 	do
+		local output=true
 		for alreadyDeclared in $_program_fattening_declaredNames
 		do
 			if [ "$alreadyDeclared" = "$declares" ]; then
-				return 0
+				output=false
+				break
 			fi
 		done
-		_program_fattening_declaredNames="$_program_fattening_declaredNames $declares"
+		if $output; then
+			_program_fattening_declaredNames="$_program_fattening_declaredNames $declares"
+		fi
 	done	
 }
 
@@ -75,7 +79,7 @@ _program_fattening_outputVariables()
 # _program_path deliberately omitted
 _program_fattening_declares \
 	_program_namespace \
-	_program_ignore_dependencies \
+	_program_ignoreDependencies \
 	_program_entrypoint
 
 _program_fattening_outputVariables \
