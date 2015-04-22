@@ -1,6 +1,5 @@
 Package: fatten
-Description-md5: 7b497a403d6a9d9b2768eff79ceb4974
-Description-en: fatten is a tool for creating standalone
- shellfire applications from modular shell
- script.
+Description-md5: d0e44a1f609102a0cc9473c36cd38cb4
+Description-en: fatten is a tool for creating standalone shellfire applications
+ from modular shell script.
 
