@@ -32,10 +32,10 @@ Source: fatten
 Version: 2015.0422.1039-1
 Depends: dash, coreutils, grep, awk, sed, git
 Filename: pool/multiverse/f/fatten/fatten_2015.0422.1039-1_all.deb
-Size: 28784
-MD5sum: b4d7db6fb3267b88985f9bfd415c3761
-SHA1: 56bc1bfadc37e5c1c5c289542389db08a1576c56
-SHA256: 965a6eee426fc3bb1cf9d2b3c95f08c65ed15a8b3649ad0455b2cf9ca6812156
+Size: 28788
+MD5sum: 6fc77ed3cc5652f3c7f2184c0d17c2ed
+SHA1: 990905b25e9170f35618303a64eab8e72d9e3da8
+SHA256: e46e00c7d718df821c841b5ad74b74c211713b7b17e70b895ebd349a4dcf8c66
 Description: fatten is a tool for creating standalone shellfire applications
  from modular shell script.
 Homepage: https://github.com/shellfire-dev/fatten
