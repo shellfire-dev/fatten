@@ -30,12 +30,12 @@ Maintainer: Raphael Cohn <raphael.cohn@stormmq.com>
 Architecture: all
 Source: fatten
 Version: 2015.0422.1039-1
-Depends: dash, coreutils, grep, awk, sed, gitSection: misc
+Depends: dash, coreutils, grep, awk, sed, git
 Filename: pool/multiverse/f/fatten/fatten_2015.0422.1039-1_all.deb
-Size: 28780
-MD5sum: ff822670fc093db77eec383719566ee6
-SHA1: 495cc46e488bff62c257c2b40fd7de2335972039
-SHA256: ac4e3b4a3f836d11bad3a841e3f52fa286ed6372c8ff5ec9db47eb98b294690c
+Size: 28790
+MD5sum: 3fc77d18eaaaaa9b2b1a66efb4e32636
+SHA1: af30eb457125edf5d098d06ce35eb5cb5dbddcf6
+SHA256: dac80a1936d854b44b05b90cd0478634a8b5e00c445379174bce331cfc726ee0
 Description: fatten is a tool for creating standalone shellfire applications
  from modular shell script.
 Homepage: https://github.com/shellfire-dev/fatten
