@@ -3,7 +3,7 @@
 
 
 # We're supposed to use git's "low-level plumbing" and avoid 'porcelain' commands. Given how hideous git's syntax is, life is too short. We'll fix the bugs that arise instead.
-core_dependency_requires '*' git cut grep sort awk date md5sum
+core_dependency_requires '*' git cut grep sort awk date md5sum cat
 fatten_obtainGitDetails()
 {
 	pushd "$fatten_repositoryPath"
@@ -25,7 +25,8 @@ fatten_obtainGitDetails()
 		fi
 		
 		if [ -f "COPYRIGHT" ]; then
-			fatten_programCopyrightAndLicenseStatement="$(<COPYRIGHT)"
+			# "$(<FILE)" doesn't work in all situations
+			fatten_programCopyrightAndLicenseStatement="$(cat COPYRIGHT)"
 		else
 			fatten_programCopyrightAndLicenseStatement=$(core_commandLine_defaultLicenseMessage)
 		fi

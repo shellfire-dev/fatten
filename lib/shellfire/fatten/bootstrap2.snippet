@@ -129,7 +129,8 @@ do
 			if core_path_isReadableNonEmptyFilePath "$externalDataSourceFilePath"; then
 				if ! core_variable_array_contains _program_fattening_alreadyIncorporatedDependencies "$packageManager"/"$programName".path; then
 					core_variable_indirectValue _core_dependency_internalDataSource_${packageManager}
-					core_variable_setVariable _core_dependency_internalDataSource_${packageManager} "${core_variable_indirectValue_result}$(<"$externalDataSourceFilePath")
+					# "$(<FILE)" doesn't work in all situations
+					core_variable_setVariable _core_dependency_internalDataSource_${packageManager} "${core_variable_indirectValue_result}$(cat "$externalDataSourceFilePath")
 "
 					break
 				fi
