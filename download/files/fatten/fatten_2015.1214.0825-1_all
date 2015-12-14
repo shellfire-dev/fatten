@@ -1,0 +1,4462 @@
+#!/usr/bin/env bash
+# 
+# fatten (Commit aaa44e5f2a7804017d99a6ae48fe209b930c5b7d Branch master) 2015.1214.0825
+# Created using shellfire (https://github.com/shellfire-dev/shellfire).
+# Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+# Comment: Distribution Compilation Copyright and License
+# Copyright: Copyright © 2014-2015, Raphael Cohn <raphael.cohn@stormmq.com>
+# License: MIT
+#  The MIT License (MIT)
+#  .
+#  Copyright © 2014-2015, Raphael Cohn <raphael.cohn@stormmq.com>
+#  .
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#  .
+#  The above copyright notice and this permission notice shall be included in all
+#  copies or substantial portions of the Software.
+#  .
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#  SOFTWARE.
+# 
+# Files: *
+# Copyright: Copyright © 2014-2015, Raphael Cohn <raphael.cohn@stormmq.com>
+# License: MIT
+#  The MIT License (MIT)
+#  .
+#  Copyright © 2014-2015, Raphael Cohn <raphael.cohn@stormmq.com>
+#  .
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#  .
+#  The above copyright notice and this permission notice shall be included in all
+#  copies or substantial portions of the Software.
+#  .
+#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#  SOFTWARE.
+# 
+_program_name='fatten'
+_program_version='2015.1214.0825'
+_program_package_or_build='Commit aaa44e5f2a7804017d99a6ae48fe209b930c5b7d Branch master'
+_program_libPath='/usr/lib'
+_program_etcPath='/etc'
+_program_varPath='/var'
+_program_binPath='/usr/bin'
+core_libraryName="shellfire"
+_core_dependency_requires="* sed
+* ls
+* sleep
+* rm
+* cat
+* base64
+* tr
+* cat
+* rm
+CentOS sudo
+CentOS yum
+Fedora sudo
+Fedora yum
+RedHat sudo
+RedHat yum
+CentOS yum
+CentOS head
+Fedora yum
+Fedora head
+RedHat yum
+RedHat head
+CentOS rpm
+CentOS grep
+Fedora rpm
+Fedora grep
+RedHat rpm
+RedHat grep
+CentOS sudo
+CentOS yum
+Fedora sudo
+Fedora yum
+RedHat sudo
+RedHat yum
+CentOS sed
+CentOS uname
+CentOS sudo
+CentOS rpm
+CentOS curl
+CentOS yum
+Fedora sed
+Fedora uname
+Fedora sudo
+Fedora rpm
+Fedora curl
+Fedora yum
+RedHat sed
+RedHat uname
+RedHat sudo
+RedHat rpm
+RedHat curl
+RedHat yum
+Debian sudo
+Debian apt-get
+FreeBSD id
+FreeBSD pkg
+Homebrew brew
+Mageia sudo
+Mageia urpmi
+NetBSD id
+NetBSD uname
+NetBSD cut
+NetBSD sudo
+NetBSD pkgin
+NetBSD uname
+NetBSD cut
+NetBSD sudo
+NetBSD pkg_add
+NetBSD env
+OpenBSD id
+OpenBSD uname
+SuSE sudo
+SuSE zypper
+* awk
+* kill
+* git
+* cut
+* grep
+* sort
+* awk
+* date
+* md5sum
+* cat
+* mkdir
+* head
+* bash
+* chmod
+* sed
+"
+_core_uses_alreadySourced="shellfire/coreshellfire/core/configurationshellfire/core/pathshellfire/core/variableshellfire/core/compatibilityshellfire/core/functionsshellfire/core/variable/arrayshellfire/core/snippetshellfire/core/base64/decodeshellfire/core/temporaryFilesshellfire/core/trapshellfire/core/validateshellfire/core/commandLineshellfire/core/dependencyshellfire/core/dependency/checkshellfire/core/dependency/check/CentOSshellfire/core/dependency/check/Cygwinshellfire/core/dependency/check/Debianshellfire/core/dependency/check/Fedorashellfire/core/dependency/check/FreeBSDshellfire/core/dependency/check/Homebrewshellfire/core/dependency/check/Mageiashellfire/core/dependency/check/NetBSDshellfire/core/dependency/check/OpenBSDshellfire/core/dependency/check/RedHatshellfire/core/dependency/check/SuSEshellfire/core/dependency/languagePackageManagersshellfire/core/fileshellfire/core/umaskshellfire/core/childrenshellfire/fattenshellfire/fatten/validate"
+core_variable_array_delimiter=""
+_core_compatibility_functions="core_compatibility_setSaneShellOptionscore_compability_installPushdAndPopdcore_compability_installSource"
+_core_compatibility_functions_initialised="3"
+_core_functions="core_trap_initialisecore_temporaryFiles_initialisecore_children_initialisecore_compatibility_executecore_configuration_loadcore_configuration_defaultscore_umask_setDefaultcore_commandLine_setLanguageDefaultscore_commandLine_parsecore_dependency_installDependencies"
+_core_functions_initialised="10"
+core_commandLine_exitCode_OK="0"
+core_commandLine_exitCode_FAILURE="1"
+core_commandLine_exitCode_MISUSEBUILTIN="2"
+core_commandLine_exitCode_USAGE="64"
+core_commandLine_exitCode_DATAERR="65"
+core_commandLine_exitCode_NOINPUT="66"
+core_commandLine_exitCode_NOUSER="67"
+core_commandLine_exitCode_NOHOST="68"
+core_commandLine_exitCode_UNAVAILABLE="69"
+core_commandLine_exitCode_SOFTWARE="70"
+core_commandLine_exitCode_OSERR="71"
+core_commandLine_exitCode_OSFILE="72"
+core_commandLine_exitCode_CANTCREAT="73"
+core_commandLine_exitCode_IOERR="74"
+core_commandLine_exitCode_TEMPFAIL="75"
+core_commandLine_exitCode_PROTOCOL="76"
+core_commandLine_exitCode_NOPERM="77"
+core_commandLine_exitCode_CONFIG="78"
+core_dependency_check_packageManagersWithPaths="CentOS Cygwin Debian Fedora FreeBSD Homebrew Mageia NetBSD OpenBSD RedHat SuSE"
+_core_dependency_check_functions="core_dependency_check_CentOS_checkFunctioncore_dependency_check_Cygwin_checkFunctioncore_dependency_check_Debian_checkFunctioncore_dependency_check_Fedora_checkFunctioncore_dependency_check_FreeBSD_checkFunctioncore_dependency_check_Homebrew_checkFunctioncore_dependency_check_Mageia_checkFunctioncore_dependency_check_NetBSD_checkFunctioncore_dependency_check_OpenBSD_checkFunctioncore_dependency_check_RedHat_checkFunctioncore_dependency_check_SuSE_checkFunction"
+_core_dependency_check_functions_initialised="11"
+_core_dependency_functions="core_dependency_determinePackageManagercore_dependency_setUpPathAndInstallMissing"
+_core_dependency_functions_initialised="2"
+_core_snippet_embeddedData_bootstrap1="#!/usr/bin/env bash
+# This file is part of shellfire fatten. It is subject to the licence terms in the COPYRIGHT file found in the top-level directory of this distribution and at https://raw.githubusercontent.com/raphaelcohn/swaddle/master/COPYRIGHT. No part of shellfire swaddle, including this file, may be copied, modified, propagated, or distributed except according to the terms contained in the COPYRIGHT file.
+# Copyright © 2014-2015 The developers of shellfire fatten. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/raphaelcohn/swaddle/master/COPYRIGHT.
+
+
+set -e
+set -u
+_program_fattening_shebang='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_shebang\")'
+_program_fattening_program_path='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$(core_compatibility_dirname \"\$fatten_originalProgram\")\")'
+_program_fattening_originalProgram='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_originalProgram\")'
+
+_program_fattening_program_name='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_programName\")'
+_program_fattening_program_version='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_version\")'
+_program_fattening_program_package_or_build='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_packageOrBuild\")'
+_program_fattening_program_libPath='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_libPath\")'
+_program_fattening_program_etcPath='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_etcPath\")'
+_program_fattening_program_varPath='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_varPath\")'
+_program_fattening_program_binPath='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_binPath\")'
+_program_fattening_program_ignoreDependencies='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_ignoreDependencies\")'
+_program_fattening_program_copyrightAndLicenseStatement='\$(core_variable_escapeForSingleQuotedLiteralInHeredoc \"\$fatten_programCopyrightAndLicenseStatement\")'"
+_core_snippet_embeddedCodec_bootstrap1="raw"
+_core_snippet_embeddedData_bootstrap2="# This file is part of shellfire fatten. It is subject to the licence terms in the COPYRIGHT file found in the top-level directory of this distribution and at https://raw.githubusercontent.com/raphaelcohn/swaddle/master/COPYRIGHT. No part of shellfire swaddle, including this file, may be copied, modified, propagated, or distributed except according to the terms contained in the COPYRIGHT file.
+# Copyright © 2014-2015 The developers of shellfire fatten. See the COPYRIGHT file in the top-level directory of this distribution and at https://raw.githubusercontent.com/raphaelcohn/swaddle/master/COPYRIGHT.
+
+
+core_init_shell_rexecing=\$\$
+_program_fattening=1
+
+_program_fattening_declaredNames=''
+_program_fattening_declares()
+{	
+	local declares
+	local alreadyDeclared
+	local IFS=' '
+	for declares in \"\$@\"
+	do
+		local output=true
+		for alreadyDeclared in \$_program_fattening_declaredNames
+		do
+			if [ \"\$alreadyDeclared\" = \"\$declares\" ]; then
+				output=false
+				break
+			fi
+		done
+		if \$output; then
+			_program_fattening_declaredNames=\"\$_program_fattening_declaredNames \$declares\"
+		fi
+	done	
+}
+
+cd \"\$_program_fattening_program_path\" 1>/dev/null
+. \"\$_program_fattening_originalProgram\"
+
+if core_variable_isUnset _program_namespace; then
+	_program_namespace=\"\$_program_name\"
+fi
+_program_fattening_declares _program_namespace
+
+if core_variable_isUnset _program_ignoreDependencies; then
+	_program_ignoreDependencies=\"\$_program_fattening_program_ignoreDependencies\"
+elif core_variable_isTrue \"\$_program_fattening_program_ignoreDependencies\"; then
+	_program_ignoreDependencies=\"\$_program_fattening_program_ignoreDependencies\"
+fi
+_program_fattening_declares _program_ignoreDependencies
+
+if core_variable_isUnset _program_copyrightAndLicenseStatement; then
+	_program_copyrightAndLicenseStatement=\"\$_program_fattening_program_copyrightAndLicenseStatement\"
+fi
+_program_fattening_declares _program_copyrightAndLicenseStatement
+
+# Shebang
+printf '%s\\n' \"\$_program_fattening_shebang\"
+
+# Header Comments
+printf '# \\n'
+printf '# %s\\n' \"\$_program_fattening_program_name (\$_program_fattening_program_package_or_build) \$_program_fattening_program_version\"
+printf '# %s\\n' \"Created using shellfire (https://github.com/shellfire-dev/shellfire).\"
+while IFS='' read -r copyrightAndLicenseStatementLine
+do
+	printf '# %s\\n' \"\$copyrightAndLicenseStatementLine\"
+done <<-EOF
+	\${_program_copyrightAndLicenseStatement}
+EOF
+printf '# \\n'
+
+# _program_* variables
+_program_fattening_outputVariables()
+{
+	local variableName
+	local fattenedVariableName
+	local core_variable_indirectValue_result
+	for variableName in \"\$@\"
+	do
+		fattenedVariableName=\"_program_fattening\${variableName}\"
+		core_variable_indirectValue \"\$fattenedVariableName\"
+		printf \"%s='%s'\\n\" \"\$variableName\" \"\$core_variable_indirectValue_result\"
+	done
+}
+
+# _program_path deliberately omitted
+_program_fattening_declares \\
+	_program_namespace \\
+	_program_ignoreDependencies \\
+	_program_entrypoint
+
+_program_fattening_outputVariables \\
+	_program_name \\
+	_program_version \\
+	_program_package_or_build \\
+	_program_libPath \\
+	_program_etcPath \\
+	_program_varPath \\
+	_program_binPath
+
+# Global Variables
+IFS=' '
+set -o noglob
+for _program_fattening_declaredName in \$_program_fattening_declaredNames
+do
+	declare -p \"\$_program_fattening_declaredName\" | sed 's/^declare -- //g'
+done
+
+IFS=' '
+for packageManager in \$core_dependency_check_packageManagersWithPaths
+do
+	core_variable_unset _core_dependency_internalDataSource_\${packageManager}
+	core_variable_setVariable _core_dependency_internalDataSource_\${packageManager} ''
+done
+
+# Dependencies
+core_variable_array_initialise _program_fattening_alreadyIncorporatedDependencies
+while IFS=' ' read -r packageManager programName
+do
+	if [ -z \"\$packageManager\" ]; then
+		break
+	fi
+	
+	if [ \"\$packageManager\" = '*' ]; then
+		packageManagers=\"\$core_dependency_check_packageManagersWithPaths\"
+	else
+		packageManagers=\"\$packageManager\"
+	fi
+	
+	IFS=' '
+	for packageManager in \$packageManagers
+	do	
+		for externalDataSourceFolderName in \"\$_program_name\" \"\$core_libraryName\"
+		do
+			externalDataSourceFilePath=\"\$_program_etcPath\"/\"\$externalDataSourceFolderName\"/paths.d/\"\$packageManager\"/\"\$programName\".path
+			if core_path_isReadableNonEmptyFilePath \"\$externalDataSourceFilePath\"; then
+				if ! core_variable_array_contains _program_fattening_alreadyIncorporatedDependencies \"\$packageManager\"/\"\$programName\".path; then
+					core_variable_indirectValue _core_dependency_internalDataSource_\${packageManager}
+					# \"\$(<FILE)\" doesn't work in all situations
+					core_variable_setVariable _core_dependency_internalDataSource_\${packageManager} \"\${core_variable_indirectValue_result}\$(cat \"\$externalDataSourceFilePath\")
+\"
+					break
+				fi
+			fi
+		done
+	done
+done <<-EOG
+	\${_core_dependency_requires}
+EOG
+
+IFS=' '
+for packageManager in \$core_dependency_check_packageManagersWithPaths
+do
+	declare -p \"_core_dependency_internalDataSource_\${packageManager}\" | sed 's/^declare -- //g'
+done
+
+
+# Get rid of definitions before outputing functions
+core_dependency_declares()
+{
+	:
+}
+_program()
+{
+	:
+}
+unset _program
+unset _program_fattening_declares
+unset _program_fattening_outputVariables
+
+# Functions
+# bash has the bad habit of inserting 'function ' into embedded functions
+declare -f | sed -r 's/^(( {4})+)function ([A-Za-z0-9_]+) \\(\\) \$/\\1\\3 () /g'
+
+# Execute
+printf '%s\\n' 'core_init_main \"\$@\"'"
+_core_snippet_embeddedCodec_bootstrap2="raw"
+_program_namespace="fatten"
+_program_ignoreDependencies="yes"
+_program_copyrightAndLicenseStatement="Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Comment: Distribution Compilation Copyright and License
+Copyright: Copyright © 2014-2015, Raphael Cohn <raphael.cohn@stormmq.com>
+License: MIT
+ The MIT License (MIT)
+ .
+ Copyright © 2014-2015, Raphael Cohn <raphael.cohn@stormmq.com>
+ .
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the \"Software\"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+Files: *
+Copyright: Copyright © 2014-2015, Raphael Cohn <raphael.cohn@stormmq.com>
+License: MIT
+ The MIT License (MIT)
+ .
+ Copyright © 2014-2015, Raphael Cohn <raphael.cohn@stormmq.com>
+ .
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the \"Software\"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE."
+_program_entrypoint="fatten"
+_core_dependency_internalDataSource_CentOS="sed sed /bin/sed
+ls coreutils /bin/ls
+sleep coreutils /bin/sleep
+rm coreutils /bin/rm
+cat coreutils /bin/cat
+base64 coreutils /usr/bin/base64
+tr coreutils /usr/bin/tr
+cat coreutils /bin/cat
+rm coreutils /bin/rm
+sudo sudo /usr/bin/sudo
+yum yum /usr/bin/yum
+yum yum /usr/bin/yum
+head coreutils /usr/bin/head
+rpm rpm /bin/rpm
+grep grep /bin/grep
+sudo sudo /usr/bin/sudo
+yum yum /usr/bin/yum
+sed sed /bin/sed
+uname coreutils /bin/uname
+sudo sudo /usr/bin/sudo
+rpm rpm /bin/rpm
+curl curl /usr/bin/curl
+yum yum /usr/bin/yum
+awk gawk /bin/awk
+kill util-linux /bin/kill
+git git /usr/bin/git
+cut coreutils /bin/cut
+grep grep /bin/grep
+sort coreutils /bin/sort
+awk gawk /bin/awk
+date coreutils /bin/date
+md5sum coreutils /usr/bin/md5sum
+cat coreutils /bin/cat
+mkdir coreutils /bin/mkdir
+head coreutils /usr/bin/head
+bash bash /bin/bash
+chmod coreutils /bin/chmod
+sed sed /bin/sed
+"
+_core_dependency_internalDataSource_Cygwin=""
+_core_dependency_internalDataSource_Debian="sed sed /bin/sed
+ls coreutils /bin/ls
+sleep coreutils /bin/sleep
+rm coreutils /bin/rm
+cat coreutils /bin/cat
+base64 coreutils /usr/bin/base64
+tr coreutils /usr/bin/tr
+cat coreutils /bin/cat
+rm coreutils /bin/rm
+sudo sudo /usr/bin/sudo
+apt-get apt /usr/bin/apt-get
+awk gawk /usr/bin/gawk
+kill procps /bin/kill
+git git /usr/bin/git
+cut coreutils /usr/bin/cut
+grep grep /bin/grep
+sort coreutils /usr/bin/sort
+awk gawk /usr/bin/gawk
+date coreutils /bin/date
+md5sum coreutils /usr/bin/md5sum
+cat coreutils /bin/cat
+mkdir coreutils /bin/mkdir
+head coreutils /usr/bin/head
+bash bash /bin/bash
+chmod coreutils /bin/chmod
+sed sed /bin/sed
+"
+_core_dependency_internalDataSource_Fedora="sed sed /bin/sed
+ls coreutils /bin/ls
+sleep coreutils /bin/sleep
+rm coreutils /bin/rm
+cat coreutils /bin/cat
+base64 coreutils /usr/bin/base64
+tr coreutils /usr/bin/tr
+cat coreutils /bin/cat
+rm coreutils /bin/rm
+sudo sudo /usr/bin/sudo
+yum yum /usr/bin/yum
+yum yum /usr/bin/yum
+head coreutils /usr/bin/head
+rpm rpm /bin/rpm
+grep grep /bin/grep
+sudo sudo /usr/bin/sudo
+yum yum /usr/bin/yum
+sed sed /bin/sed
+uname coreutils /bin/uname
+sudo sudo /usr/bin/sudo
+rpm rpm /bin/rpm
+curl curl /usr/bin/curl
+yum yum /usr/bin/yum
+awk gawk /bin/awk
+kill util-linux /bin/kill
+git git /usr/bin/git
+cut coreutils /bin/cut
+grep grep /bin/grep
+sort coreutils /bin/sort
+awk gawk /bin/awk
+date coreutils /bin/date
+md5sum coreutils /usr/bin/md5sum
+cat coreutils /bin/cat
+mkdir coreutils /bin/mkdir
+head coreutils /usr/bin/head
+bash bash /bin/bash
+chmod coreutils /bin/chmod
+sed sed /bin/sed
+"
+_core_dependency_internalDataSource_FreeBSD="sed gnu-sed /usr/local/opt/gnu-sed/libexec/gnubin/sed
+ls coreutils /usr/local/opt/coreutils/libexec/gnubin/ls
+sleep coreutils /usr/local/opt/coreutils/libexec/gnubin/sleep
+rm coreutils /usr/local/opt/coreutils/libexec/gnubin/rm
+cat coreutils /usr/local/opt/coreutils/libexec/gnubin/cat
+base64 coreutils /usr/local/opt/coreutils/libexec/gnubin/base64
+tr coreutils /usr/local/opt/coreutils/libexec/gnubin/tr
+cat coreutils /usr/local/opt/coreutils/libexec/gnubin/cat
+rm coreutils /usr/local/opt/coreutils/libexec/gnubin/rm
+id coreutils /usr/local/opt/coreutils/libexec/gnubin/id
+awk gawk /usr/local/bin/gawk
+kill coreutils /usr/local/opt/coreutils/libexec/gnubin/kill
+git git /usr/local/bin/git
+cut coreutils /usr/local/opt/coreutils/libexec/gnubin/cut
+grep gnugrep /usr/local/bin/grep
+sort coreutils /usr/local/opt/coreutils/libexec/gnubin/sort
+awk gawk /usr/local/bin/gawk
+date coreutils /usr/local/opt/coreutils/libexec/gnubin/date
+md5sum coreutils /usr/local/opt/coreutils/libexec/gnubin/md5sum
+cat coreutils /usr/local/opt/coreutils/libexec/gnubin/cat
+mkdir coreutils /usr/local/opt/coreutils/libexec/gnubin/mkdir
+head coreutils /usr/local/opt/coreutils/libexec/gnubin/head
+bash bash /usr/local/bin/bash
+chmod coreutils /usr/local/opt/coreutils/libexec/gnubin/chmod
+sed gnu-sed /usr/local/opt/gnu-sed/libexec/gnubin/sed
+"
+_core_dependency_internalDataSource_Homebrew="sed gnu-sed /usr/local/opt/gnu-sed/libexec/gnubin/sed
+ls coreutils /usr/local/opt/coreutils/libexec/gnubin/ls
+sleep coreutils /usr/local/opt/coreutils/libexec/gnubin/sleep
+rm coreutils /usr/local/opt/coreutils/libexec/gnubin/rm
+cat coreutils /usr/local/opt/coreutils/libexec/gnubin/cat
+base64 coreutils /usr/local/opt/coreutils/libexec/gnubin/base64
+tr coreutils /usr/local/opt/coreutils/libexec/gnubin/tr
+cat coreutils /usr/local/opt/coreutils/libexec/gnubin/cat
+rm coreutils /usr/local/opt/coreutils/libexec/gnubin/rm
+brew NO_PACKAGE /usr/local/bin/brew
+awk gawk /usr/local/opt/gawk/bin/awk
+kill coreutils /usr/local/opt/coreutils/libexec/gnubin/kill
+git git /usr/local/opt/git/bin/git
+cut coreutils /usr/local/opt/coreutils/libexec/gnubin/cut
+grep homebrew/dupes/grep /usr/local/opt/grep/bin/ggrep
+sort coreutils /usr/local/opt/coreutils/libexec/gnubin/sort
+awk gawk /usr/local/opt/gawk/bin/awk
+date coreutils /usr/local/opt/coreutils/libexec/gnubin/date
+md5sum coreutils /usr/local/opt/coreutils/libexec/gnubin/md5sum
+cat coreutils /usr/local/opt/coreutils/libexec/gnubin/cat
+mkdir coreutils /usr/local/opt/coreutils/libexec/gnubin/mkdir
+head coreutils /usr/local/opt/coreutils/libexec/gnubin/head
+bash bash /usr/local/bin/bash
+chmod coreutils /usr/local/opt/coreutils/libexec/gnubin/chmod
+sed gnu-sed /usr/local/opt/gnu-sed/libexec/gnubin/sed
+"
+_core_dependency_internalDataSource_Mageia="sed sed /bin/sed
+ls coreutils /bin/ls
+sleep coreutils /bin/sleep
+rm coreutils /bin/rm
+cat coreutils /bin/cat
+base64 coreutils /usr/bin/base64
+tr coreutils /usr/bin/tr
+cat coreutils /bin/cat
+rm coreutils /bin/rm
+sudo sudo /usr/bin/sudo
+awk gawk /bin/awk
+kill util-linux /bin/kill
+git git /usr/bin/git
+cut coreutils /bin/cut
+grep grep /bin/grep
+sort coreutils /bin/sort
+awk gawk /bin/awk
+date coreutils /bin/date
+md5sum coreutils /usr/bin/md5sum
+cat coreutils /bin/cat
+mkdir coreutils /bin/mkdir
+head coreutils /usr/bin/head
+bash bash /bin/bash
+chmod coreutils /bin/chmod
+sed sed /bin/sed
+"
+_core_dependency_internalDataSource_NetBSD="sed gsed /usr/pkg/gnu/bin/sed
+ls coreutils /usr/pkg/gnu/bin/ls
+sleep coreutils /usr/pkg/gnu/bin/sleep
+rm coreutils /usr/pkg/gnu/bin/rm
+cat coreutils /usr/pkg/gnu/bin/cat
+base64 coreutils /usr/pkg/gnu/bin/base64
+tr coreutils /usr/pkg/gnu/bin/tr
+cat coreutils /usr/pkg/gnu/bin/cat
+rm coreutils /usr/pkg/gnu/bin/rm
+id coreutils /usr/pkg/gnu/bin/id
+uname coreutils /usr/pkg/gnu/bin/uname
+cut coreutils /usr/pkg/gnu/bin/cut
+sudo sudo /usr/pkg/bin/sudo
+uname coreutils /usr/pkg/gnu/bin/uname
+cut coreutils /usr/pkg/gnu/bin/cut
+sudo sudo /usr/pkg/bin/sudo
+env coreutils /usr/pkg/gnu/bin/env
+awk gawk /usr/pkg/gnu/bin/awk
+kill coreutils /usr/pkg/gnu/bin/kill
+git git /usr/pkg/bin/git
+cut coreutils /usr/pkg/gnu/bin/cut
+grep grep /usr/pkg/gnu/bin/grep
+sort coreutils /usr/pkg/gnu/bin/sort
+awk gawk /usr/pkg/gnu/bin/awk
+date coreutils /usr/pkg/gnu/bin/date
+md5sum coreutils /usr/pkg/gnu/bin/md5sum
+cat coreutils /usr/pkg/gnu/bin/cat
+mkdir coreutils /usr/pkg/gnu/bin/mkdir
+head coreutils /usr/pkg/gnu/bin/head
+bash bash /usr/pkg/bin/bash
+chmod coreutils /usr/pkg/gnu/bin/chmod
+sed gsed /usr/pkg/gnu/bin/sed
+"
+_core_dependency_internalDataSource_OpenBSD="sed gnu-sed /usr/local/opt/gnu-sed/libexec/gnubin/sed
+ls coreutils /usr/local/bin/gls
+sleep coreutils /usr/local/bin/gsleep
+rm coreutils /usr/local/bin/grm
+cat coreutils /usr/local/bin/gcat
+base64 coreutils /usr/local/bin/gbase64
+tr coreutils /usr/local/bin/gtr
+cat coreutils /usr/local/bin/gcat
+rm coreutils /usr/local/bin/grm
+id coreutils /usr/local/bin/gid
+uname coreutils /usr/local/bin/guname
+awk gawk /usr/local/bin/awk
+kill coreutils /usr/local/bin/gkill
+git git /usr/local/bin/git
+cut coreutils /usr/local/bin/gcut
+grep ggrep /usr/local/bin/ggrep
+sort coreutils /usr/local/bin/gsort
+awk gawk /usr/local/bin/awk
+date coreutils /usr/local/bin/gdate
+md5sum coreutils /usr/local/bin/gmd5sum
+cat coreutils /usr/local/bin/gcat
+mkdir coreutils /usr/local/bin/gmkdir
+head coreutils /usr/local/bin/ghead
+bash bash /usr/local/bin/bash
+chmod coreutils /usr/local/bin/gchmod
+sed gnu-sed /usr/local/opt/gnu-sed/libexec/gnubin/sed
+"
+_core_dependency_internalDataSource_RedHat="sed sed /bin/sed
+ls coreutils /bin/ls
+sleep coreutils /bin/sleep
+rm coreutils /bin/rm
+cat coreutils /bin/cat
+base64 coreutils /usr/bin/base64
+tr coreutils /usr/bin/tr
+cat coreutils /bin/cat
+rm coreutils /bin/rm
+sudo sudo /usr/bin/sudo
+yum yum /usr/bin/yum
+yum yum /usr/bin/yum
+head coreutils /usr/bin/head
+rpm rpm /bin/rpm
+grep grep /bin/grep
+sudo sudo /usr/bin/sudo
+yum yum /usr/bin/yum
+sed sed /bin/sed
+uname coreutils /bin/uname
+sudo sudo /usr/bin/sudo
+rpm rpm /bin/rpm
+curl curl /usr/bin/curl
+yum yum /usr/bin/yum
+awk gawk /bin/awk
+kill util-linux /bin/kill
+git git /usr/bin/git
+cut coreutils /bin/cut
+grep grep /bin/grep
+sort coreutils /bin/sort
+awk gawk /bin/awk
+date coreutils /bin/date
+md5sum coreutils /usr/bin/md5sum
+cat coreutils /bin/cat
+mkdir coreutils /bin/mkdir
+head coreutils /usr/bin/head
+bash bash /bin/bash
+chmod coreutils /bin/chmod
+sed sed /bin/sed
+"
+_core_dependency_internalDataSource_SuSE="sed sed /bin/sed
+ls coreutils /bin/ls
+sleep coreutils /bin/sleep
+rm coreutils /bin/rm
+cat coreutils /bin/cat
+base64 coreutils /usr/bin/base64
+tr coreutils /usr/bin/tr
+cat coreutils /bin/cat
+rm coreutils /bin/rm
+sudo sudo /usr/bin/sudo
+awk gawk /bin/awk
+kill util-linux /bin/kill
+git git /usr/bin/git
+cut coreutils /bin/cut
+grep grep /bin/grep
+sort coreutils /bin/sort
+awk gawk /bin/awk
+date coreutils /bin/date
+md5sum coreutils /usr/bin/md5sum
+cat coreutils /bin/cat
+mkdir coreutils /bin/mkdir
+head coreutils /usr/bin/head
+bash bash /bin/bash
+chmod coreutils /bin/chmod
+sed sed /bin/sed
+"
+_core_base64_decode_file () 
+{ 
+    local index62Character="$1";
+    local index63Character="$2";
+    local singleByteLineMethod="$3";
+    local carriageReturn="$(printf '\r')";
+    local accumulatedValue;
+    local value;
+    local valueShift;
+    local character;
+    accumulatedValue=0;
+    valueShift=18;
+    local equalsCount=0;
+    $singleByteLineMethod | while IFS='' read -r character || [ -n "$character" ]; do
+        if [ -z "$character" ]; then
+            continue;
+        fi;
+        if [ $equalsCount -eq 2 ]; then
+            core_exitError $core_commandLine_exitCode_DATAERR "'=' embedded in base64-encoded data, not at end";
+        fi;
+        case "$character" in 
+            "$carriageReturn")
+                continue
+            ;;
+            A)
+                value=0
+            ;;
+            B)
+                value=1
+            ;;
+            C)
+                value=2
+            ;;
+            D)
+                value=3
+            ;;
+            E)
+                value=4
+            ;;
+            F)
+                value=5
+            ;;
+            G)
+                value=6
+            ;;
+            H)
+                value=7
+            ;;
+            I)
+                value=8
+            ;;
+            J)
+                value=9
+            ;;
+            K)
+                value=10
+            ;;
+            L)
+                value=11
+            ;;
+            M)
+                value=12
+            ;;
+            N)
+                value=13
+            ;;
+            O)
+                value=14
+            ;;
+            P)
+                value=15
+            ;;
+            Q)
+                value=16
+            ;;
+            R)
+                value=17
+            ;;
+            S)
+                value=18
+            ;;
+            T)
+                value=19
+            ;;
+            U)
+                value=20
+            ;;
+            V)
+                value=21
+            ;;
+            W)
+                value=22
+            ;;
+            X)
+                value=23
+            ;;
+            Y)
+                value=24
+            ;;
+            Z)
+                value=25
+            ;;
+            a)
+                value=26
+            ;;
+            b)
+                value=27
+            ;;
+            c)
+                value=28
+            ;;
+            d)
+                value=29
+            ;;
+            e)
+                value=30
+            ;;
+            f)
+                value=31
+            ;;
+            g)
+                value=32
+            ;;
+            h)
+                value=33
+            ;;
+            i)
+                value=34
+            ;;
+            j)
+                value=35
+            ;;
+            k)
+                value=36
+            ;;
+            l)
+                value=37
+            ;;
+            m)
+                value=38
+            ;;
+            n)
+                value=39
+            ;;
+            o)
+                value=40
+            ;;
+            p)
+                value=41
+            ;;
+            q)
+                value=42
+            ;;
+            r)
+                value=43
+            ;;
+            s)
+                value=44
+            ;;
+            t)
+                value=45
+            ;;
+            u)
+                value=46
+            ;;
+            v)
+                value=47
+            ;;
+            w)
+                value=48
+            ;;
+            x)
+                value=49
+            ;;
+            y)
+                value=50
+            ;;
+            z)
+                value=51
+            ;;
+            0)
+                value=52
+            ;;
+            1)
+                value=53
+            ;;
+            2)
+                value=54
+            ;;
+            3)
+                value=55
+            ;;
+            4)
+                value=56
+            ;;
+            5)
+                value=57
+            ;;
+            6)
+                value=58
+            ;;
+            7)
+                value=59
+            ;;
+            8)
+                value=60
+            ;;
+            9)
+                value=61
+            ;;
+            "$index62Character")
+                value=62
+            ;;
+            "$index63Character")
+                value=63
+            ;;
+            '=')
+                if [ $valueSift -eq 18 ]; then
+                    core_exitError $core_commandLine_exitCode_DATAERR "'=' can start a triple in base64-encoded data";
+                fi;
+                equalsCount=$((equalsCount+1));
+                value=0
+            ;;
+            *)
+                core_exitError $core_commandLine_exitCode_DATAERR "Unexpected character '$character' in base64-encoded data"
+            ;;
+        esac;
+        accumulatedValue=$(( (value << valueShift) + accumulatedValue));
+        if [ $valueShift -ne 0 ]; then
+            valueShift=$((valueShift-6));
+            continue;
+        fi;
+        valueShift=18;
+        printf "\\$(printf '%o' $((accumulatedValue >> 16)))";
+        printf "\\$(printf '%o' $(((accumulatedValue >> 8) & 255)))";
+        printf "\\$(printf '%o' $((accumulatedValue & 255)))";
+    done;
+    case $valueShift in 
+        18)
+            :
+        ;;
+        12)
+            core_exitError $core_commandLine_exitCode_DATAERR "Missing final character in base64-encoded data"
+        ;;
+        8)
+            printf "\\$(printf '%o' $((accumulatedValue >> 16)))"
+        ;;
+        0)
+            printf "\\$(printf '%o' $((accumulatedValue >> 16)))";
+            printf "\\$(printf '%o' $(((accumulatedValue >> 8) & 255)))"
+        ;;
+    esac
+}
+_core_base64_decode_file_awk () 
+{ 
+    awk '{for(i=1;i<=length;i++) print substr($0, i, 1)}' "$encodedFilePath"
+}
+_core_base64_decode_file_fold () 
+{ 
+    fold -b -w 1 "$encodedFilePath"
+}
+_core_children_killAll_callback () 
+{ 
+    local pid;
+    for pid in "$@";
+    do
+        kill -TERM "$pid" 2> /dev/null || true;
+    done
+}
+_core_compatibility_builtInDoesNotExist () 
+{ 
+    local builtInName="$1";
+    local value="$(PATH='' core_compatibility_which "$builtInName")";
+    if [ "$builtInName" = "$value" ]; then
+        return 1;
+    fi;
+    return 0
+}
+_core_configuration_load () 
+{ 
+    local actualPath="$1";
+    if [ ! -e "$actualPath" ]; then
+        core_message INFO "Configuration file '$actualPath' does not exist; ignoring";
+        return 0;
+    else
+        if [ -f "$actualPath" ]; then
+            if [ ! -r "$actualPath" ]; then
+                core_message WARN "Configuration file '$actualPath' is not readable; ignoring";
+                return 0;
+            fi;
+            if [ ! -s "$actualPath" ]; then
+                core_message WARN "Configuration file '$actualPath' is empty; ignoring";
+                return 0;
+            fi;
+            if [ -x "$actualPath" ]; then
+                core_message WARN "Configuration file '$actualPath' is executable and should not be; ignoring";
+                return 0;
+            fi;
+            if _core_configuration_validateConfigurationFileIsInsecurelyOwned; then
+                return 0;
+            fi;
+            . "$actualPath" || core_exitError $core_commandLine_exitCode_OSFILE "Could not load '$actualPath'";
+        else
+            if [ -d "$actualPath" ]; then
+                if [ ! -r "$actualPath" ]; then
+                    core_message WARN "Configuration folder '$actualPath' is not readable; ignoring";
+                    return 0;
+                fi;
+                if [ ! -x "$actualPath" ]; then
+                    core_message WARN "Configuration folder '$actualPath' is not searchable; ignoring";
+                    return 0;
+                fi;
+                local filePath;
+                pushd "$actualPath";
+                set +f;
+                for filePath in *;
+                do
+                    set -f;
+                    if [ ! -e "$filePath" ]; then
+                        continue;
+                    fi;
+                    _core_configuration_load "$filePath";
+                done;
+                set -f;
+                popd;
+            else
+                core_message WARN "Configuration path '$actualPath' resolves to neither a file or folder; ignoring";
+                return 0;
+            fi;
+        fi;
+    fi
+}
+_core_configuration_validateConfigurationFileIsInsecurelyOwned () 
+{ 
+    if core_variable_doesNotStartWith "$actualPath" '/etc'; then
+        return 1;
+    fi;
+    local permissions;
+    local links;
+    local uid;
+    local gid;
+    local size;
+    local garbageDateAndName;
+    IFS=' ' read -r permissions links uid gid size garbageDateAndName  <<-EOF
+$(ls -a -l -L -n "$actualPath")
+EOF
+
+    if [ $uid -ne 0 ]; then
+        core_message WARN "Configuration file '$actualPath' is not owned by root; ignoring";
+        return 0;
+    fi;
+    if [ $gid -ne 0 ]; then
+        core_message WARN "Configuration file '$actualPath' is not in root's group; ignoring";
+        return 0;
+    fi;
+    if core_variable_doesNotStartWith "$permissions" '-rw-r--r--'; then
+        core_message WARN "Configuration file '$actualPath' has permissions that are not -rw-r--r--; ignoring";
+        return 0;
+    fi;
+    local parentPath="$(core_compatibility_basename "$actualPath")";
+    ls -a -l -L -n "$actualPath" | while IFS=' ' read -r permissions links uid gid size garbageDateAndName; do
+        if [ "$permissions" = 'total' ]; then
+            continue;
+        fi;
+        if [ $uid -ne 0 ]; then
+            core_message WARN "Configuration file '$actualPath' lives in a folder not owned by root; ignoring";
+            return 0;
+        fi;
+        if [ $gid -ne 0 ]; then
+            core_message WARN "Configuration file '$actualPath' lives in a folder not owned by root's group; ignoring";
+            return 0;
+        fi;
+        if core_variable_doesNotStartWith "$permissions" '-rwxr-xr-x'; then
+            core_message WARN "Configuration file '$actualPath' lives in a folder with permissions not set to '-rwxr-xr-x'; ignoring";
+            return 0;
+        fi;
+        break;
+    done;
+    return 1
+}
+_core_dependency_addFromExternalDataSources () 
+{ 
+    local externalDataSourceFolderPath;
+    local externalDataSourceFilePath;
+    if core_variable_isSet HOME; then
+        set -- "$HOME"/."$_program_name" "$HOME"/."$core_libraryName" "$_program_etcPath"/"$_program_name" "$_program_etcPath"/"$core_libraryName";
+    else
+        set -- "$_program_etcPath"/"$_program_name" "$_program_etcPath"/"$core_libraryName";
+    fi;
+    for externalDataSourceFolderPath in "$@";
+    do
+        externalDataSourceFilePath="$externalDataSourceFolderPath"/paths.d/"$packageManager"/"$programName".path;
+        if ! core_path_isReadableNonEmptyFilePath "$externalDataSourceFilePath"; then
+            continue;
+        fi;
+        IFS=' ' read -r pathProgramName pathPackage pathAbsoluteFilePath < "$externalDataSourceFilePath";
+        if [ ! -e "$pathAbsoluteFilePath" ]; then
+            _core_dependency_addToPackagesToInstallIfRequired;
+        fi;
+        _core_dependency_addToReplacementPathIfRequired "$pathAbsoluteFilePath";
+        foundInternally=1;
+        return;
+    done
+}
+_core_dependency_addFromInternalDataSource () 
+{ 
+    local internalDataSourceName="_core_dependency_internalDataSource_${packageManager}";
+    if core_variable_isUnset "$internalDataSourceName"; then
+        foundInternally=0;
+        return 0;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$internalDataSourceName";
+    while IFS=' ' read -r pathProgramName pathPackage pathAbsoluteFilePath; do
+        if [ "$programName" = "$pathProgramName" ]; then
+            foundInternally=1;
+            if [ ! -e "$pathAbsoluteFilePath" ]; then
+                _core_dependency_addToPackagesToInstallIfRequired;
+            fi;
+            _core_dependency_addToReplacementPathIfRequired "$pathAbsoluteFilePath";
+            return 0;
+        fi;
+        :;
+    done  <<-EOF
+$core_variable_indirectValue_result
+EOF
+
+    foundInternally=0;
+    return 0
+}
+_core_dependency_addToPackagesToInstallIfRequired () 
+{ 
+    if core_variable_array_contains packagesToInstall "$pathPackage"; then
+        return 0;
+    fi;
+    core_variable_array_append packagesToInstall "$pathPackage"
+}
+_core_dependency_addToReplacementPathIfRequired () 
+{ 
+    local filePath="$1";
+    local folderPath="$(core_compatibility_dirname "$filePath")";
+    local replacementPathFragment;
+    local IFS=':';
+    for replacementPathFragment in $replacementPath;
+    do
+        if [ "$replacementPathFragment" = "$folderPath" ]; then
+            return 0;
+        fi;
+    done;
+    replacementPath="$folderPath:$replacementPath"
+}
+_core_dependency_check_CentOS_checkPackageInstalled () 
+{ 
+    local packageName="$1";
+    rpm -qa | grep -q "^${packageName}-"
+}
+_core_dependency_check_CentOS_detectIfYumSupportsAssumeYes () 
+{ 
+    yum --version | head -n 1
+}
+_core_dependency_check_CentOS_installRepository_epel () 
+{ 
+    if _core_dependency_check_CentOS_checkPackageInstalled 'epel-release'; then
+        return 0;
+    fi;
+    sudo -p "Please enter the password for %p for sudo to run yum install epel-release: " yum ${yumVerbosity} -y install epel-release
+}
+_core_dependency_check_CentOS_installRepository_repoforge () 
+{ 
+    if _core_dependency_check_CentOS_checkPackageInstalled 'rpmforge-release'; then
+        return 0;
+    fi;
+    local TMP_FILE;
+    core_temporaryFiles_newFileToRemoveOnExit;
+    local temporaryFile="$TMP_FILE";
+    sed -e 's/release /release./g' -e 's/.* release\.//g' -e 's/ .*$//g' /etc/redhat-release > "$temporaryFile";
+    local release;
+    local garbage;
+    IFS='.' read -r release garbage < "$temporaryFile";
+    local downloadUrl="http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el${release}.rf.$(uname -m).rpm";
+    local repoForgeReleaseRpmFilePath="$temporaryFile";
+    sudo -p "Please enter the password for %p for sudo to import repoforge repository's key (please note this is only available over _HTTP_): " rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt 2> /dev/null || true;
+    curl --silent --location --url "$downloadUrl" > "$repoForgeReleaseRpmFilePath";
+    rpm -K "$repoForgeReleaseRpmFilePath" > /dev/null 2> /dev/null || core_exitError $core_commandLine_exitCode_IOERR "Downloaded repoforge package corrupt or tampered with";
+    sudo -p "Please enter the password for %p for sudo to add the repoforge repository" rpm --quiet -ivh "$repoForgeReleaseRpmFilePath";
+    sudo -p "Please enter the password for %p for sudo to update yum: " yum --quiet makecache
+}
+_core_dependency_check_CentOS_parsePackageName () 
+{ 
+    repositoryName='';
+    packageName='';
+    IFS='/' read -r repositoryName packageName  <<-EOF
+${fullyQualifiedPackageName}
+EOF
+
+    if [ -z "$packageName" ]; then
+        packageName="$repositoryName";
+        repositoryName='';
+    fi
+}
+_core_init_makePathAbsolute () 
+{ 
+    local variableName="$1";
+    if core_variable_isUnset "$variableName"; then
+        return 0;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$variableName";
+    set +e;
+    cd "$core_variable_indirectValue_result" > /dev/null 2> /dev/null;
+    if [ $? -ne 0 ]; then
+        set -e;
+        return 0;
+    fi;
+    local absolutePath="$(pwd -P)";
+    eval "$variableName"'=$absolutePath';
+    cd - > /dev/null;
+    set -e
+}
+_core_temporaryFiles_removeAll_callback () 
+{ 
+    local pathToDelete;
+    for pathToDelete in "$@";
+    do
+        if [ ! -e "$pathToDelete" ]; then
+            continue;
+        fi;
+        if rm -r -f "$pathToDelete" > /dev/null 2> /dev/null; then
+            continue;
+        fi;
+        if core_compatibility_whichNoOutput sudo; then
+            sudo -p "Please enter the password for %p to forcibly rm the temporary path '$pathToDelete': " rm -r -f "$pathToDelete" || core_message WARN "Could not forcibly delete temporary path '$pathToDelete'";
+        fi;
+    done
+}
+_core_trap_executeOnTrap () 
+{ 
+    local trapName="$1";
+    local arrayName="core_trap_handlers_${trapName}";
+    if core_variable_array_isUnset "$arrayName"; then
+        return 0;
+    fi;
+    core_variable_array_iterateAsCallbacks "$arrayName"
+}
+_core_variable_array_contains_check () 
+{ 
+    if [ "$core_variable_array_element" = "$containsValue" ]; then
+        return 0;
+    fi;
+    return 1
+}
+_core_variable_array_isEmpty () 
+{ 
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "${variableName}_initialised";
+    [ $core_variable_indirectValue_result -eq 0 ]
+}
+_core_variable_characterByCharacter () 
+{ 
+    local index=0;
+    local core_variable_character;
+    while IFS='' read -r core_variable_character; do
+        if [ -z "$character" ]; then
+            character="
+";
+        fi;
+        $callback;
+        index=$((index+1));
+    done
+}
+_core_variable_copy () 
+{ 
+    local valueToCopy="$1";
+    local copies=$2;
+    local count=0;
+    while [ $count -lt $copies ]; do
+        copy="${copy}${valueToCopy}";
+        count=$((count + 1));
+    done
+}
+_core_variable_parseBoolean () 
+{ 
+    case "$1" in 
+        true | True | TRUE | T | yes | Yes | YES | Y | on | On | ON | 1)
+            return $2
+        ;;
+        false | False | FALSE | F | no | No | NO | N | off | Off | OFF | 0)
+            return $3
+        ;;
+        *)
+            return $4
+        ;;
+    esac
+}
+_program_commandLine_handleNonOptions () 
+{ 
+    if [ $# -eq 0 ]; then
+        core_commandLine_exitBadCommandLine "No programs specified";
+    fi;
+    pushd "$fatten_repositoryPath";
+    local fatten_program;
+    local resolvedPath;
+    for fatten_program in "$@";
+    do
+        if core_variable_startsWith "$fatten_program" '/'; then
+            core_commandLine_exitBadCommandLine "PROGRAM '$fatten_program' is an absolute path. Paths to PROGRAMs must be relative to --repository-path so that we can enforce they are built against that repository's metadata.";
+        fi;
+        resolvedPath="$(pwd)"/"$fatten_program";
+        core_validate_filePathReadableAndExecutableAndNotEmpty $core_commandLine_exitCode_USAGE 'non-options' "PROGRAM ('$fatten_program')" "$resolvedPath";
+        core_variable_array_append fatten_programs "$resolvedPath";
+    done;
+    popd
+}
+_program_commandLine_helpMessage () 
+{ 
+    _program_commandLine_helpMessage_usage="[OPTION]... -- [PROGRAMS]...";
+    _program_commandLine_helpMessage_description="Fattens shellfire executables so they standalone.";
+    _program_commandLine_helpMessage_options="
+  -r, --repository-path PATH  Path to a Git repository root containing a PROGRAM
+                              Defaults to pwd:-
+                              ${fatten_repositoryPath}
+  -e, --etc-path PATH         Path to install etc folder [Default ${_program_default_etcPath}]
+  -l, --lib-path PATH         Path to install lib folder [Default ${_program_default_libPath}]
+  -p, --var-path PATH         Path to install var folder [Default ${_program_default_varPath}]
+  -e, --bin-path PATH         Path to install bin folder [Default ${_program_default_binPath}]
+  -f, --force                 Force fattening even if there are uncommited changes
+  -o, --output-path PATH      Path to folder (created if necessary) for fattened PROGRAM
+                              Defaults to pwd:-
+                              ${_program_default_outputPath}
+  -i, --ignore-dependencies   Equivalent to _program_ignoreDependencies
+                              Fattened program will not try to install dependencies itself
+							  ";
+    _program_commandLine_helpMessage_optionsSpacing='     ';
+    _program_commandLine_helpMessage_configurationKeys="
+  fatten_binPath             Equivalent to --bin-path
+  fatten_etcPath             Equivalent to --etc-path
+  fatten_libPath             Equivalent to --lib-path
+  fatten_varPath             Equivalent to --var-path
+  fatten_repositoryPath      Equivalent to --repository-path
+  fatten_force               Equivalent to --force (specify yes or no)
+  fatten_outputPath          Equivalent to --output-path
+  fatten_ignoreDependencies  Equivalent to --ignore-dependencies
+  
+  PROGRAM is an executable shellfire script, with a path
+  relative to --repository-path.
+";
+    _program_commandLine_helpMessage_examples="
+  ${_program_name} -r fatten -- fatten
+"
+}
+_program_commandLine_optionExists () 
+{ 
+    case "$optionName" in 
+        r | repository-path)
+            echo 'yes-argumented'
+        ;;
+        e | etc-path)
+            echo 'yes-argumented'
+        ;;
+        b | bin-path)
+            echo 'yes-argumented'
+        ;;
+        l | lib-path)
+            echo 'yes-argumented'
+        ;;
+        p | var-path)
+            echo 'yes-argumented'
+        ;;
+        f | force)
+            echo 'yes-argumentless'
+        ;;
+        o | output-path)
+            echo 'yes-argumented'
+        ;;
+        i | ignore-dependencies)
+            echo 'yes-argumentless'
+        ;;
+        *)
+            echo 'no'
+        ;;
+    esac
+}
+_program_commandLine_parseInitialise () 
+{ 
+    _program_default_binPath='/usr/bin';
+    _program_default_etcPath='/etc';
+    _program_default_libPath='/usr/lib';
+    _program_default_varPath='/var';
+    _program_default_outputPath="$(pwd)";
+    if core_variable_isUnset fatten_repositoryPath; then
+        fatten_repositoryPath="$(pwd)";
+    fi
+}
+_program_commandLine_processOptionWithArgument () 
+{ 
+    case "$optionName" in 
+        r | repository-path)
+            fatten_validate_repositoryPath $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue";
+            fatten_repositoryPath="$optionValue"
+        ;;
+        b | bin-path)
+            core_validate_pathNotEmpty $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue";
+            fatten_binPath="$optionValue"
+        ;;
+        e | etc-path)
+            core_validate_pathNotEmpty $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue";
+            fatten_etcPath="$optionValue"
+        ;;
+        l | lib-path)
+            core_validate_pathNotEmpty $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue";
+            fatten_libPath="$optionValue"
+        ;;
+        l | var-path)
+            core_validate_pathNotEmpty $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue";
+            fatten_varPath="$optionValue"
+        ;;
+        o | output-path)
+            core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue";
+            fatten_outputPath="$optionValue"
+        ;;
+        *)
+            echo 'no'
+        ;;
+    esac
+}
+_program_commandLine_processOptionWithoutArgument () 
+{ 
+    case "$optionName" in 
+        f | force)
+            fatten_force='yes'
+        ;;
+        i | ignore-dependencies)
+            fatten_ignoreDependencies='yes'
+        ;;
+    esac
+}
+_program_commandLine_validate () 
+{ 
+    local optionNameIncludingHyphens;
+    local optionValue;
+    if core_variable_isUnset fatten_force; then
+        fatten_force='no';
+        core_validate_isBoolean $core_commandLine_exitCode_CONFIG 'default for' '--force' "$fatten_force";
+    else
+        core_validate_isBoolean $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_force' "$fatten_force";
+    fi;
+    if core_variable_isUnset fatten_ignoreDependencies; then
+        fatten_ignoreDependencies='no';
+        core_validate_isBoolean $core_commandLine_exitCode_CONFIG 'default for' '--force' "$fatten_ignoreDependencies";
+    else
+        core_validate_isBoolean $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_ignoreDependencies' "$fatten_ignoreDependencies";
+    fi;
+    if core_variable_isSet fatten_repositoryPath; then
+        fatten_validate_repositoryPath $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_repositoryPath' "$fatten_repositoryPath";
+    fi;
+    if core_variable_isUnset fatten_binPath; then
+        fatten_binPath="$_program_default_binPath";
+        core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'default for' '--bin-path' "$fatten_binPath";
+    else
+        core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_binPath' "$fatten_binPath";
+    fi;
+    if core_variable_isUnset fatten_etcPath; then
+        fatten_etcPath="$_program_default_etcPath";
+        core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'default for' '--etc-path' "$fatten_etcPath";
+    else
+        core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_etcPath' "$fatten_etcPath";
+    fi;
+    if core_variable_isUnset fatten_libPath; then
+        fatten_libPath="$_program_default_libPath";
+        core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'default for' '--lib-path' "$fatten_libPath";
+    else
+        core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_libPath' "$fatten_libPath";
+    fi;
+    if core_variable_isUnset fatten_varPath; then
+        fatten_varPath="$_program_default_varPath";
+        core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'default for' '--var-path' "$fatten_varPath";
+    else
+        core_validate_pathNotEmpty $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_varPath' "$fatten_varPath";
+    fi;
+    if core_variable_isUnset fatten_outputPath; then
+        fatten_outputPath="$_program_default_outputPath";
+        core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'default for' '--output-path' "$fatten_outputPath";
+    else
+        core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated $core_commandLine_exitCode_CONFIG 'configuration setting' 'fatten_outputPath' "$fatten_outputPath";
+    fi
+}
+command_not_found_handle () 
+{ 
+    local programNotFound="$1";
+    shift 1;
+    core_exitError $core_commandLine_exitCode_OSFILE "Essential dependency '$programNotFound' not found on the PATH (with arguments '$@')"
+}
+core_TODO () 
+{ 
+    core_message TODO "$*"
+}
+core_base64_decode_file () 
+{ 
+    local encodedFilePath="$1";
+    local decodedFilePath="$2";
+    local append="$3";
+    local index62Character="$4";
+    local index63Character="$5";
+    if core_compatibility_whichNoOutput openssl; then
+        if core_variable_isTrue "$append"; then
+            openssl enc -base64 -d -in "$encodedFilePath" >> "$decodedFilePath";
+        else
+            openssl enc -base64 -d -in "$encodedFilePath" > "$decodedFilePath";
+        fi;
+        return 0;
+    fi;
+    if core_compatibility_whichNoOutput gbase64; then
+        if core_variable_isTrue "$append"; then
+            gbase64 -d "$encodedFilePath" >> "$decodedFilePath";
+        else
+            gbase64 -d "$encodedFilePath" > "$decodedFilePath";
+        fi;
+        return 0;
+    fi;
+    if core_compatibility_whichNoOutput base64; then
+        local exitCode;
+        if core_variable_isTrue "$append"; then
+            set +e;
+            base64 -D "$encodedFilePath" >> "$decodedFilePath" 2> /dev/null;
+            exitCode=$?;
+            set -e;
+        else
+            set +e;
+            base64 -D "$encodedFilePath" > "$decodedFilePath" 2> /dev/null;
+            exitCode=$?;
+            set -e;
+        fi;
+        if [ $exitCode -eq 0 ]; then
+            return 0;
+        fi;
+        if core_variable_isTrue "$append"; then
+            set +e;
+            base64 -d "$encodedFilePath" >> "$decodedFilePath" 2> /dev/null;
+            exitCode=$?;
+            set -e;
+        else
+            set +e;
+            base64 -d "$encodedFilePath" > "$decodedFilePath" 2> /dev/null;
+            exitCode=$?;
+            set -e;
+        fi;
+        if [ $exitCode -eq 0 ]; then
+            return 0;
+        fi;
+        core_message WARN "We don't recognise your 'base64' binary (or data is corrupt); use fallbacks";
+    fi;
+    if core_compatibility_whichNoOutput fold; then
+        if core_variable_isTrue "$append"; then
+            _core_base64_decode_file "$@" _core_base64_decode_file_fold >> "$decodedFilePath";
+        else
+            _core_base64_decode_file "$@" _core_base64_decode_file_fold > "$decodedFilePath";
+        fi;
+        return 0;
+    fi;
+    if core_compatibility_whichNoOutput awk; then
+        if core_variable_isTrue "$append"; then
+            _core_base64_decode_file "$@" _core_base64_decode_file_awk >> "$decodedFilePath";
+        else
+            _core_base64_decode_file "$@" _core_base64_decode_file_awk > "$decodedFilePath";
+        fi;
+        return 0;
+    fi;
+    core_exitError $core_commandLine_exitCode_OSFILE "No utility to decode base64 found (openssl, gbase64, base64, fold, awk)"
+}
+core_base64_decode_string () 
+{ 
+    local string="$1";
+    local decodedFilePath="$2";
+    local append="$3";
+    local index62Character="$4";
+    local index63Character="$5";
+    shift 5;
+    local TMP_FILE;
+    core_temporaryFiles_newFileToRemoveOnExit;
+    printf '%s' "$string" > "$TMP_FILE";
+    core_base64_decode_file "$TMP_FILE" "$decodedFilePath" "$append" "$index62Character" "$index63Character";
+    rm -f "$TMP_FILE" || true
+}
+core_children_initialise () 
+{ 
+    core_trap_addOnCleanUp core_children_killAll
+}
+core_children_killAll () 
+{ 
+    if core_variable_array_isSet _core_children_childrenToRemoveOnExit; then
+        core_variable_array_passToFunctionAsArguments _core_children_childrenToRemoveOnExit _core_children_killAll_callback;
+    fi
+}
+core_children_killOnExit () 
+{ 
+    local childPid;
+    for childPid in "$@";
+    do
+        core_variable_array_append _core_children_childrenToRemoveOnExit "$childPid";
+    done
+}
+core_commandLine_defaultLicenseMessage () 
+{ 
+    printf '%s' "LICENSE terms are documented in the COPYRIGHT file at the top-level directory of this distribution."
+}
+core_commandLine_exitBadCommandLine () 
+{ 
+    core_commandLine_helpMessage 1>&2;
+    core_message FAIL "$1";
+    exit $core_commandLine_exitCode_USAGE
+}
+core_commandLine_exitHelp () 
+{ 
+    core_commandLine_helpMessage 1>&2;
+    exit $core_commandLine_exitCode_OK
+}
+core_commandLine_exitVersion () 
+{ 
+    core_commandLine_versionMessage 1>&2;
+    exit $core_commandLine_exitCode_OK
+}
+core_commandLine_helpMessage () 
+{ 
+    _program_commandLine_helpMessage_usage="[OPTION]...";
+    _program_commandLine_helpMessage_description="Does nothing.";
+    _program_commandLine_helpMessage_options="";
+    _program_commandLine_helpMessage_optionsSpacing='     ';
+    _program_commandLine_helpMessage_configurationKeys="";
+    _program_commandLine_helpMessage_examples="";
+    _program_commandLine_helpMessage;
+    printf '%s' Usage: "${_program_name} ${_program_commandLine_helpMessage_usage}
+${_program_commandLine_helpMessage_description}
+
+  -h, --help             ${_program_commandLine_helpMessage_optionsSpacing}display this help and exit
+  -v, --verbose [LEVEL]  ${_program_commandLine_helpMessage_optionsSpacing}specify more than once to increase verbosity or
+                         ${_program_commandLine_helpMessage_optionsSpacing}optionally set LEVEL to 0 - 2. Defaults to 0.
+  -q, --quiet            ${_program_commandLine_helpMessage_optionsSpacing}specify to reduce verbosity
+      --version          ${_program_commandLine_helpMessage_optionsSpacing}output version information and exit${_program_commandLine_helpMessage_options}
+      --                 ${_program_commandLine_helpMessage_optionsSpacing}end of options
+
+Notes
+Long options with values may also be specified with '=', eg --verbose=2 as well
+as --verbose 2. Separate options from operands (non-options) by using '--'.
+This prevents interpretation of non-options as options. Concatenating short
+options with arguments (eg -v2) is not supported.
+
+Configuration
+This program can be configured by creating files in the form 'key=value' in the
+files and folders:-
+  
+  ${_program_etcPath}/${_program_name}/rc
+  ${_program_etcPath}/${_program_name}/rc.d
+  HOME/.${_program_name}/rc
+  HOME/.${_program_name}/rc.d
+  ${_program_namespace}_RC
+  ${_program_namespace}_RC_D
+
+Locations ending '.d' are folders which are searched for files. All files in a
+folder are used in shell glob-expansion order. HOME, ${_program_namespace}_RC and
+${_program_namespace}_RC_D are environment variables. If the variable
+does not exist, or is blacklisted, the location is ignored.
+Blacklisting is done by specifying:-
+
+  core_configuration_blacklist  VARIABLE_NAME
+  
+in a configuration file. This allows the system administrator to prevent
+overridding.
+
+Files are used in the order above. If a file does not exist, it is ignored.
+Those under a 'etc' folder must have the following permissions set:-
+
+  * They are owned by root.
+  * They are not group writable.
+  * They are not world writable.
+  * They do not reside in a group writable directory.
+  * They do not reside in a world writable directory.
+  * They are not a symbolic link to a file residing in a group or world
+    writable directory. 
+
+If the permissions are not set, the file is ignored.
+
+Configuration Keys
+  
+  ${_program_namespace}_verbose   $(core_init_verbosity)  Controls message logging on stderr
+  ${_program_namespace}_language  $(core_init_language)  Controls sort language${_program_commandLine_helpMessage_configurationKeys}
+Values should be single or double-quoted if they contain whitespace.
+
+Examples
+${_program_commandLine_helpMessage_examples}
+Path Files
+A path file is used to define the location of essential programs used during
+initial bootstrapping. It also defines a packageManager to automatically
+install any missing dependencies.
+"
+}
+core_commandLine_optionExists () 
+{ 
+    local optionName="$1";
+    case "$optionName" in 
+        h | help)
+            echo yes-argumentless
+        ;;
+        v | verbose)
+            echo yes-optionally-argumented
+        ;;
+        q | quiet)
+            echo yes-argumentless
+        ;;
+        version)
+            echo yes-argumentless
+        ;;
+        *)
+            _program_commandLine_optionExists
+        ;;
+    esac
+}
+core_commandLine_parse () 
+{ 
+    if core_functions_exists _program_commandLine_parse; then
+        _program_commandLine_parse "$@";
+    else
+        core_commandLine_parsePosix "$@";
+    fi
+}
+core_commandLine_parseConcatenatedOptionsWithoutEquals () 
+{ 
+    local arguments="-${optionName}";
+    local optstring=":${optionName}";
+    local lastOption=${#optionName};
+    local OPTARG;
+    local OPTERR;
+    local OPTIND=1;
+    local possibleOptionName="$(core_variable_firstCharacter "${optionName}")";
+    local possibleOptionValue="$(core_variable_allButFirst "${optionName}")";
+    case "$(core_commandLine_optionExists "$possibleOptionName")" in 
+        yes-argumented | yes-optionally-argumented)
+            optionName="$possibleOptionName";
+            optionValue="$possibleOptionValue";
+            core_commandLine_processOptionWithArgument;
+            shouldContinueAfterParsingConcatenatedOptions=1;
+            return
+        ;;
+    esac;
+    while getopts "$optstring" optionName "$arguments"; do
+        optionNameIncludingHyphens="-${optionName}";
+        argument="$optionNameIncludingHyphens";
+        if [ $OPTIND -eq $lastOption ]; then
+            return 0;
+        fi;
+        case "$(core_commandLine_optionExists "$optionName")" in 
+            yes-argumentless | yes-optionally-argumented)
+                core_commandLine_processOptionWithoutArgument
+            ;;
+            yes-argumented)
+                core_commandLine_exitBadCommandLine "The option '${optionNameIncludingHyphens}' requires an argument which could not be specified"
+            ;;
+            no | '')
+                core_commandLine_exitBadCommandLine "The short option (concatenated with others) '${optionNameIncludingHyphens}' is not known"
+            ;;
+            *)
+                core_exitError $core_commandLine_exitCode_SOFTWARE "Please implement yes-argumented, yes-argumentless, yes-optionally-argumented or no for option '$optionName' in _program_commandLine_optionExists()"
+            ;;
+        esac;
+    done
+}
+core_commandLine_parsePosix () 
+{ 
+    _program_commandLine_parseInitialise;
+    local argument;
+    local parsingOptionArguments=0;
+    while [ $# -ne 0 ]; do
+        local argument="$1";
+        if core_variable_startsWith "$argument" '--'; then
+            shift 1;
+            if [ "$argument" = '--' ]; then
+                break;
+            fi;
+            case "$argument" in 
+                --*=*)
+                    local optionNameIncludingHyphens="${argument%%=*}";
+                    local optionName="${optionNameIncludingHyphens##--}";
+                    local optionValue="${argument#*=}";
+                    case "$(core_commandLine_optionExists "$optionName")" in 
+                        yes-argumentless)
+                            core_commandLine_exitBadCommandLine "The option '${optionNameIncludingHyphens}' does not take values (such as '$optionValue')"
+                        ;;
+                        yes-argumented | yes-optionally-argumented)
+                            core_commandLine_processOptionWithArgument
+                        ;;
+                        no | '')
+                            core_commandLine_exitBadCommandLine "The long option (with =value) '${optionNameIncludingHyphens}' does not exist"
+                        ;;
+                        *)
+                            core_exitError $core_commandLine_exitCode_SOFTWARE "Please implement yes-argumented, yes-argumentless, yes-optionally-argumented or no for option '$optionName' in _program_commandLine_optionExists()"
+                        ;;
+                    esac
+                ;;
+                --*)
+                    local optionNameIncludingHyphens="$argument";
+                    local optionName="${argument##--}";
+                    case "$(core_commandLine_optionExists "$optionName")" in 
+                        yes-argumentless)
+                            core_commandLine_processOptionWithoutArgument
+                        ;;
+                        yes-argumented)
+                            if [ $# -eq 0 ]; then
+                                core_commandLine_exitBadCommandLine "The option '${optionNameIncludingHyphens}' requires an argument which was not specified";
+                            fi;
+                            local optionValue="$1";
+                            shift 1;
+                            core_commandLine_processOptionWithArgument
+                        ;;
+                        yes-optionally-argumented)
+                            if [ $# -eq 0 ]; then
+                                core_commandLine_processOptionWithoutArgument;
+                                break;
+                            fi;
+                            local optionValue="$1";
+                            if core_variable_startsWith "$optionValue" '--'; then
+                                core_commandLine_processOptionWithoutArgument;
+                            else
+                                shift 1;
+                                core_commandLine_processOptionWithArgument;
+                            fi
+                        ;;
+                        no | '')
+                            core_commandLine_exitBadCommandLine "The long option '${optionNameIncludingHyphens}' is not known"
+                        ;;
+                        *)
+                            core_exitError $core_commandLine_exitCode_SOFTWARE "Please implement yes-argumented, yes-argumentless, yes-optionally-argumented or no for option '$optionName' in _program_commandLine_optionExists()"
+                        ;;
+                    esac
+                ;;
+                *)
+                    core_exitError $core_commandLine_exitCode_SOFTWARE "The function core_commandLine_parse failed on argument '$argument', the line was '$@'"
+                ;;
+            esac;
+        else
+            if core_variable_startsWith "$argument" '-'; then
+                if [ "$argument" = '-' ]; then
+                    break;
+                fi;
+                shift 1;
+                case "$argument" in 
+                    -*=*)
+                        local optionNameIncludingHyphens="${argument%%=*}";
+                        local optionName="${optionNameIncludingHyphens##-}";
+                        local optionValue="${argument#*=}";
+                        if [ ${#optionNameIncludingHyphens} -gt 2 ]; then
+                            core_commandLine_parseConcatenatedOptionsWithoutEquals;
+                        fi;
+                        case "$(core_commandLine_optionExists "$optionName")" in 
+                            yes-argumentless)
+                                core_commandLine_exitBadCommandLine "The option '$optionNameIncludingHyphens' does not take values (such as '$optionValue')"
+                            ;;
+                            yes-argumented | yes-optionally-argumented)
+                                core_commandLine_processOptionWithArgument
+                            ;;
+                            no | '')
+                                core_commandLine_exitBadCommandLine "The short option '$optionNameIncludingHyphens' is not known"
+                            ;;
+                            *)
+                                core_exitError $core_commandLine_exitCode_SOFTWARE "Please implement yes-argumented, yes-argumentless, yes-optionally-argumented or no for option '$optionName' in _program_commandLine_optionExists()"
+                            ;;
+                        esac
+                    ;;
+                    -*)
+                        local optionNameIncludingHyphens="$argument";
+                        local optionName="${argument##-}";
+                        if [ ${#optionNameIncludingHyphens} -gt 2 ]; then
+                            local possibleOptionName="$(core_variable_firstCharacter "${optionName}")";
+                            local possibleOptionValue="$(core_variable_allButFirst "${optionName}")";
+                            case "$(core_commandLine_optionExists "$possibleOptionName")" in 
+                                yes-argumented | yes-optionally-argumented)
+                                    optionName="$possibleOptionName";
+                                    optionValue="$possibleOptionValue";
+                                    core_commandLine_processOptionWithArgument;
+                                    continue
+                                ;;
+                            esac;
+                            local shouldContinueAfterParsingConcatenatedOptions=0;
+                            core_commandLine_parseConcatenatedOptionsWithoutEquals;
+                            if [ $shouldContinueAfterParsingConcatenatedOptions ]; then
+                                continue;
+                            fi;
+                        fi;
+                        case "$(core_commandLine_optionExists "$optionName")" in 
+                            yes-argumentless)
+                                core_commandLine_processOptionWithoutArgument
+                            ;;
+                            yes-argumented)
+                                if [ $# -eq 0 ]; then
+                                    core_commandLine_exitBadCommandLine "The option '${optionNameIncludingHyphens}' requires an argument which was not specified";
+                                fi;
+                                local optionValue="$1";
+                                shift 1;
+                                core_commandLine_processOptionWithArgument
+                            ;;
+                            yes-optionally-argumented)
+                                if [ $# -eq 0 ]; then
+                                    core_commandLine_processOptionWithoutArgument;
+                                    break;
+                                fi;
+                                local optionValue="$1";
+                                if core_variable_startsWith "$optionValue" '--'; then
+                                    core_commandLine_processOptionWithoutArgument;
+                                else
+                                    shift 1;
+                                    core_commandLine_processOptionWithArgument;
+                                fi
+                            ;;
+                            no | '')
+                                core_commandLine_exitBadCommandLine "The short option '${optionNameIncludingHyphens}' is not known"
+                            ;;
+                            *)
+                                core_exitError $core_commandLine_exitCode_SOFTWARE "Please implement yes-argumented, yes-argumentless, yes-optionally-argumented or no for option '$optionName' in _program_commandLine_optionExists()"
+                            ;;
+                        esac
+                    ;;
+                    *)
+                        core_exitError $core_commandLine_exitCode_SOFTWARE "The function core_commandLine_parse failed on argument '$argument', the line was '$@'"
+                    ;;
+                esac;
+            else
+                break;
+            fi;
+        fi;
+    done;
+    _program_commandLine_handleNonOptions "$@";
+    _program_commandLine_validate
+}
+core_commandLine_processOptionWithArgument () 
+{ 
+    case "$optionName" in 
+        v | verbose)
+            core_validate_isUnsignedInteger $core_commandLine_exitCode_USAGE 'option' "$optionNameIncludingHyphens" "$optionValue";
+            core_variable_setVariable ${_program_namespace}_verbose "$optionValue"
+        ;;
+        *)
+            _program_commandLine_processOptionWithArgument
+        ;;
+    esac
+}
+core_commandLine_processOptionWithoutArgument () 
+{ 
+    case "$optionName" in 
+        h | help)
+            core_commandLine_exitHelp
+        ;;
+        v | verbose)
+            local currentVerbosity=$(core_init_verbosity);
+            core_variable_setVariable ${_program_namespace}_verbose $((currentVerbosity+1))
+        ;;
+        q | quiet)
+            local currentVerbosity=$(core_init_verbosity);
+            if [ $currentVerbosity -gt 0 ]; then
+                core_variable_setVariable ${_program_namespace}_verbose $((currentVerbosity-1));
+            fi
+        ;;
+        version)
+            core_commandLine_exitVersion
+        ;;
+        *)
+            _program_commandLine_processOptionWithoutArgument
+        ;;
+    esac
+}
+core_commandLine_setLanguageDefaults () 
+{ 
+    core_variable_unset LANG;
+    core_variable_unset LC_COLLATE;
+    core_variable_unset LC_CTYPE;
+    core_variable_unset LC_MESSAGES;
+    core_variable_unset LC_MONETARY;
+    core_variable_unset LC_NUMERIC;
+    core_variable_unset LC_TIME;
+    core_variable_unset LC_ALL;
+    local language="$(core_init_language)";
+    export LANG="$language";
+    export LC_COLLATE="$language";
+    export LC_CTYPE="$language";
+    export LC_MESSAGES="$language";
+    export LC_MONETARY="$language";
+    export LC_NUMERIC="$language";
+    export LC_TIME="$language";
+    export LC_ALL=""
+}
+core_commandLine_versionMessage () 
+{ 
+    if [ -z "$_program_package_or_build" ]; then
+        local _program_package_or_build_x='';
+    else
+        local _program_package_or_build_x="($_program_package_or_build) ";
+    fi;
+    if core_variable_isSet _program_copyrightAndLicenseStatement; then
+        local copyrightAndLicenseStatement="$_program_copyrightAndLicenseStatement";
+    else
+        local copyrightAndLicenseStatement="$(core_commandLine_defaultLicenseMessage)";
+    fi;
+    printf '%s' "$_program_name ${_program_package_or_build_x}$_program_version
+Created using shellfire (https://github.com/shellfire-dev/shellfire)
+$copyrightAndLicenseStatement"
+}
+core_compability_installPushdAndPopd () 
+{ 
+    if _core_compatibility_builtInDoesNotExist pushd; then
+        if ! _core_compatibility_builtInDoesNotExist popd; then
+            core_exitError $core_commandLine_exitCode_SOFTWARE "Weird shell does not have pushd but does have popd (?feature detection bug?)!";
+        fi;
+        _core_init_compatibility_pushdCount=0;
+        pushd () 
+        { 
+            local path="$1";
+            eval "core_init_pushdStack${_core_init_compatibility_pushdCount}='$(pwd)'";
+            _core_init_compatibility_pushdCount=$((_core_init_compatibility_pushdCount+1));
+            cd "$path" > /dev/null
+        };
+        popd () 
+        { 
+            _core_init_compatibility_pushdCount=$((_core_init_compatibility_pushdCount-1));
+            eval "local path=\"\$core_init_pushdStack${_core_init_compatibility_pushdCount}\"";
+            eval "unset core_init_pushdStack${_core_init_compatibility_pushdCount}";
+            cd "$path" > /dev/null
+        };
+    else
+        pushd () 
+        { 
+            builtin pushd "$@" > /dev/null
+        };
+        popd () 
+        { 
+            builtin popd "$@" > /dev/null
+        };
+    fi
+}
+core_compability_installSource () 
+{ 
+    if _core_compatibility_builtInDoesNotExist source; then
+        source () 
+        { 
+            . "$@"
+        };
+    fi
+}
+core_compatibility_basename () 
+{ 
+    printf '%s' "${1##*/}"
+}
+core_compatibility_dirname () 
+{ 
+    local converted="${1%/*}";
+    if [ "$converted" = "$1" ]; then
+        printf '%s' '.';
+    else
+        printf '%s' "$converted";
+    fi
+}
+core_compatibility_echo () 
+{ 
+    printf '%s\n' "$1"
+}
+core_compatibility_execute () 
+{ 
+    core_functions_execute _core_compatibility_functions
+}
+core_compatibility_setSaneShellOptions () 
+{ 
+    :
+}
+core_compatibility_sleepSupportsFractionalSeconds () 
+{ 
+    sleep 0.0001 2> /dev/null
+}
+core_compatibility_which () 
+{ 
+    command -v "$1"
+}
+core_compatibility_whichNoOutput () 
+{ 
+    core_compatibility_which "$1" > /dev/null 2> /dev/null
+}
+core_configuration_blacklist () 
+{ 
+    core_variable_array_append _core_configuration_blacklisted "$@"
+}
+core_configuration_defaults () 
+{ 
+    core_variable_setVariableIfUnset ${_program_namespace}_language $(core_init_language);
+    core_variable_setVariableIfUnset ${_program_namespace}_verbose $(core_init_verbosity)
+}
+core_configuration_load () 
+{ 
+    core_variable_array_initialise _core_configuration_blacklisted;
+    core_variable_array_initialise _core_configuration_alreadyLoaded;
+    core_configuration_loadPath _program_etcPath "${core_libraryName}"/rc;
+    core_configuration_loadPath _program_etcPath "${core_libraryName}"/rc.d;
+    core_configuration_loadPath _program_etcPath "${_program_namespace}"/rc;
+    core_configuration_loadPath _program_etcPath "${_program_namespace}"/rc.d;
+    core_configuration_loadPath HOME ."${core_libraryName}"/rc;
+    core_configuration_loadPath HOME ."${core_libraryName}"/rc.d;
+    core_configuration_loadPath ${core_libraryName}_RC '';
+    core_configuration_loadPath ${core_libraryName}_RC_D '';
+    core_configuration_loadPath HOME ."${_program_namespace}"/rc;
+    core_configuration_loadPath HOME ."${_program_namespace}"/rc.d;
+    core_configuration_loadPath ${_program_namespace}_RC '';
+    core_configuration_loadPath ${_program_namespace}_RC_D ''
+}
+core_configuration_loadPath () 
+{ 
+    local environmentVariable="$1";
+    local folderOrFilePath="$2";
+    if core_variable_isUnset "$environmentVariable"; then
+        return 0;
+    fi;
+    if core_variable_array_isSet _core_configuration_blacklisted; then
+        if core_variable_array_contains _core_configuration_blacklisted "$environmentVariable"; then
+            core_message WARN "Configuration path '\$$environmentVariable/$folderOrFilePath' is blacklisted";
+            return 0;
+        fi;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$environmentVariable";
+    local parentPath="$core_variable_indirectValue_result";
+    if [ -z "$folderOrFilePath" ]; then
+        local actualPath="$parentPath";
+    else
+        local actualPath="$parentPath"/"$folderOrFilePath";
+    fi;
+    if core_variable_array_contains _core_configuration_alreadyLoaded "$actualPath"; then
+        return 0;
+    fi;
+    core_variable_array_append _core_configuration_alreadyLoaded "$actualPath";
+    _core_configuration_load "$actualPath"
+}
+core_dependency_add () 
+{ 
+    local pathProgramName;
+    local pathPackage;
+    local pathAbsoluteFilePath;
+    local foundInternally=0;
+    _core_dependency_addFromInternalDataSource;
+    if [ $foundInternally -eq 0 ]; then
+        _core_dependency_addFromExternalDataSources;
+    fi;
+    if [ $foundInternally -eq 0 ]; then
+        core_message INFO "Dependency '$programName' for packageManager '$packageManager' not in any known .path file (or internally)";
+        return 0;
+    fi;
+    if [ "$(core_compatibility_basename "$pathAbsoluteFilePath")" = "$programName" ]; then
+        return 0;
+    fi;
+    if [ -z "$temporaryPathForWeirdlyLinkedFiles" ]; then
+        local TMP_FOLDER;
+        core_temporaryFiles_newFolderToRemoveOnExit;
+        temporaryPathForWeirdlyLinkedFiles="$TMP_FOLDER";
+        replacementPath="$temporaryPathForWeirdlyLinkedFiles:$replacementPath";
+    fi;
+    ln -s "$pathAbsoluteFilePath" "$temporaryPathForWeirdlyLinkedFiles"/"$programName"
+}
+core_dependency_check_CentOS_checkFunction () 
+{ 
+    core_dependency_check_releaseFile centos-release CentOS
+}
+core_dependency_check_CentOS_extractUnqualifiedPackageName () 
+{ 
+    local fullyQualifiedPackageName="$1";
+    local repositoryName;
+    local packageName;
+    _core_dependency_check_CentOS_parsePackageName;
+    printf '%s' "$packageName"
+}
+core_dependency_check_CentOS_packageManager () 
+{ 
+    if [ $(core_init_verbosity) -gt 0 ]; then
+        local yumVerbosity="";
+    else
+        local yumVerbosity="--quiet";
+    fi;
+    local ourCurrentId="$(id -u)";
+    if [ "$ourCurrentId" = 0 ]; then
+        yum ${yumVerbosity} makecache;
+    else
+        if core_compatibility_whichNoOutput sudo; then
+            sudo -p "Please enter the password for %p for sudo to update yum: " yum ${yumVerbosity} makecache;
+        else
+            core_message INFO "Not running as root and sudo not found, so not installing packages '$@'";
+            return 0;
+        fi;
+    fi;
+    local repositoryName;
+    local packageName;
+    local fullyQualifiedPackageName;
+    local functionName;
+    for fullyQualifiedPackageName in "$@";
+    do
+        _core_dependency_check_CentOS_parsePackageName;
+        if [ -z "$repositoryName" ]; then
+            if [ "$ourCurrentId" = 0 ]; then
+                yum ${yumVerbosity} -y install "$packageName";
+            else
+                sudo -p "Please enter the password for %p for sudo to run yum install $packageName: " yum ${yumVerbosity} -y install "$packageName";
+            fi;
+        else
+            functionName=_core_dependency_check_CentOS_installRepository_${repositoryName};
+            if ! core_functions_exists "$functionName"; then
+                core_exitError "Package '$packageName' is in an unsupported repository '$repositoryName'";
+            else
+                ${functionName};
+            fi;
+            if [ "$repositoryName" = 'repoforge' ]; then
+                repositoryName=rpmforge;
+            fi;
+            if [ "$ourCurrentId" = 0 ]; then
+                yum ${yumVerbosity} -y --disablerepo="*" --enablerepo="$repositoryName" install "$packageName";
+            else
+                sudo -p "Please enter the password for %p for sudo to run yum install $packageName: " yum ${yumVerbosity} -y --disablerepo="*" --enablerepo="$repositoryName" install "$packageName";
+            fi;
+        fi;
+    done
+}
+core_dependency_check_Cygwin_checkFunction () 
+{ 
+    if [ -x /bin/cygcheck.exe ]; then
+        core_dependency_packageManager="Cygwin";
+        return 0;
+    fi;
+    return 1
+}
+core_dependency_check_Cygwin_extractUnqualifiedPackageName () 
+{ 
+    local fullyQualifiedPackageName="$1";
+    printf '%s' "$fullyQualifiedPackageName"
+}
+core_dependency_check_Cygwin_packageManager () 
+{ 
+    core_message INFO "Please run the Cygwin setup-x86.exe to install the packages '$@'"
+}
+core_dependency_check_Debian_checkFunction () 
+{ 
+    core_dependency_check_releaseFile debian_version Debian
+}
+core_dependency_check_Debian_extractUnqualifiedPackageName () 
+{ 
+    local fullyQualifiedPackageName="$1";
+    printf '%s' "$fullyQualifiedPackageName"
+}
+core_dependency_check_Debian_packageManager () 
+{ 
+    if [ $(core_init_verbosity) -gt 0 ]; then
+        local aptVerbosity="";
+    else
+        local aptVerbosity=" --quiet";
+    fi;
+    local ourCurrentId="$(id -u)";
+    if [ "$ourCurrentId" = 0 ]; then
+        core_message NOTICE "Updating apt-get package manager (may take some time)";
+        apt-get${aptVerbosity} update;
+    else
+        if core_compatibility_whichNoOutput sudo; then
+            core_message NOTICE "Updating apt-get package manager (may take some time)";
+            sudo -p "Please enter the password for %p for sudo to apt-get update: " apt-get${aptVerbosity} update;
+        else
+            core_message INFO "Not running as root and sudo not found, so not installing packages '$@'";
+            return 0;
+        fi;
+    fi;
+    if core_variable_isSet core_dependency_check_forcePackageManagerUpgradeDuringInstall; then
+        if [ $core_dependency_check_forcePackageManagerUpgradeDuringInstall -eq 1 ]; then
+            core_message INFO "Upgrading apt-get package manager (may take some time)";
+            if [ "$ourCurrentId" = 0 ]; then
+                apt-get${aptVerbosity} dist-upgrade;
+            else
+                sudo -p "Please enter the password for %p for sudo to run apt-get dist-upgrade: " apt-get${aptVerbosity} dist-upgrade;
+            fi;
+        fi;
+    fi;
+    if [ "$ourCurrentId" = 0 ]; then
+        apt-get${aptVerbosity} --no-install-recommends --yes --no-upgrade install "$@";
+    else
+        sudo -p "Please enter the password for %p for sudo to install packages using apt-get: " apt-get${aptVerbosity} --no-install-recommends --yes --no-upgrade install "$@";
+    fi
+}
+core_dependency_check_Fedora_checkFunction () 
+{ 
+    core_dependency_check_releaseFile fedora-release Fedora
+}
+core_dependency_check_Fedora_extractUnqualifiedPackageName () 
+{ 
+    core_dependency_check_CentOS_extractUnqualifiedPackageName "$@"
+}
+core_dependency_check_Fedora_packageManager () 
+{ 
+    core_dependency_check_CentOS_packageManager "$@"
+}
+core_dependency_check_FreeBSD_checkFunction () 
+{ 
+    if [ -x /bin/freebsd-version ]; then
+        return 0;
+    fi;
+    return 1
+}
+core_dependency_check_FreeBSD_extractUnqualifiedPackageName () 
+{ 
+    printf '%s' "$1"
+}
+core_dependency_check_FreeBSD_packageManager () 
+{ 
+    local ourCurrentId="$(id -u)";
+    local pkgPath;
+    if core_compatibility_whichNoOutput pkg; then
+        pkgPath='pkg';
+    else
+        if [ ! -x /usr/sbin/pkg ]; then
+            pkgPath=/usr/sbin/pkg;
+        else
+            core_message INFO "Please bootstrap FreeBSD's pkg manager by running /usr/sbin/pkg";
+            return 0;
+        fi;
+    fi;
+    if [ "$ourCurrentId" = 0 ]; then
+        "$pkgPath" install -q -y "$@";
+    else
+        local sudoCommandPath;
+        if core_compatibility_whichNoOutput sudo; then
+            sudoCommandPath=sudo;
+        else
+            if [ -x /usr/local/bin/sudo ]; then
+                sudoCommandPath=/usr/local/bin/sudo;
+            else
+                core_message INFO "Not running as root and sudo not found, so not installing packages using '$pkgPath'";
+                return 0;
+            fi;
+        fi;
+        "$sudoCommandPath" "$pkgPath" install -q -y "$@";
+    fi
+}
+core_dependency_check_Homebrew_checkFunction () 
+{ 
+    if core_compatibility_whichNoOutput brew; then
+        core_dependency_packageManager="Homebrew";
+        return 0;
+    fi;
+    return 1
+}
+core_dependency_check_Homebrew_extractUnqualifiedPackageName () 
+{ 
+    local fullyQualifiedPackageName="$1";
+    core_compatibility_basename "$fullyQualifiedPackageName"
+}
+core_dependency_check_Homebrew_installPackageManagerIfRequired () 
+{ 
+    if core_compatibility_whichNoOutput brew; then
+        return 0;
+    fi;
+    core_message NOTICE "Installing Homebrew package manager";
+    ruby -e "$(curl -fsSL 'https://raw.githubusercontent.com/Homebrew/install/master/install')";
+    core_message INFO "Doctoring (sic) Homebrew package manager";
+    brew doctor
+}
+core_dependency_check_Homebrew_packageManager () 
+{ 
+    _core_dependency_check_Homebrew_packageManager_tapExists () 
+    { 
+        local existingTap;
+        brew tap | while IFS='' read -r existingTap; do
+            if [ "$existingTap" = "$tap" ]; then
+                return 0;
+            fi;
+        done;
+        return 1
+    };
+    local packageToInstall;
+    local package;
+    _core_dependency_check_Homebrew_packageManager_installTaps () 
+    { 
+        local tap;
+        for packageToInstall in "$@";
+        do
+            tap="$(core_compatibility_dirname "$packageToInstall")";
+            if [ "$tap" = '.' ]; then
+                continue;
+            fi;
+            if _core_dependency_check_Homebrew_packageManager_tapExists; then
+                continue;
+            fi;
+            brew tap "$tap" > /dev/null 2> /dev/null;
+        done
+    };
+    _core_dependency_check_Homebrew_packageManager_installTaps "$@";
+    core_message NOTICE "Updating Homebrew package manager (may take some time)";
+    brew update;
+    if core_variable_isSet core_dependency_check_forcePackageManagerUpgradeDuringInstall; then
+        if [ $core_dependency_check_forcePackageManagerUpgradeDuringInstall -eq 1 ]; then
+            core_message INFO "Upgrading Homebrew package manager (may take some time)";
+            brew upgrade;
+        fi;
+    fi;
+    for packageToInstall in "$@";
+    do
+        package="$(core_compatibility_basename "$packageToInstall")";
+        if brew --prefix "$package" > /dev/null 2> /dev/null; then
+            local checkFolderPath="$(brew --prefix "$package")";
+            if [ -d "$checkFolderPath" ]; then
+                continue;
+            fi;
+        fi;
+        brew install "$packageToInstall";
+    done
+}
+core_dependency_check_Mageia_checkFunction () 
+{ 
+    core_dependency_check_releaseFile mageia-release Mageia
+}
+core_dependency_check_Mageia_extractUnqualifiedPackageName () 
+{ 
+    printf '%s' "$1"
+}
+core_dependency_check_Mageia_packageManager () 
+{ 
+    local ourCurrentId="$(id -u)";
+    if [ "$ourCurrentId" = 0 ]; then
+        urpmi --auto --quiet "$@";
+    else
+        if core_compatibility_whichNoOutput sudo; then
+            sudo -p "Please enter the password for %p for sudo to run urpmi: " urpmi --auto --quiet "$@";
+        else
+            core_message INFO "Not running as root and sudo not found, so not installing packages '$@'";
+        fi;
+    fi
+}
+core_dependency_check_NetBSD_checkFunction () 
+{ 
+    if [ ! -f /etc/release ]; then
+        return 1;
+    fi;
+    local operatingSystem;
+    local versionSlashArchitecture;
+    IFS=' ' read -r operatingSystem versionSlashArchitecture < /etc/release;
+    if [ "$operatingSystem" = 'NetBSD' ]; then
+        core_dependency_packageManager='NetBSD';
+        return 0;
+    fi;
+    return 1
+}
+core_dependency_check_NetBSD_extractUnqualifiedPackageName () 
+{ 
+    printf '%s' "$1"
+}
+core_dependency_check_NetBSD_packageManager () 
+{ 
+    local ourCurrentId="$(id -u)";
+    if core_compatibility_whichNoOutput pkgin; then
+        core_dependency_check_NetBSD_packageManager_pkgin pkgin "$@";
+    else
+        if [ -x /usr/pkg/bin/pkgin ]; then
+            core_dependency_check_NetBSD_packageManager_pkgin /usr/pkg/bin/pkgin "$@";
+        else
+            if core_compatibility_whichNoOutput pkg_add; then
+                core_dependency_check_NetBSD_packageManager_pkgSrc pkg_add "$@";
+            else
+                if [ -x /usr/pkg/sbin/pkg_add ]; then
+                    core_dependency_check_NetBSD_packageManager_pkgSrc /usr/pkg/sbin/pkg_add "$@";
+                else
+                    core_message INFO "No package manager (pkgin or pkg_add) found, so not installing packages";
+                fi;
+            fi;
+        fi;
+    fi
+}
+core_dependency_check_NetBSD_packageManager_pkgSrc () 
+{ 
+    local pathToPkgAdd="$1";
+    shift 1;
+    { 
+        if core_variable_isUnset PKG_PATH; then
+            export PKG_PATH="https://pub.allbsd.org/pub/pkgsrc/packages/$(uname -s)/$(uname -m)/$(uname -r|cut -f '1 2' -d.)/All";
+        fi;
+        if [ "$ourCurrentId" = 0 ]; then
+            "$pathToPkgAdd" "$@";
+        else
+            if core_compatibility_whichNoOutput sudo; then
+                sudo -p "Please enter the password for %p for sudo to install packages using pkg_add: " env PKG_PATH="$PKG_PATH" "$pathToPkgAdd" "$@";
+            else
+                if [ -x /usr/pkg/bin/sudo ]; then
+                    /usr/pkg/bin/sudo -p "Please enter the password for %p for sudo to install packages using pkg_add: " env PKG_PATH="$PKG_PATH" "$pathToPkgAdd" "$@";
+                else
+                    core_message INFO "Not running as root and sudo not found, so not installing packages using pkg_add";
+                    return 0;
+                fi;
+            fi;
+        fi
+    }
+}
+core_dependency_check_NetBSD_packageManager_pkgin () 
+{ 
+    local pathToPkgin="$1";
+    shift 1;
+    { 
+        if [ ! -s /usr/pkg/etc/pkgin/repositories.conf ]; then
+            if core_variable_isUnset PKG_REPOS; then
+                export PKG_REPOS="https://pub.allbsd.org/pub/pkgsrc/packages/$(uname -s)/$(uname -m)/$(uname -r|cut -f '1 2' -d.)/All";
+            fi;
+        fi;
+        if [ "$ourCurrentId" = 0 ]; then
+            "$pathToPkgin" -y update;
+            "$pathToPkgin" -y install "$@";
+        else
+            local sudoCommandPath;
+            if core_compatibility_whichNoOutput sudo; then
+                sudoCommandPath=sudo;
+            else
+                if [ -x /usr/pkg/bin/sudo ]; then
+                    sudoCommandPath=/usr/pkg/bin/sudo;
+                else
+                    core_message INFO "Not running as root and sudo not found, so not installing packages using pkgin";
+                    return 0;
+                fi;
+            fi;
+            if core_variable_isUnset PKG_REPOS; then
+                "$sudoCommandPath" -p "Please enter the password for %p for sudo to update the package list using pkgin: " "$pathToPkgin" -y update;
+                "$sudoCommandPath" -p "Please enter the password for %p for sudo to install packages using pkgin: " "$pathToPkgin" -y install "$@";
+            else
+                "$sudoCommandPath" -p "Please enter the password for %p for sudo to update the package list using pkgin: " "$pathToPkgin" -y update;
+                "$sudoCommandPath" -p "Please enter the password for %p for sudo to install packages using pkgin: " env PKG_REPOS="$PKG_REPOS" "$pathToPkgin" -y install "$@";
+            fi;
+        fi
+    }
+}
+core_dependency_check_OpenBSD_checkFunction () 
+{ 
+    if [ ! -f /etc/release ]; then
+        return 1;
+    fi;
+    local operatingSystem;
+    local versionSlashArchitecture;
+    IFS=' ' read -r operatingSystem versionSlashArchitecture < /etc/release;
+    if [ "$operatingSystem" = 'OpenBSD' ]; then
+        core_dependency_packageManager='OpenBSD';
+        return 0;
+    fi;
+    return 1
+}
+core_dependency_check_OpenBSD_extractUnqualifiedPackageName () 
+{ 
+    printf '%s' "$1"
+}
+core_dependency_check_OpenBSD_packageManager () 
+{ 
+    local ourCurrentId="$(id -u)";
+    local pathToPkgAdd;
+    if core_compatibility_whichNoOutput pkg_add; then
+        pathToPkgAdd='pkg_add';
+    else
+        if [ -x /usr/sbin/pkg_add ]; then
+            pathToPkgAdd='/usr/sbin/pkg_add';
+        else
+            core_message INFO "No package manager (pkg_add) found, so not installing packages";
+        fi;
+    fi;
+    { 
+        if core_variable_isUnset PKG_PATH; then
+            export PKG_PATH="http://mirror.bytemark.co.uk/pub/$(uname -s)/$(uname -r)/$(uname -m)/";
+        fi;
+        if [ "$ourCurrentId" = 0 ]; then
+            "$pathToPkgAdd" "$@";
+        else
+            if core_compatibility_whichNoOutput sudo; then
+                sudo -p "Please enter the password for %p for sudo to install packages using pkg_add: " env PKG_PATH="$PKG_PATH" "$pathToPkgAdd" "$@";
+            else
+                if [ -x /usr/pkg/bin/sudo ]; then
+                    /usr/bin/sudo -p "Please enter the password for %p for sudo to install packages using pkg_add: " env PKG_PATH="$PKG_PATH" "$pathToPkgAdd" "$@";
+                else
+                    core_message INFO "Not running as root and sudo not found, so not installing packages using pkg_add";
+                    return 0;
+                fi;
+            fi;
+        fi
+    }
+}
+core_dependency_check_RedHat_checkFunction () 
+{ 
+    core_dependency_check_releaseFile redhat-release RedHat
+}
+core_dependency_check_RedHat_extractUnqualifiedPackageName () 
+{ 
+    core_dependency_check_CentOS_extractUnqualifiedPackageName "$@"
+}
+core_dependency_check_RedHat_packageManager () 
+{ 
+    core_dependency_check_CentOS_packageManager "$@"
+}
+core_dependency_check_SuSE_checkFunction () 
+{ 
+    core_dependency_check_releaseFile SuSE-release SuSE
+}
+core_dependency_check_SuSE_extractUnqualifiedPackageName () 
+{ 
+    core_dependency_check_CentOS_extractUnqualifiedPackageName "$@"
+}
+core_dependency_check_SuSE_packageManager () 
+{ 
+    if [ $# -eq 0 ]; then
+        return 0;
+    fi;
+    local ourCurrentId="$(id -u)";
+    if [ "$ourCurrentId" = 0 ]; then
+        zypper install "$@";
+    else
+        if core_compatibility_whichNoOutput sudo; then
+            sudo -p "Please enter the password for %p for sudo to run zypper install: " zypper install "$@";
+        else
+            core_message INFO "Not running as root and sudo not found, so not installing packages '$@'";
+        fi;
+    fi
+}
+core_dependency_check_releaseFile () 
+{ 
+    local releaseFileName="$1";
+    local packageManager="$2";
+    if [ -f /etc/"$releaseFileName" ]; then
+        core_dependency_packageManager="$packageManager";
+        return 0;
+    fi;
+    return 1
+}
+core_dependency_declares () 
+{ 
+    :
+}
+core_dependency_declaresAsArray () 
+{ 
+    local variableName;
+    for variableName in "$@";
+    do
+        _program_fattening_declares "$variableName";
+        _program_fattening_declares "${variableName}_initialised";
+    done
+}
+core_dependency_determinePackageManager () 
+{ 
+    if core_variable_array_iterateAsCallbacksShortcut _core_dependency_check_functions; then
+        return 0;
+    fi;
+    if core_compatibility_whichNoOutput lsb_release; then
+        local lsbDistributor="$(lsb_release --id --short)";
+        if [ -n "$lsbDistributor" ]; then
+            core_dependency_packageManager="$lsbDistributor";
+            return 0;
+        fi;
+    fi;
+    core_dependency_packageManager='Unknown'
+}
+core_dependency_fallback () 
+{ 
+    _local_condition="$1";
+    for _local_programNameOnPath in "$@";
+    do
+        :;
+    done;
+    unset _local_condition;
+    unset _local_programNameOnPath
+}
+core_dependency_installDependencies () 
+{ 
+    if core_variable_isUnset _program_ignoreDependencies; then
+        _program_ignoreDependencies=no;
+    fi;
+    if core_variable_isFalse "$_program_ignoreDependencies"; then
+        core_functions_execute _core_dependency_functions "$@";
+    fi
+}
+core_dependency_oneOf () 
+{ 
+    _local_packageManager="$1";
+    if [ -z "$_local_packageManager" ]; then
+        core_exitError 70 "packageManager can not be empty";
+    fi;
+    shift 1;
+    for _local_programName in "$@";
+    do
+        :;
+    done;
+    unset _local_packageManager;
+    unset _local_programName
+}
+core_dependency_requires () 
+{ 
+    _local_packageManager="$1";
+    if [ -z "$_local_packageManager" ]; then
+        core_exitError 70 "packageManager can not be empty";
+    fi;
+    shift 1;
+    for _local_programName in "$@";
+    do
+        if [ -z "$_local_programName" ]; then
+            core_exitError 70 "programName can not be empty";
+        fi;
+        _core_dependency_requires="${_core_dependency_requires}${_local_packageManager} ${_local_programName}
+";
+        core_message DEBUG "Requires in packageManager '$_local_packageManager' program '$_local_programName'";
+    done;
+    unset _local_packageManager;
+    unset _local_programName
+}
+core_dependency_setUpPathAndInstallMissing () 
+{ 
+    local replacementPath;
+    if core_compatibility_whichNoOutput uname; then
+        local operatingSystem="$(uname)";
+    else
+        local operatingSystem='';
+    fi;
+    if [ "$operatingSystem" = 'NetBSD' ]; then
+        replacementPath='/usr/pkg/gnu/sbin:/usr/pkg/gnu/bin:/usr/pkg/sbin:/usr/pkg/bin:/usr/sbin:/usr/bin:/sbin:/bin';
+    else
+        replacementPath='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin';
+    fi;
+    _core_dependency_addToReplacementPathIfRequired "$core_init_ourSymlinkPath";
+    _core_dependency_addToReplacementPathIfRequired "$core_init_ourPath";
+    if [ "$core_dependency_packageManager" = 'Unknown' ]; then
+        core_message INFO 'Could not determine package manager for your system, located binaries may be incorrect';
+    fi;
+    local alreadyHandledProgramNames;
+    local alreadyHandledProgramNames_initialised;
+    core_variable_array_initialise alreadyHandledProgramNames;
+    local packagesToInstall;
+    local packagesToInstall_initialised;
+    core_variable_array_initialise packagesToInstall;
+    local temporaryPathForWeirdlyLinkedFiles='';
+    local packageManager;
+    local programName;
+    local alreadyInstalledProgramName;
+    local originalIFS="$IFS";
+    local IFS=' ';
+    while IFS=' ' read -r packageManager programName; do
+        IFS="$originalIFS";
+        case "$packageManager" in 
+            '*' | "$core_dependency_packageManager")
+                packageManager="$core_dependency_packageManager";
+                if core_variable_array_contains alreadyHandledProgramNames "$programName"; then
+                    continue;
+                fi;
+                core_variable_array_append alreadyHandledProgramNames "$programName";
+                core_dependency_add
+            ;;
+            '')
+                break
+            ;;
+            *)
+                continue
+            ;;
+        esac;
+    done  <<-EOF
+${_core_dependency_requires}
+EOF
+
+    IFS="$originalIFS";
+    if ! core_variable_array_isEmpty packagesToInstall; then
+        core_message NOTICE "Installing missing packages '$(core_variable_array_string packagesToInstall " ")'";
+        core_variable_array_passToFunctionAsArguments packagesToInstall core_dependency_check_${core_dependency_packageManager}_packageManager;
+    fi;
+    export PATH="$replacementPath"
+}
+core_exitError () 
+{ 
+    core_message FAIL "$2";
+    exit $1
+}
+core_file_characterByCharacter () 
+{ 
+    local filePath="$1";
+    shift 1;
+    local TMP_FILE;
+    core_temporaryFiles_newFileToRemoveOnExit;
+    local singleCharactersFile="$TMP_FILE";
+    core_file_characterByCharacterCreate "$filePath" "$singleCharactersFile";
+    local callback;
+    local character;
+    { 
+        while IFS='' read -r character; do
+            for callback in "$@";
+            do
+                $callback;
+            done;
+        done
+    } < "$singleCharactersFile";
+    rm -f "$singleCharactersFile"
+}
+core_file_characterByCharacterCreate () 
+{ 
+    local inputFile="$1";
+    local outputFile="$2";
+    awk '
+BEGIN {
+	srand()
+	FS=""
+	RS="n/o/m/a/t/c/h" rand()
+}
+
+{
+	for (i = 1; i <= NF; i++)
+	{
+		if ($i ~ /\n/)
+		{
+			printf "\n"
+		}
+		else
+		{
+			print $i
+		}
+	}
+}' < "$inputFile" > "$outputFile"
+}
+core_functions_execute () 
+{ 
+    local functionsVariableName="$1";
+    shift 1;
+    if core_variable_isSet "$functionsVariableName"; then
+        core_variable_array_iterateAsCallbacks "$functionsVariableName" "$@";
+    fi
+}
+core_functions_exists () 
+{ 
+    local functionName="$1";
+    if ! type "$functionName" > /dev/null 2> /dev/null; then
+        return 1;
+    fi;
+    local arg0;
+    local arg1;
+    local arg2;
+    local arg3;
+    local arg4;
+    IFS=' ' read -r arg0 arg1 arg2 arg3 arg4  <<-EOF
+$(type "$functionName")
+EOF
+
+    case "$arg3" in 
+        shell)
+            if [ "$arg4" = 'function' ]; then
+                return 0;
+            fi
+        ;;
+        function)
+            return 0
+        ;;
+        'function.')
+            return 0
+        ;;
+    esac;
+    return 1
+}
+core_functions_register () 
+{ 
+    local functionsVariableName="$1";
+    shift 1;
+    core_variable_array_append "$functionsVariableName" "$@";
+    core_dependency_declaresAsArray "$functionsVariableName"
+}
+core_init_defines () 
+{ 
+    :
+}
+core_init_determinePreferredShell () 
+{ 
+    IFS=' ' read -r _local_commented_shebang_path _local_shebang_shell _local_remainder < "$core_init_ourSymlinkExecutablePath";
+    if [ -n "$_local_remainder" ]; then
+        core_exitError 70 "Passing options to a shell ('#!$_local_shebang_path $_local_shebang_shell $_local_remainder') is not supported";
+    fi;
+    IFS='!' read -r _local_comment _local_shebang_path  <<-EOF
+$_local_commented_shebang_path
+EOF
+
+    if [ -z "$_local_shebang_shell" ]; then
+        core_init_shellPreferred="$(core_compatibility_basename "$_local_shebang_path")";
+    else
+        if [ "$_local_shebang_path" != '/usr/bin/env' ]; then
+            core_exitError 70 "All shell scripts should use '/usr/bin/env' with a shell, not #!$_local_shebang_path $shebang_shell";
+        fi;
+        core_init_shellPreferred="$_local_shebang_shell";
+    fi;
+    unset _local_commented_shebang_path;
+    unset _local_shebang_shell;
+    unset _local_remainder;
+    unset _local_comment;
+    unset _local_shebang_path
+}
+core_init_doNotRunAsSetUidOrSetGid () 
+{ 
+    if [ -u "$core_init_ourSymlinkExecutablePath" ]; then
+        core_exitError 77 "We can not be run with the setuid bit set";
+    fi;
+    if [ -g "$core_init_ourSymlinkExecutablePath" ]; then
+        core_exitError 77 "We can not be run with setgid bit set";
+    fi
+}
+core_init_enableShellTweaks () 
+{ 
+    core_variable_unset () 
+    { 
+        unset "$@"
+    };
+    case "$core_init_shellDetected" in 
+        ksh93)
+            alias local='typeset'
+        ;;
+        pdksh)
+            core_variable_unset () 
+            { 
+                set +e;
+                unset "$1";
+                set -e
+            };
+            set +u
+        ;;
+        mksh)
+            set +u
+        ;;
+        yash)
+            alias local='typeset'
+        ;;
+    esac
+}
+core_init_findOurNameAndPath () 
+{ 
+    core_init_ourSymlinkName="$(core_compatibility_basename "$0")";
+    _local_ourSymlinkPathRaw="${0%/*}";
+    if [ -z "$_local_ourSymlinkPathRaw" ]; then
+        core_exitError 64 "Do not invoke this program either by specifying a shell interpreter on a file in the current working directory (eg bash '$0') or redirecting from a pipe into a shell interpreter (eg bash [-c] <'$0') or by using ksh with a PATH containing '.'";
+    else
+        if [ "$_local_ourSymlinkPathRaw" = "$0" ]; then
+            core_exitError 64 "Do not invoke this program either by specifying a shell interpreter on a file in the current working directory (eg bash '$0') or redirecting from a pipe into a shell interpreter (eg bash [-c] <'$0') or by using ksh with a PATH containing '.'";
+        fi;
+    fi;
+    cd "$_local_ourSymlinkPathRaw" > /dev/null;
+    core_init_ourSymlinkPath="$(pwd)";
+    core_init_ourPath="$(pwd -P)";
+    cd - > /dev/null;
+    core_init_ourSymlinkExecutablePath="$core_init_ourSymlinkPath"/"$core_init_ourSymlinkName";
+    unset _local_ourSymlinkPathRaw
+}
+core_init_init () 
+{ 
+    set -e;
+    set -u;
+    if [ "${_program_namespace+set}" != 'set' ]; then
+        _program_namespace="${_program_name}";
+    fi
+}
+core_init_initialiseArrayDelimiter () 
+{ 
+    if core_variable_isSet core_variable_array_delimiter; then
+        return 0;
+    fi;
+    if core_variable_isSet _program_arrayDelimiter; then
+        core_variable_array_delimiter="$_program_arrayDelimiter";
+    else
+        core_variable_array_delimiter="$(printf '\r')";
+    fi;
+    core_dependency_declares core_variable_array_delimiter
+}
+core_init_isFattening () 
+{ 
+    core_variable_isSet _program_fattening
+}
+core_init_language () 
+{ 
+    if core_variable_isSet ${_program_namespace}_language; then
+        local core_variable_indirectValue_result;
+        core_variable_indirectValue ${_program_namespace}_language;
+        printf '%s' $core_variable_indirectValue_result;
+    else
+        printf '%s' 'en_US.UTF-8';
+    fi
+}
+core_init_main () 
+{ 
+    core_init_init;
+    core_init_shellDetection;
+    core_init_enableShellTweaks;
+    core_init_setSaneEnvironmentDefaults;
+    core_init_findOurNameAndPath;
+    core_init_determinePreferredShell;
+    core_init_rexecUnderCorrectShell "$@";
+    core_init_initialiseArrayDelimiter;
+    core_init_makePathsAbsolute;
+    core_init_workAroundBugInHomeFolderTildeHandlingAndEnsureHOMEIsAlwaysSet;
+    core_usesIn core;
+    if core_functions_exists _program; then
+        _program;
+    else
+        :;
+    fi;
+    if core_init_isFattening; then
+        return 0;
+    fi;
+    core_functions_execute _core_functions "$@";
+    ${_program_entrypoint}
+}
+core_init_makePathsAbsolute () 
+{ 
+    _core_init_makePathAbsolute _program_libPath;
+    _core_init_makePathAbsolute _program_etcPath;
+    _core_init_makePathAbsolute _program_varPath
+}
+core_init_rexecUnderCorrectShell () 
+{ 
+    if core_variable_isSet core_init_shell_rexecing; then
+        if [ "$core_init_shell_rexecing" = "$$" ]; then
+            unset core_init_shell_rexecing;
+            return 0;
+        fi;
+    fi;
+    if [ "$core_init_shellDetected" = "$core_init_shellPreferred" ]; then
+        return 0;
+    fi;
+    if ! core_compatibility_whichNoOutput "$core_init_shellPreferred"; then
+        core_exitError 72 "Preferred shell '$core_init_shellPreferred' does not exist on the PATH";
+    fi;
+    _local_shellPath="$(core_compatibility_which "$core_init_shellPreferred")";
+    if [ "$core_init_shellDetected" = 'bash' ]; then
+        export core_init_shell_rexecing=$$;
+        exec "$_local_shellPath" -p "$core_init_ourSymlinkExecutablePath" "$@";
+    else
+        export core_init_shell_rexecing=$$;
+        core_init_shell_rexecing=$$ exec "$_local_shellPath" "$core_init_ourSymlinkExecutablePath" "$@";
+    fi;
+    unset _local_shellPath
+}
+core_init_setSaneEnvironmentDefaults () 
+{ 
+    set +o allexport;
+    set +o emacs;
+    set -o errexit;
+    set +o ignoreeof;
+    set +o monitor;
+    set +o noclobber;
+    set +o noexec;
+    set -o noglob;
+    set +o notify;
+    set +o verbose;
+    set +o vi;
+    core_variable_unset CDPATH;
+    core_variable_unset HISTSIZE;
+    core_variable_unset MAILCHECK;
+    core_variable_unset MAILPATH;
+    core_variable_unset ENV;
+    core_variable_unset POSIXLY_CORRECT;
+    core_variable_unset BASH_ENV;
+    core_variable_unset BASH_XTRACEFD;
+    core_variable_unset FCEDIT;
+    core_variable_unset FIGNORE;
+    core_variable_unset FUNCNEST;
+    core_variable_unset GLOBIGNORE;
+    core_variable_unset HISTCONTROL;
+    core_variable_unset HISTFILE;
+    core_variable_unset HISTFILESIZE;
+    core_variable_unset HISTIGNORE;
+    core_variable_unset HISTTIMEFORMAT;
+    core_variable_unset HOSTFILE;
+    core_variable_unset IGNOREEOF;
+    core_variable_unset INPUTRC;
+    core_variable_unset MAIL;
+    core_variable_unset TMOUT
+}
+core_init_shellDetection () 
+{ 
+    if [ "${KSH_VERSION+set}" = 'set' ]; then
+        _local_core_init_shellDetection_kshVersion="$KSH_VERSION";
+    else
+        if [ "${SH_VERSION+set}" = 'set' ]; then
+            _local_core_init_shellDetection_kshVersion="$SH_VERSION";
+        else
+            _local_core_init_shellDetection_kshVersion='';
+        fi;
+    fi;
+    if [ -n "$_local_core_init_shellDetection_kshVersion" ]; then
+        IFS=' ' read -r _local_core_init_shellDetection_version _local_core_init_shellDetection_garbage  <<-EOF
+${_local_core_init_shellDetection_kshVersion}
+EOF
+
+        case "$_local_core_init_shellDetection_version" in 
+            'Version' | '.sh.version')
+                core_init_shellDetected=ksh93
+            ;;
+            '@(#)PD')
+                core_init_shellDetected=pdksh
+            ;;
+            '@(#)MIRBSD')
+                core_init_shellDetected=mksh
+            ;;
+            *)
+                core_init_shellDetected=unknown-ksh
+            ;;
+        esac
+        unset _local_core_init_shellDetection_version;
+        unset _local_core_init_shellDetection_garbage;
+    else
+        if [ "${BASH_VERSION+set}" = 'set' ]; then
+            core_init_shellDetected=bash;
+        else
+            if [ "${ZSH_VERSION+set}" = 'set' ]; then
+                core_init_shellDetected=zsh;
+            else
+                if [ "${YASH_VERSION+set}" = 'set' ]; then
+                    core_init_shellDetected=yash;
+                else
+                    core_init_shellDetected=sh;
+                fi;
+            fi;
+        fi;
+    fi;
+    unset _local_core_init_shellDetection_kshVersion
+}
+core_init_verbosity () 
+{ 
+    if core_variable_isSet ${_program_namespace}_verbose; then
+        local core_variable_indirectValue_result;
+        core_variable_indirectValue ${_program_namespace}_verbose;
+        printf '%s' $core_variable_indirectValue_result;
+    else
+        printf '%s' 0;
+    fi
+}
+core_init_workAroundBugInHomeFolderTildeHandlingAndEnsureHOMEIsAlwaysSet () 
+{ 
+    set +f;
+    cd ~ > /dev/null;
+    export HOME="$(pwd -P)";
+    cd - > /dev/null;
+    set -f
+}
+core_message () 
+{ 
+    local messageKind="$1";
+    local message="$2";
+    local shouldEcho=0;
+    local prefix='';
+    case "$messageKind" in 
+        FAIL)
+            prefix="$(core_terminal_effect 2 bold)$(core_terminal_colour 2 foreground red)";
+            shouldEcho=1
+        ;;
+        WARN)
+            prefix="$(core_terminal_effect 2 bold)$(core_terminal_colour 2 foreground yellow)";
+            shouldEcho=1
+        ;;
+        NOTICE)
+            if [ $(core_init_verbosity) -gt 0 ]; then
+                prefix="$(core_terminal_colour 2 foreground cyan)";
+                shouldEcho=1;
+            fi
+        ;;
+        INFO)
+            if [ $(core_init_verbosity) -gt 1 ]; then
+                prefix="$(core_terminal_colour 2 foreground white)";
+                shouldEcho=1;
+            fi
+        ;;
+        TODO)
+            if [ $(core_init_verbosity) -gt 1 ]; then
+                prefix="$(core_terminal_effect 2 dim)";
+                shouldEcho=1;
+            fi
+        ;;
+        DEBUG)
+            if [ $(core_init_verbosity) -gt 2 ]; then
+                prefix="$(core_terminal_effect 2 dim)$(core_terminal_colour 2 foreground magenta)";
+                shouldEcho=1;
+            fi
+        ;;
+        *)
+            shouldEcho=1
+        ;;
+    esac;
+    if [ $shouldEcho -eq 1 ]; then
+        printf '%s%s%s\n' "$prefix" "$_program_name: $messageKind: $message" "$(core_terminal_reset 2)" 1>&2;
+    fi
+}
+core_path_isReadableAndSearchableAndWritableFolderPath () 
+{ 
+    core_path_isReadableAndSearchableFolderPath "$1";
+    local folderPath="$1";
+    if [ -w "$folderPath" ]; then
+        return 0;
+    fi;
+    return 1
+}
+core_path_isReadableAndSearchableFolderPath () 
+{ 
+    local folderPath="$1";
+    if [ ! -e "$folderPath" ]; then
+        return 1;
+    fi;
+    if [ ! -d "$folderPath" ]; then
+        return 1;
+    fi;
+    if [ ! -r "$folderPath" ]; then
+        return 1;
+    fi;
+    if [ -x "$folderPath" ]; then
+        return 0;
+    fi;
+    return 1
+}
+core_path_isReadableFilePath () 
+{ 
+    local filePath="$1";
+    if [ ! -e "$filePath" ]; then
+        return 1;
+    fi;
+    if [ ! -f "$filePath" ]; then
+        return 1;
+    fi;
+    if [ -r "$filePath" ]; then
+        return 0;
+    fi;
+    return 1
+}
+core_path_isReadableNonEmptyExecutableFilePath () 
+{ 
+    local filePath="$1";
+    core_path_isReadableNonEmptyFilePath "$filePath";
+    if [ -x "$filePath" ]; then
+        return 0;
+    fi;
+    return 1
+}
+core_path_isReadableNonEmptyFilePath () 
+{ 
+    local filePath="$1";
+    core_path_isReadableFilePath "$filePath";
+    if [ -s "$filePath" ]; then
+        return 0;
+    fi;
+    return 1
+}
+core_snippet_base64_decoder () 
+{ 
+    core_base64_decode_string "$(core_variable_indirectValue _core_snippet_embeddedData_${snippetName})" "$snippetFilePath" "$snippetAppend" '+' '/'
+}
+core_snippet_base64_encoder () 
+{ 
+    _core_snippet_embeddedData_${snippetName}="$(base64 "$snippetFilePath" | tr -d '\n')"
+}
+core_snippet_embed () 
+{ 
+    local codecName="$1";
+    shift 1;
+    local encoder="core_snippet_${codecName}_encoder";
+    local snippetName;
+    local snippetFilePath;
+    for snippetName in "$@";
+    do
+        if core_variable_isSet _core_snippet_embeddedData_${snippetName}; then
+            continue;
+        fi;
+        snippetFilePath="$_program_libPath"/"$core_libraryName"/"${_program_namespace}"/"$snippetName".snippet;
+        if ! core_path_isReadableNonEmptyFilePath "$snippetFilePath"; then
+            core_exitError $core_commandLine_exitCode_SOFTWARE "Snippet '$snippetName' does not exist as a readable, non-empty file at '$snippetFilePath'";
+        fi;
+        ${encoder};
+        core_dependency_declares _core_snippet_embeddedData_${snippetName};
+        core_variable_setVariable _core_snippet_embeddedCodec_${snippetName} $codecName;
+        core_dependency_declares _core_snippet_embeddedCodec_${snippetName};
+    done
+}
+core_snippet_raw_decoder () 
+{ 
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue _core_snippet_embeddedData_${snippetName};
+    if core_variable_isTrue "$snippetAppend"; then
+        printf '%s' "$core_variable_indirectValue_result" >> "$snippetFilePath";
+    else
+        printf '%s' "$core_variable_indirectValue_result" > "$snippetFilePath";
+    fi
+}
+core_snippet_raw_encoder () 
+{ 
+    core_variable_setVariable _core_snippet_embeddedData_${snippetName} "$(cat "$snippetFilePath")"
+}
+core_snippet_retrieve () 
+{ 
+    local snippetName="$1";
+    local snippetAppend="$2";
+    local snippetFilePath="$3";
+    local core_variable_indirectValue_result;
+    local codec;
+    local decoder;
+    core_variable_indirectValue _core_snippet_embeddedCodec_${snippetName};
+    codec="$core_variable_indirectValue_result";
+    decoder="core_snippet_${codec}_decoder";
+    ${decoder}
+}
+core_snippet_retrieveAndSourceAsHereDoc () 
+{ 
+    local snippetName="$1";
+    local TMP_FILE;
+    core_temporaryFiles_newFileToRemoveOnExit;
+    local snippetFilePath="$TMP_FILE";
+    printf '%s\n' 'cat <<EOF' > "$snippetFilePath";
+    core_snippet_retrieve "$snippetName" yes "$snippetFilePath";
+    printf '\nEOF' >> "$snippetFilePath";
+    . "$snippetFilePath";
+    rm "$snippetFilePath" || true
+}
+core_temporaryFiles_initialise () 
+{ 
+    core_trap_addOnCleanUp core_temporaryFiles_removeAll;
+    if core_variable_isUnset TMPDIR; then
+        if core_variable_isSet TMP; then
+            TMPDIR="$TMP";
+        else
+            if core_variable_isSet TEMP; then
+                TMPDIR="$TEMP";
+            else
+                core_message NOTICE "Defaulting TMPDIR to '/tmp'";
+                TMPDIR='/tmp';
+            fi;
+        fi;
+    else
+        if core_variable_endsWith "$TMPDIR" '/'; then
+            TMPDIR="$(core_variable_allButLast "$TMPDIR")";
+        fi;
+    fi;
+    core_validate_folderPathReadableAndSearchableAndWritable $core_commandLine_exitCode_CONFIG "environment variable (or default, '/tmp')" 'TMPDIR' "$TMPDIR";
+    if core_compatibility_whichNoOutput mktemp; then
+        core_temporaryFiles_newFileToRemoveOnExit () 
+        { 
+            local umaskOriginal="$(umask)";
+            umask 077;
+            TMP_FILE="$(mktemp "$TMPDIR"/"$_program_name".XXXXXXXXXXXX)" || core_exitError $core_commandLine_exitCode_CANTCREAT "Could not create a temporary file";
+            core_variable_array_append _core_temporaryFiles_filesToRemoveOnExit "$TMP_FILE";
+            umask "$umaskOriginal"
+        };
+        core_temporaryFiles_newFolderToRemoveOnExit () 
+        { 
+            local umaskOriginal="$(umask)";
+            umask 077;
+            TMP_FOLDER="$(mktemp -d "$TMPDIR"/"$_program_name".XXXXXXXXXXXX)" || core_exitError $core_commandLine_exitCode_CANTCREAT "Could not create a temporary folder";
+            core_variable_array_append _core_temporaryFiles_filesToRemoveOnExit "$TMP_FOLDER";
+            umask "$umaskOriginal"
+        };
+        return 0;
+    fi;
+    if core_variable_isSet RANDOM; then
+        core_message WARN "Your system doesn't have mktemp - we're creating temporary files INSECURELY in '$TMPDIR' using process id and 'RANDOM'";
+        core_temporaryFiles_newFileToRemoveOnExit () 
+        { 
+            local umaskOriginal="$(umask)";
+            umask 077;
+            TMP_FILE="$TMPDIR"/"${_program_name}.file.$$.${RANDOM}";
+            printf '' > "$TMP_FILE" || core_exitError $core_commandLine_exitCode_CANTCREAT "Could not create a temporary file";
+            core_variable_array_append _core_temporaryFiles_filesToRemoveOnExit "$TMP_FILE";
+            umask "$umaskOriginal"
+        };
+        core_temporaryFiles_newFolderToRemoveOnExit () 
+        { 
+            local umaskOriginal="$(umask)";
+            umask 077;
+            TMP_FOLDER="$TMPDIR"/"${_program_name}.folder.$$.${RANDOM}";
+            mkdir -m 0700 -p "$TMP_FOLDER" || core_exitError $core_commandLine_exitCode_CANTCREAT "Could not create a temporary folder";
+            core_variable_array_append _core_temporaryFiles_filesToRemoveOnExit "$TMP_FOLDER";
+            umask "$umaskOriginal"
+        };
+        return 0;
+    fi;
+    if core_variable_isSet HOME; then
+        if ! core_path_isReadableAndSearchableAndWritableFolderPath "$HOME"; then
+            core_exitError $core_commandLine_exitCode_CANTCREAT "Your shell doesn't have RANDOM, mktemp isn't available and your HOME '$HOME' isn't writable. We've got no where left to put temporary files.";
+        fi;
+        TMPDIR="$HOME"/"$_program_name/$$";
+        core_message WARN "Your shell doesn't have RANDOM, and mktemp isn't available. - we're creating temporary files beneath your HOME at '$TMPDIR'";
+        rm -rf "$TMPDIR" 2> /dev/null || true;
+        mkdir -m 0700 "$TMPDIR" || core_exitError $core_commandLine_exitCode_CANTCREAT "Could not create a temporary folder";
+        core_variable_array_append _core_temporaryFiles_filesToRemoveOnExit "$TMPDIR";
+        _core_temporaryFiles_fileCounter=0;
+        core_temporaryFiles_newFileToRemoveOnExit () 
+        { 
+            local umaskOriginal="$(umask)";
+            umask 077;
+            TMP_FILE="$TMPDIR"/file."$_core_temporaryFiles_fileCounter";
+            _core_temporaryFiles_fileCounter=$((_core_temporaryFiles_fileCounter+1));
+            printf '' > "$TMP_FILE" || core_exitError $core_commandLine_exitCode_CANTCREAT "Could not create a temporary file";
+            umask "$umaskOriginal"
+        };
+        _core_temporaryFiles_folderCounter=0;
+        core_temporaryFiles_newFolderToRemoveOnExit () 
+        { 
+            local umaskOriginal="$(umask)";
+            umask 077;
+            TMP_FOLDER="$TMPDIR"/folder."$_core_temporaryFiles_folderCounter";
+            _core_temporaryFiles_folderCounter=$((_core_temporaryFiles_folderCounter+1));
+            mkdir -m 0700 -p "$TMP_FOLDER" || core_exitError $core_commandLine_exitCode_CANTCREAT "Could not create a temporary folder";
+            umask "$umaskOriginal"
+        };
+        return 0;
+    fi;
+    core_exitError $core_commandLine_exitCode_CANTCREAT "Your shell doesn't have RANDOM, mktemp isn't available and your HOME isn't set. We've got no where left to put temporary files."
+}
+core_temporaryFiles_removeAll () 
+{ 
+    if core_variable_array_isSet _core_temporaryFiles_filesToRemoveOnExit; then
+        core_variable_array_passToFunctionAsArguments _core_temporaryFiles_filesToRemoveOnExit _core_temporaryFiles_removeAll_callback;
+    fi
+}
+core_terminal_ansiSequence () 
+{ 
+    IFS='' printf "\033[${1}m"
+}
+core_terminal_ansiSupported () 
+{ 
+    if core_variable_isUnset TERM; then
+        return 1;
+    fi;
+    case "$TERM" in 
+        xterm* | rxvt* | urxvt* | linux* | vt*)
+            return 0
+        ;;
+    esac;
+    return 1
+}
+core_terminal_colour () 
+{ 
+    if [ ! -t $1 ]; then
+        return 0;
+    fi;
+    local terminfoCommand;
+    local ansiGroundCodeBit;
+    case "$2" in 
+        foreground)
+            terminfoCommand=setaf;
+            ansiGroundCodeBit=3
+        ;;
+        background)
+            terminfoCommand=setbf;
+            ansiGroundCodeBit=4
+        ;;
+    esac;
+    local ansiColorCodeBit;
+    case "$3" in 
+        black)
+            ansiColorCodeBit=0
+        ;;
+        red)
+            ansiColorCodeBit=1
+        ;;
+        green)
+            ansiColorCodeBit=2
+        ;;
+        yellow)
+            ansiColorCodeBit=3
+        ;;
+        blue)
+            ansiColorCodeBit=4
+        ;;
+        magenta)
+            ansiColorCodeBit=5
+        ;;
+        cyan)
+            ansiColorCodeBit=6
+        ;;
+        white)
+            ansiColorCodeBit=7
+        ;;
+        default)
+            ansiColorCodeBit=9
+        ;;
+    esac;
+    if core_terminal_ansiSupported; then
+        core_terminal_ansiSequence ${ansiGroundCodeBit}${ansiColorCodeBit};
+    else
+        if core_compatibility_whichNoOutput tput; then
+            core_terminal_tput $terminfoCommand $ansiColorCodeBit;
+        fi;
+    fi
+}
+core_terminal_effect () 
+{ 
+    if [ ! -t $1 ]; then
+        return 0;
+    fi;
+    shift 1;
+    local effect;
+    local terminfoCommand;
+    local ansiCode;
+    for effect in "$@";
+    do
+        case "$effect" in 
+            bold)
+                terminfoCommand=bold;
+                ansiCode=1
+            ;;
+            dim)
+                terminfoCommand=dim;
+                ansiCode=2
+            ;;
+            blink)
+                terminfoCommand=blink;
+                ansiCode=5
+            ;;
+            reversed)
+                terminfoCommand=rev;
+                ansiCode=7
+            ;;
+            invisible)
+                terminfoCommand=invis;
+                ansiCode=8
+            ;;
+        esac;
+        if core_terminal_ansiSupported; then
+            core_terminal_ansiSequence $ansiCode;
+        else
+            if core_compatibility_whichNoOutput tput; then
+                core_terminal_tput $terminfoCommand;
+            fi;
+        fi;
+    done
+}
+core_terminal_reset () 
+{ 
+    if [ -t $1 ]; then
+        if core_terminal_ansiSupported; then
+            core_terminal_ansiSequence 0;
+        else
+            if core_compatibility_whichNoOutput tput; then
+                core_terminal_tput sgr0;
+            fi;
+        fi;
+    fi
+}
+core_terminal_tput () 
+{ 
+    tput -T"${TERM:-dumb}" "$@" 2> /dev/null || true
+}
+core_trap_addHandler () 
+{ 
+    local handler="$1";
+    shift 1;
+    local trapName;
+    for trapName in "$@";
+    do
+        case "$trapName" in 
+            EXIT | HUP | INT | QUIT | ABRT | PIPE | TERM | TSTP | USR1 | USR2)
+                :
+            ;;
+            *)
+                core_exitError $core_commandLine_exitCode_SOFTWARE "Unrecognised or unsupported trap '$trapName'"
+            ;;
+        esac;
+    done;
+    for trapName in "$@";
+    do
+        core_variable_array_append core_trap_handlers_${trapName} "$handler";
+    done
+}
+core_trap_addOnCleanUp () 
+{ 
+    core_trap_addHandler "$1" EXIT INT TERM ABRT QUIT
+}
+core_trap_initialise () 
+{ 
+    local trapNames='EXIT|HUP|INT|QUIT|ABRT|PIPE|TERM|TSTP|USR1|USR2';
+    local trapName;
+    local IFS='|';
+    for trapName in $trapNames;
+    do
+        trap "_core_trap_executeOnTrap $trapName" "$trapName";
+    done
+}
+core_umask_setDefault () 
+{ 
+    umask 022
+}
+core_uses () 
+{ 
+    local libPath="$1";
+    local libraryName="$2";
+    shift 2;
+    local namespacedModule;
+    local moduleName;
+    local sourced;
+    local relativeFunctionsFilePath;
+    local functionsFilePath;
+    local delimiter="$core_variable_array_delimiter";
+    local module;
+    for module in "$@";
+    do
+        namespacedModule="$libraryName"/"$module";
+        local originalIFS="$IFS";
+        local IFS="$delimiter";
+        if core_variable_isUnset _core_uses_alreadySourced; then
+            _core_uses_alreadySourced="${namespacedModule}";
+        else
+            for alreadySourcedNamespacedFunction in $_core_uses_alreadySourced;
+            do
+                if [ "$namespacedModule" = "$alreadySourcedNamespacedFunction" ]; then
+                    continue 2;
+                fi;
+            done;
+            _core_uses_alreadySourced="${_core_uses_alreadySourced}${delimiter}${namespacedModule}";
+        fi;
+        local IFS="$originalIFS";
+        moduleName="$(core_compatibility_basename "$namespacedModule")";
+        sourced=0;
+        for relativeFunctionsFilePath in "$namespacedModule" "$namespacedModule"/"$moduleName";
+        do
+            functionsFilePath="$libPath"/"$relativeFunctionsFilePath".functions;
+            if [ -f "$functionsFilePath" ]; then
+                . "$functionsFilePath" || core_exitError 72 "Can not load functions '$functionsFilePath'";
+                sourced=1;
+            fi;
+        done;
+        if [ $sourced -eq 0 ]; then
+            core_exitError 72 "Can not load functions for module '$namespacedModule'";
+        fi;
+    done
+}
+core_usesIn () 
+{ 
+    if [ $# -eq 1 ]; then
+        local parentNamespace='';
+    else
+        local parentNamespace="${1}/";
+        shift 1;
+    fi;
+    local module;
+    for module in "$@";
+    do
+        core_uses "$_program_libPath" "$core_libraryName" "${parentNamespace}${module}";
+    done
+}
+core_validate_characterDeviceFileReadableAndWritable () 
+{ 
+    core_validate_pathNotEmpty "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    local messageFragment="The $category '$name' specifies a path '$value' which";
+    if [ ! -e "$value" ]; then
+        core_validate_exit "$messageFragment does not exist";
+    fi;
+    if [ ! -c "$value" ]; then
+        core_validate_exit "$messageFragment is not a character device file";
+    fi;
+    if [ ! -r "$value" ]; then
+        core_validate_exit "$messageFragment is not a readable character device file";
+    fi;
+    if [ ! -x "$value" ]; then
+        core_validate_exit "$messageFragment is not an executable character device file";
+    fi
+}
+core_validate_exit () 
+{ 
+    local message="$1";
+    if [ $code -eq $core_commandLine_exitCode_USAGE ]; then
+        core_commandLine_exitBadCommandLine "$message";
+    else
+        core_exitError $code "$message";
+    fi
+}
+core_validate_filePathReadable () 
+{ 
+    core_validate_pathNotEmpty "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    local messageFragment="The $category '$name' specifies a path '$value' which";
+    if [ ! -e "$value" ]; then
+        core_validate_exit "$messageFragment does not exist";
+    fi;
+    if [ ! -f "$value" ]; then
+        core_validate_exit "$messageFragment is not a file";
+    fi;
+    if [ ! -r "$value" ]; then
+        core_validate_exit "$messageFragment is not a readable file";
+    fi
+}
+core_validate_filePathReadableAndExecutable () 
+{ 
+    core_validate_filePathReadable "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    local messageFragment="The $category '$name' specifies a path '$value' which";
+    if [ ! -x "$value" ]; then
+        core_validate_exit "$messageFragment is not an executable file";
+    fi
+}
+core_validate_filePathReadableAndExecutableAndNotEmpty () 
+{ 
+    core_validate_filePathReadableAndExecutable "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    if [ ! -s "$value" ]; then
+        core_validate_exit "The $category '$name' specifies a path which is an empty file";
+    fi
+}
+core_validate_folderPathIsReadableAndSearchableAndWritableOrCanBeCreated () 
+{ 
+    local value="$4";
+    if [ -d "$value" ]; then
+        core_validate_folderPathReadableAndSearchableAndWritable "$@";
+    else
+        core_validate_parentFolderPathReadableAndSearchableAndWritable "$@";
+    fi
+}
+core_validate_folderPathReadableAndSearchable () 
+{ 
+    core_validate_pathNotEmpty "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    local messageFragment="The $category '$name' specifies a path '$value' which";
+    if [ ! -e "$value" ]; then
+        core_validate_exit "$messageFragment does not exist";
+    fi;
+    if [ ! -d "$value" ]; then
+        core_validate_exit "$messageFragment is not a directory";
+    fi;
+    if [ ! -r "$value" ]; then
+        core_validate_exit "$messageFragment is not a readable directory";
+    fi;
+    if [ ! -x "$value" ]; then
+        core_validate_exit "$messageFragment is not a searchable directory";
+    fi
+}
+core_validate_folderPathReadableAndSearchableAndWritable () 
+{ 
+    core_validate_folderPathReadableAndSearchable "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    if [ ! -w "$value" ]; then
+        core_validate_exit "The $category '$name' specifies a path '$value' which is not a writable directory";
+    fi
+}
+core_validate_isBoolean () 
+{ 
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    set +e;
+    core_variable_isTrue "$value";
+    local exitCode=$?;
+    set -e;
+    if [ $exitCode -eq 2 ]; then
+        core_validate_exit "The $category '$name' should be yes or no, not '$value'";
+    fi
+}
+core_validate_isUnsignedInteger () 
+{ 
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    case "$value" in 
+        '' | *[!0-9]*)
+            core_validate_exit "The $category '$name' should be an unsigned integer, not '$value'"
+        ;;
+        *)
+            :
+        ;;
+    esac
+}
+core_validate_nonDynamicPort () 
+{ 
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    core_validate_isUnsignedInteger $code "$category" "$name" "$value";
+    if [ $value -lt 1 ]; then
+        core_validate_exit "The $category '$name' should be between 1 and 65535, not '$value'";
+    fi;
+    if [ $value -gt 65535 ]; then
+        core_validate_exit "The $category '$name' should be between 1 and 65535, not '$value'";
+    fi
+}
+core_validate_parentFolderPathReadableAndSearchable () 
+{ 
+    core_validate_pathNotEmpty "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    if [ "$value" = '/' ]; then
+        core_validate_exit "The $category '$name' specifies a path '$value' with no parent";
+    fi;
+    if [ "$(core_compatibility_basename "$value")" = "$value" ]; then
+        local parentPath="$(pwd)"/..;
+    else
+        local parentPath="$(core_compatibility_dirname "$value")";
+    fi;
+    local messageFragment="The $category '$name' specifies a path '$value' with a parent which";
+    if [ ! -e "$parentPath" ]; then
+        core_validate_exit "$messageFragment does not exist";
+    fi;
+    if [ ! -d "$parentPath" ]; then
+        core_validate_exit "$messageFragment is not a directory";
+    fi;
+    if [ ! -r "$parentPath" ]; then
+        core_validate_exit "$messageFragment is not a readable directory";
+    fi;
+    if [ ! -x "$parentPath" ]; then
+        core_validate_exit "$messageFragment is not a searchable directory";
+    fi
+}
+core_validate_parentFolderPathReadableAndSearchableAndWritable () 
+{ 
+    core_validate_parentFolderPathReadableAndSearchable "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    if [ "$value" = '/' ]; then
+        core_validate_exit "The $category '$name' specifies a path '$value' with no parent";
+    fi;
+    if [ "$(core_compatibility_basename "$value")" = "$value" ]; then
+        local parentPath="$(pwd)"/..;
+    else
+        local parentPath="$(core_compatibility_dirname "$value")";
+    fi;
+    if [ ! -w "$parentPath" ]; then
+        core_validate_exit "The $category '$name' specifies a path '$value' with parent which is not a writable directory";
+    fi
+}
+core_validate_pathNotEmpty () 
+{ 
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    if [ -z "$value" ]; then
+        core_validate_exit "The $category '$name' specifies a path '$value' which is empty";
+    fi
+}
+core_validate_socketPathReadableAndWritable () 
+{ 
+    core_validate_pathNotEmpty "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    local messageFragment="The $category '$name' specifies a path '$value' which";
+    if [ ! -e "$value" ]; then
+        core_validate_exit "$messageFragment does not exist";
+    fi;
+    if [ ! -S "$value" ]; then
+        core_validate_exit "$messageFragment is not a socket";
+    fi;
+    if [ ! -r "$value" ]; then
+        core_validate_exit "$messageFragment is not a readable socket";
+    fi;
+    if [ ! -x "$value" ]; then
+        core_validate_exit "$messageFragment is not an executable socket";
+    fi
+}
+core_variable_allButFirst () 
+{ 
+    core_variable_allButFirstN "$1" 1
+}
+core_variable_allButFirstN () 
+{ 
+    local value="$1";
+    local numberToOmit=$2;
+    local length=${#value};
+    local endLength=$((length - numberToOmit));
+    if [ $endLength -lt 1 ]; then
+        return;
+    fi;
+    local count=0;
+    local match='';
+    local copy='';
+    _core_variable_copy '?' $endLength;
+    local prefix="${value%$copy}";
+    printf '%s' "${value#$prefix}"
+}
+core_variable_allButLast () 
+{ 
+    core_variable_allButLastN "$1" 1
+}
+core_variable_allButLastN () 
+{ 
+    local value="$1";
+    local numberToOmit=$2;
+    local length=${#value};
+    local endLength=$((length - numberToOmit));
+    if [ $endLength -lt 1 ]; then
+        return;
+    fi;
+    local count=0;
+    local match='';
+    local copy='';
+    _core_variable_copy '?' $endLength;
+    local suffix="${value#$copy}";
+    printf '%s' "${value%$suffix}"
+}
+core_variable_array_append () 
+{ 
+    local variableName="$1";
+    shift 1;
+    local argument;
+    for argument in "$@";
+    do
+        if core_variable_array_isUnset "$variableName"; then
+            core_variable_array_initialise "$variableName";
+            core_variable_setVariable "$variableName" "$argument";
+            core_variable_setVariable "${variableName}_initialised" 1;
+        else
+            core_variable_indirectValue "${variableName}_initialised";
+            core_variable_setVariable "${variableName}_initialised" $((core_variable_indirectValue_result+1));
+            core_variable_indirectValue "$variableName";
+            core_variable_setVariable "$variableName" "${core_variable_indirectValue_result}$core_variable_array_delimiter${argument}";
+        fi;
+    done
+}
+core_variable_array_appendUniquely () 
+{ 
+    local variableName="$1";
+    shift 1;
+    local argument;
+    for argument in "$@";
+    do
+        if ! core_variable_array_contains "$variableName" "$argument"; then
+            core_variable_array_append "$variableName" "$argument";
+        fi;
+    done
+}
+core_variable_array_at () 
+{ 
+    local variableName="$1";
+    local index=$2;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$variableName";
+    local originalIFS="$IFS";
+    local IFS="$core_variable_array_delimiter";
+    set -- $core_variable_indirectValue_result;
+    IFS="$originalIFS";
+    eval "core_variable_array_index_element=\"\$${index}\""
+}
+core_variable_array_contains () 
+{ 
+    local variableName="$1";
+    local containsValue="$2";
+    if core_variable_array_iterateShortcut "$variableName" _core_variable_array_contains_check; then
+        return 0;
+    fi;
+    return 1
+}
+core_variable_array_initialise () 
+{ 
+    local variableName="$1";
+    local variableNameInitialised="${variableName}_initialised";
+    if core_variable_isSet "$variableNameInitialised"; then
+        local core_variable_indirectValue_result;
+        core_variable_indirectValue "$variableNameInitialised";
+        if [ -n "$core_variable_indirectValue_result" ]; then
+            return 0;
+        fi;
+    fi;
+    core_variable_setVariable "$variableName" '';
+    core_variable_setVariable "$variableNameInitialised" 0
+}
+core_variable_array_isEmpty () 
+{ 
+    local variableName="$1";
+    _core_variable_array_isEmpty
+}
+core_variable_array_isSet () 
+{ 
+    local variableName="$1";
+    local variableNameInitialised="${variableName}_initialised";
+    if core_variable_isSet "$variableNameInitialised"; then
+        local core_variable_indirectValue_result;
+        core_variable_indirectValue "$variableNameInitialised";
+        if [ ${core_variable_indirectValue_result} -gt 0 ]; then
+            return 0;
+        else
+            return 1;
+        fi;
+    fi;
+    return 1
+}
+core_variable_array_isUnset () 
+{ 
+    ! core_variable_array_isSet "$1"
+}
+core_variable_array_iterate () 
+{ 
+    local variableName="$1";
+    local callback="$2";
+    shift 2;
+    if _core_variable_array_isEmpty; then
+        return 0;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$variableName";
+    local originalIFS="$IFS";
+    local IFS="$core_variable_array_delimiter";
+    local core_variable_array_element;
+    for core_variable_array_element in $core_variable_indirectValue_result;
+    do
+        IFS="$originalIFS";
+        $callback "$@";
+    done;
+    IFS="$originalIFS"
+}
+core_variable_array_iterateAsCallbacks () 
+{ 
+    local variableName="$1";
+    shift 1;
+    if _core_variable_array_isEmpty; then
+        return 0;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$variableName";
+    local originalIFS="$IFS";
+    local IFS="$core_variable_array_delimiter";
+    local callback;
+    for callback in $core_variable_indirectValue_result;
+    do
+        IFS="$originalIFS";
+        "$callback" "$@";
+    done;
+    IFS="$originalIFS"
+}
+core_variable_array_iterateAsCallbacksShortcut () 
+{ 
+    local variableName="$1";
+    shift 1;
+    if _core_variable_array_isEmpty; then
+        return 1;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$variableName";
+    local originalIFS="$IFS";
+    local IFS="$core_variable_array_delimiter";
+    local callback;
+    for callback in $core_variable_indirectValue_result;
+    do
+        IFS="$originalIFS";
+        if "$callback" "$@"; then
+            return 0;
+        fi;
+    done;
+    IFS="$originalIFS";
+    return 1
+}
+core_variable_array_iterateShortcut () 
+{ 
+    local variableName="$1";
+    local callback="$2";
+    shift 2;
+    if _core_variable_array_isEmpty; then
+        return 1;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$variableName";
+    local originalIFS="$IFS";
+    local IFS="$core_variable_array_delimiter";
+    local core_variable_array_element;
+    for core_variable_array_element in $core_variable_indirectValue_result;
+    do
+        IFS="$originalIFS";
+        if $callback "$@"; then
+            return 0;
+        fi;
+    done;
+    IFS="$originalIFS";
+    return 1
+}
+core_variable_array_length () 
+{ 
+    local variableName="$1";
+    shift 1;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "${variableName}_initialised";
+    printf '%s' $core_variable_indirectValue_result
+}
+core_variable_array_passToFunctionAsArguments () 
+{ 
+    local variableName="$1";
+    local function="$2";
+    shift 2;
+    if [ $# -ne 0 ]; then
+        core_exitError $core_commandLine_exitCode_SOFTWARE "Only varargs from array are allowed";
+    fi;
+    if _core_variable_array_isEmpty; then
+        "$function";
+        return 0;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$variableName";
+    local originalIFS="$IFS";
+    local IFS="$core_variable_array_delimiter";
+    set -- $core_variable_indirectValue_result;
+    IFS="$originalIFS";
+    "$function" "$@"
+}
+core_variable_array_string () 
+{ 
+    local variableName="$1";
+    local separator="$2";
+    if _core_variable_array_isEmpty; then
+        return 0;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$variableName";
+    local count=0;
+    local originalIFS="$IFS";
+    local IFS="$core_variable_array_delimiter";
+    for core_variable_array_element in $core_variable_indirectValue_result;
+    do
+        IFS="$originalIFS";
+        if [ $count -eq 0 ]; then
+            printf '%s' "$core_variable_array_element";
+        else
+            printf '%s%s' "$separator" "$core_variable_array_element";
+        fi;
+        count=$((count+1));
+    done;
+    IFS="$originalIFS"
+}
+core_variable_array_unset () 
+{ 
+    local variableName="$1";
+    local variableNameInitialised="${variableName}_initialised";
+    core_variable_unset "$variableName";
+    core_variable_unset "$variableNameInitialised"
+}
+core_variable_array_warning () 
+{ 
+    if [ "$core_init_preferred_shell" = 'sh' ]; then
+        if core_variable_isSet BASH_VERSINFO; then
+            if [ "$BASH_VERSINFO" -eq 3 ]; then
+                core_message NOTICE "There's a horrible bug in bash 3, which when run as sh, that treats 'local variableName' as being set to empty, not as unset. We have to support bash 3 for Mac OS X and MinGW.";
+                core_message NOTICE "There's a horrible bug in bash 3, which when run as sh, that doesn't like IFS='\001'.";
+            fi;
+        fi;
+    fi
+}
+core_variable_characterByCharacter () 
+{ 
+    local value="$1";
+    local callback="$2";
+    local TMP_FILE;
+    core_temporaryFiles_newFileToRemoveOnExit;
+    local inputFile="$TMP_FILE";
+    prinf '%s' "$value" > "$inputFile";
+    core_file_characterByCharacter "$inputFile" _core_variable_characterByCharacter;
+    rm -f "$inputFile"
+}
+core_variable_contains () 
+{ 
+    local value="$1";
+    local contains="$2";
+    case "$value" in 
+        *"$contains"*)
+            return 0
+        ;;
+    esac;
+    return 1
+}
+core_variable_doesNotEndWith () 
+{ 
+    ! core_variable_endsWith "$@"
+}
+core_variable_doesNotStartWith () 
+{ 
+    ! core_variable_startsWith "$@"
+}
+core_variable_endsWith () 
+{ 
+    local value="$1";
+    local contains="$2";
+    case "$value" in 
+        *"$contains")
+            return 0
+        ;;
+    esac;
+    return 1
+}
+core_variable_escape () 
+{ 
+    local value="$1";
+    local separator="$2";
+    local replacement="$3";
+    local result='';
+    local split;
+    local remainder="$value";
+    while [ ${#remainder} -ne 0 ]; do
+        IFS="$separator" read -r split remainder  <<-EOF
+${remainder}
+EOF
+
+        if [ -n "$result" ]; then
+            result="${result}${replacement}";
+        fi
+        result="${result}${split}";
+    done;
+    printf '%s' "$result"
+}
+core_variable_escapeForSingleQuotedLiteralInHeredoc () 
+{ 
+    local value="$1";
+    local singleQuote="'";
+    local doubleQuote='"';
+    local replacement="${singleQuote}${doubleQuote}${singleQuote}${doubleQuote}${singleQuote}";
+    printf '%s' "$value" | sed "s/${singleQuote}/${replacement}/g"
+}
+core_variable_escapeSingleQuotes () 
+{ 
+    core_variable_escape "$1" "'" "'\''"
+}
+core_variable_escapedCommandLine () 
+{ 
+    { 
+        local afterFirst=false;
+        local argument;
+        for argument in "$@";
+        do
+            if $afterFirst; then
+                printf ' ';
+            else
+                afterFirst=true;
+            fi;
+            printf "'";
+            core_variable_escapeSingleQuotes "$argument";
+            printf "'";
+        done;
+        printf '\n'
+    }
+}
+core_variable_firstCharacter () 
+{ 
+    local value="$1";
+    local suffix="${value#?}";
+    printf '%s' "${value%$suffix}"
+}
+core_variable_indirectValue () 
+{ 
+    eval "core_variable_indirectValue_result=\"\$${1}\""
+}
+core_variable_isFalse () 
+{ 
+    _core_variable_parseBoolean "$1" 1 0 2
+}
+core_variable_isInvalidBoolean () 
+{ 
+    _core_variable_parseBoolean "$1" 1 1 0
+}
+core_variable_isSet () 
+{ 
+    local x;
+    eval x="\"\${$1+set}\"";
+    [ "$x" = 'set' ]
+}
+core_variable_isTrue () 
+{ 
+    _core_variable_parseBoolean "$1" 0 1 2
+}
+core_variable_isUnset () 
+{ 
+    ! core_variable_isSet "$1"
+}
+core_variable_isUnsetOrEmpty () 
+{ 
+    local variableName="$1";
+    if core_variable_isUnset "$variableName"; then
+        return 0;
+    fi;
+    local core_variable_indirectValue_result;
+    core_variable_indirectValue "$variableName";
+    if [ -z "$core_variable_indirectValue_result" ]; then
+        return 0;
+    fi;
+    return 1
+}
+core_variable_lastCharacter () 
+{ 
+    local value="$1";
+    local prefix="${value%?}";
+    printf '%s' "${value#$prefix}"
+}
+core_variable_matches () 
+{ 
+    local value="$1";
+    local match="$2";
+    case "$value" in 
+        $match)
+            return 0
+        ;;
+    esac;
+    return 1
+}
+core_variable_setAndExportVariable () 
+{ 
+    eval export "$1"'=$2'
+}
+core_variable_setVariable () 
+{ 
+    eval "$1"'=$2'
+}
+core_variable_setVariableIfUnset () 
+{ 
+    local variableName="$1";
+    local variableDefaultValue="$2";
+    if core_variable_isUnset "$variableName"; then
+        eval "$variableName='$variableDefaultValue'";
+    fi
+}
+core_variable_startsWith () 
+{ 
+    local value="$1";
+    local contains="$2";
+    case "$value" in 
+        "$contains"*)
+            return 0
+        ;;
+    esac;
+    return 1
+}
+core_variable_trimSpaceAndHorizontalTab () 
+{ 
+    local value="$1";
+    value="${value#"${value%%[![:blank:]]*}"}";
+    printf '%s' "${value%"${value##*[![:blank:]]}"}"
+}
+core_variable_trimWhitespace () 
+{ 
+    local value="$1";
+    value="${value#"${value%%[![:space:]]*}"}";
+    printf '%s' "${value%"${value##*[![:space:]]}"}"
+}
+core_variable_unset () 
+{ 
+    unset "$@"
+}
+fatten () 
+{ 
+    fatten_obtainGitDetails;
+    fatten_createTemporaryFolder;
+    fatten_createOutputFolder;
+    fatten_fattenPrograms
+}
+fatten_createOutputFolder () 
+{ 
+    mkdir -m 0755 -p "$fatten_outputPath" || core_exitError $core_commandLine_exitCode_CANTCREAT "Can not create --output-path '$fatten_outputPath'";
+    pushd "$fatten_outputPath";
+    fatten_outputPath="$(pwd -P)";
+    popd
+}
+fatten_createTemporaryFolder () 
+{ 
+    local TMP_FOLDER;
+    core_temporaryFiles_newFolderToRemoveOnExit;
+    fatten_temporaryFolderPath="$TMP_FOLDER"
+}
+fatten_fattenProgram () 
+{ 
+    local fatten_originalProgram="$core_variable_array_element";
+    local fatten_programPath="$(core_compatibility_dirname "$fatten_originalProgram")";
+    local fatten_programName="$(core_compatibility_basename "$fatten_originalProgram")";
+    local fatten_fattenedProgramParentPath="${fatten_outputPath}${fatten_binPath}";
+    local fatten_fattenedProgram="$fatten_fattenedProgramParentPath"/"$fatten_programName";
+    local fatten_bootstrapProgram="$fatten_temporaryFolderPath"/"$fatten_programName";
+    local fatten_shebang="$(head -n 1 "$fatten_originalProgram")";
+    if [ -f "$fatten_bootstrapProgram" ]; then
+        core_message WARN "Already fattened '$fatten_fattenedProgram', skipping ($_program_name does not support fattening programs with the same name)";
+        return 0;
+    fi;
+    if [ "$fatten_originalProgram" = "$fatten_fattenedProgram" ]; then
+        core_exitError $core_commandLine_exitCode_CANTCREAT "Could not overwrite fattened program '$fatten_fattenedProgram' (did you specify an output path)?";
+    fi;
+    mkdir -m 0755 -p "$fatten_fattenedProgramParentPath";
+    core_snippet_retrieveAndSourceAsHereDoc bootstrap1 > "$fatten_bootstrapProgram";
+    core_snippet_retrieve bootstrap2 yes "$fatten_bootstrapProgram";
+    chmod +x "$fatten_bootstrapProgram";
+    "$fatten_bootstrapProgram" > "$fatten_fattenedProgram";
+    chmod +x "$fatten_fattenedProgram";
+    core_message NOTICE "Fattened $fatten_programName Version $fatten_version $fatten_packageOrBuild"
+}
+fatten_fattenPrograms () 
+{ 
+    core_variable_array_iterate fatten_programs fatten_fattenProgram
+}
+fatten_obtainGitDetails () 
+{ 
+    pushd "$fatten_repositoryPath";
+    fatten_branch="$(git branch | grep '^\* ' | cut -b3-)";
+    fatten_commit="$(git log -n 1 --format='%H')";
+    local iso8601Date="$(git log -n 1 --format='%ci')";
+    fatten_version="$(date -d "$iso8601Date" '+%Y.%m%d.%H%M')";
+    local pendingChanges="$(git diff --minimal --no-color --name-status)";
+    if [ -n "$pendingChanges" ]; then
+        if [ "$fatten_force" = 'no' ]; then
+            core_exitError $core_commandLine_exitCode_DATAERR "Pending changes in --repository-path '$fatten_repositoryPath'";
+        fi;
+        fatten_packageOrBuild="Commit $fatten_commit Branch $fatten_branch Variant $(git diff --minimal --no-color | md5sum | awk '{print $1}')";
+    else
+        fatten_packageOrBuild="Commit $fatten_commit Branch $fatten_branch";
+    fi;
+    if [ -f "COPYRIGHT" ]; then
+        fatten_programCopyrightAndLicenseStatement="$(cat COPYRIGHT)";
+    else
+        fatten_programCopyrightAndLicenseStatement=$(core_commandLine_defaultLicenseMessage);
+    fi;
+    popd
+}
+fatten_validate_repositoryPath () 
+{ 
+    core_validate_folderPathReadableAndSearchable "$@";
+    local code=$1;
+    local category="$2";
+    local name="$3";
+    local value="$4";
+    if [ ! -e "$value"/.git ]; then
+        core_validate_exit "The $category '$name' specifies a path '$value' which is not a git repository";
+    fi
+}
+core_init_main "$@"
